@@ -29,7 +29,7 @@ const SavedBooks = () => {
   // Check if the user is authenticated
   if (!Auth.loggedIn()) {
     // Redirect to the login page or handle unauthorized access
-    return <h2>Please log in to view your saved books.</h2>;
+    return <h2>Please log in to view your saved expeditions.</h2>;
   }
 
   
@@ -64,14 +64,14 @@ if (!userData || !userData.savedBooks) {
     <>
       <div className="text-light bg-dark p-5">
         <Container>
-          <h1>Viewing saved books!</h1>
+          <h1>Viewing saved expeditions!</h1>
         </Container>
       </div>
       <Container>
         <h2 className='pt-5'>
           {userData.savedBooks.length
             ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
-            : 'You have no saved books!'}
+            : 'You have no saved expeditions!'}
         </h2>
         <Row>
   {userData.savedBooks.map((book) => {

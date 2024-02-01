@@ -10,6 +10,52 @@ const searchGoogleBooks = (query) => {
   return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
 };
 
+const shipwrecks = [
+  {
+    name: 'Empress of Ireland',
+    shipwreckId: 'empress_ireland',
+    image: '[URL]',
+    coordinates: '48°37.5′N 68°24.5′W',
+    causeOfWreck: 'Collision',
+    yearSunk: '1914',
+    casualties: '1012',
+    country: 'UK',
+  },
+  {
+    name: 'RMS Titanic',
+    shipwreckId: 'titanic',
+    image: '[URL]',
+    coordinates: '41°43′57″N 49°56′54″W',
+    causeOfWreck: 'Iceberg collision',
+    yearSunk: '1912',
+    casualties: '1502',
+    country: 'North Atlantic Ocean',
+  },
+  {
+    name: 'USS Arizona',
+    shipwreckId: 'uss_arizona',
+    image: '[URL]',
+    coordinates: '21°21′23″N 157°57′57″W',
+    causeOfWreck: 'Attack on Pearl Harbor',
+    yearSunk: '1941',
+    casualties: '1177',
+    country: 'USA',
+  },
+  {
+    name: 'Mary Rose',
+    shipwreckId: 'mary_rose',
+    image: '[URL]',
+    coordinates: '50°47′06″N 1°06′54″W',
+    causeOfWreck: 'Capsized',
+    yearSunk: '1545',
+    casualties: '500',
+    country: 'UK',
+  },
+];
+
+
+
+
 // import { saveBook, searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 
@@ -100,7 +146,7 @@ const SearchBooks = () => {
     <>
       <div className="text-light bg-dark p-5" fluid="true">
         <Container>
-          <h1>Search for Books!</h1>
+          <h1>Search for Lost treasure!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Row>
               <Col xs={12} md={8}>
@@ -110,12 +156,12 @@ const SearchBooks = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
                   size="lg"
-                  placeholder="Search for a book"
+                  placeholder="Search the seas for shipwrecks"
                 />
               </Col>
               <Col xs={12} md={4}>
                 <Button type="submit" variant="success" size="lg">
-                  Submit Search
+                  Find treasure!
                 </Button>
               </Col>
             </Row>

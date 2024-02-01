@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.10",
-    "apollo-server-express": "^3.13.0"
+    "apollo-server-express": "^3.13.0",
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^2.1.5"
   }
 }

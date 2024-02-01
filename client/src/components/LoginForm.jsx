@@ -39,22 +39,6 @@ const LoginForm = () => {
       event.stopPropagation();
     }
 
-    // removing loginUser api req
-    // try {
-    //   const response = await loginUser(userFormData);
-
-    //   if (!response.ok) {
-    //     throw new Error('something went wrong!');
-    //   }
-
-    //   const { token, user } = await response.json();
-    //   console.log(user);
-    //   Auth.login(token);
-    // } catch (err) {
-    //   console.error(err);
-    //   setShowAlert(true);
-    // }
-
     // bring in new hook
     try {
       const response = await loginUser({
@@ -109,7 +93,7 @@ const LoginForm = () => {
           disabled={!(userFormData.email && userFormData.password)}
           type='submit'
           variant='success'>
-          Submit
+          Embark on the seas!
         </Button>
       </Form>
     </>
