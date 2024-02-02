@@ -42,17 +42,17 @@ const shipwrecks = [
 
   { name: "The White Ship", image: "", reasonForSinking: "Collision", yearSunk: "1120", country: "United Kingdom", bodyOfWater: "English Channel", casualties: "300", coordinates: "N/A"},
 
-  { name: "SS Edmund Fitzgerald", image: "", reasonForSinking: "Unknown", yearSunk: "1975", country: "United States", bodyOfWater: "Lake Superior", casualties: "29", coordinates: "46°59.91′N 85°06.61′W"},
+  { name: "SS Edmund Fitzgerald", image: "/ShipWreckPictures/EdmundFitzgerald1.png", reasonForSinking: "Unknown", yearSunk: "1975", country: "United States", bodyOfWater: "Lake Superior", casualties: "29", coordinates: "46°59.91′N 85°06.61′W"},
 
-  { name: "RFS Moskva", image: "", reasonForSinking: "War/battle damage", yearSunk: "2022", country: "Russia", bodyOfWater: "Black Sea", casualties: "0", coordinates: "45°10′43″N 30°55′31″E"},
+  { name: "RFS Moskva", image: "/ShipWreckPictures/RSFMoskva1.png", reasonForSinking: "War/battle damage", yearSunk: "2022", country: "Russia", bodyOfWater: "Black Sea", casualties: "0", coordinates: "45°10′43″N 30°55′31″E"},
 
-  { name: "Felicity Ace", image: "", reasonForSinking: "Onboard accident", yearSunk: "2022", country: "Japan", bodyOfWater: "Atlantic Ocean", casualties: "0", coordinates: "37.52861°N 28.98560°W"},
+  { name: "Felicity Ace", image: "/ShipWreckPictures/FelicityAce1.png", reasonForSinking: "Onboard accident", yearSunk: "2022", country: "Japan", bodyOfWater: "Atlantic Ocean", casualties: "0", coordinates: "37.52861°N 28.98560°W"},
 
-  { name: "MV Wilhelm Gustloff", image: "", reasonForSinking: "War/battle damage", yearSunk: "1945", country: "Germany", bodyOfWater: "Baltic Sea", casualties: "9600", coordinates: "55°04′22″N 17°25′17″E"},
+  { name: "MV Wilhelm Gustloff", image: "/ShipWreckPictures/MVWilhelmGustav1.png", reasonForSinking: "War/battle damage", yearSunk: "1945", country: "Germany", bodyOfWater: "Baltic Sea", casualties: "9600", coordinates: "55°04′22″N 17°25′17″E"},
 
-  { name: "RMS Titanic", image: "", reasonForSinking: "Collision", yearSunk: "1912", country: "United Kingdom", bodyOfWater: "Atlantic Ocean", casualties: "1500", coordinates: "41°43′57″N 49°56′49″W"},
+  { name: "RMS Titanic", image: "/ShipWreckPictures/RMSTitanic1.png", reasonForSinking: "Collision", yearSunk: "1912", country: "United Kingdom", bodyOfWater: "Atlantic Ocean", casualties: "1500", coordinates: "41°43′57″N 49°56′49″W"},
 
-  { name: "USS Rodolph", image: "", reasonForSinking: "War/battle damage", yearSunk: "1865", country: "United States", bodyOfWater: "Blakeley River", casualties: "4", coordinates: "N/A"},
+  { name: "USS Rodolph", image: "/ShipWreckPictures/USSRodolph1.png", reasonForSinking: "War/battle damage", yearSunk: "1865", country: "United States", bodyOfWater: "Blakeley River", casualties: "4", coordinates: "N/A"},
 ];
 
 // Placeholder for getSavedShipWreckIds function
