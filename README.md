@@ -3,19 +3,19 @@
 </p>
 
 [![license: mit](https://img.shields.io/badge/license-mit-blue)](https://opensource.org/licenses/MIT)
-[![mongodb badge](https://img.shields.io/badge/mongodb-darkblue.svg?&logo=MongoDB&logoColor=white)]()
+[![mongodb badge](https://img.shields.io/badge/mongodb-darkblue.svg?&logo=MongoDB&logoColor=white)](https://www.mongodb.com/)
 [![express.js badge](https://img.shields.io/badge/express-yellow.svg?&logo=Express&logoColor=white)](https://expressjs.com/)
-[![react badge](https://img.shields.io/badge/react-lightgrey.svg?&logo=React&logoColor=white)]()
+[![react badge](https://img.shields.io/badge/react-lightgrey.svg?&logo=React&logoColor=white)](https://react.dev/)
 [![node.js badge](https://img.shields.io/badge/node-teal?logo=nodedotjs&logoColor=white&style=flat)](https://nodejs.org/en)
 [![apollo badge](https://img.shields.io/badge/-apollographQL-lightblue?&logo=apollo-graphql)](https://www.apollographql.com/)
 [![heroku badge](https://img.shields.io/badge/heroku-grey.svg?&logo=Insomnia&logoColor=white)](https://heroku.com)
 [![canva badge](https://img.shields.io/badge/canva-lightyellow.svg?&logo=Canva&logoColor=white)](https://canva.com/)
 
+[![vite badge](https://img.shields.io/badge/vite-purple.svg?&logo=Vite&logoColor=white)](https://vitejs.dev/)
 
 <p align="left">
   <img alt="mode" src="https://img.shields.io/badge/view-darkmode-black.svg?&logo=Github&logoColor=white" >
 </p>
-
 
 ### ![table-of-contents](./sunken-booty/branding/toc.png)
 
@@ -37,9 +37,23 @@
 
 ### ![overview](./sunken-booty/branding/1.png)
 
-`WRECK'D TREASURE` is a [MERN]() full-stack web application that meets the [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) criteria - runs in the browser, and will function offline. The app uses [Express.js](https://www.npmjs.com/package/express) for **routing**, [webpack](https://webpack.js.org/) to **budle** JavaScript files for usage in the browser, and [idb](https://www.npmjs.com/package/idb) for **storing & retrieving data**.
+`WRECK'D TREASURE` is an interactive user-focuced [MERN](https://www.geeksforgeeks.org/mern-stack/) application dedicated to ***shipwrecks of the sea***. The app uses [React](https://react.dev/) for the **font end**, [GraphQl] with a [Node.js](https://nodejs.org/en) and [Express.js](https://www.npmjs.com/package/express) **server**, and [MongoDB](https://www.mongodb.com/) and the [Mongoose](https://mongoosejs.com/docs/) `ODM` for the database.
+
+* The app meets the [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) criteria - runs in the browser, and will function offline.
+
+* [vite](https://vitejs.dev/)
+
+* [ApolloGraphQl]()
+
+* *queries* and *mutations* for **retrieving**, **adding**, **updating**, and **deleting** data.
+
+* [bcrypt package](https://www.npmjs.com/package/bcrypt) to **hash passwords** and [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) to *securely transmit* information between parties as a **JSON object**
+
 
 >The [.npmrc](https://docs.npmjs.com/cli/v10/configuring-npm/npmrc) file will set config values specific to this project, and ensures the app will deploy properly to [Heroku](https://www.heroku.com).
+
+
+[webpack](https://webpack.js.org/) to **budle** JavaScript files for usage in the browser, and [idb](https://www.npmjs.com/package/idb) for **storing & retrieving data**.
 
 
 #
