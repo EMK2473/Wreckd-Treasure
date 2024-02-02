@@ -20,13 +20,15 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar' className='d-flex flex-row-reverse'>
             <Nav className='ml-auto d-flex'>
-              <Nav.Link as={Link} to='/'>
-                Search
-              </Nav.Link>
+              {Auth.loggedIn() && (
+                <Nav.Link as={Link} to='/'>
+                  Search
+                </Nav.Link>
+              )}
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to='/saved'>
-                   Your Expeditions
+                    Your Expeditions
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Log out</Nav.Link>
                 </>
