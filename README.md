@@ -37,7 +37,7 @@
   <!-- <img src="./sunken-booty/branding/user-story.png"/>
 </p> -->
 
-<!-- ### ![concept-design](./luck/branding/10.png) -->
+### ![concept-design](./luck/branding/10.png)
 
 ### ![booty-list](./sunken-booty/branding/11.png)
 
@@ -46,3 +46,17 @@
 </p> -->
 
 ### ![team](./sunken-booty/branding/treasure-team.png)
+
+
+### ![screenshot](./sunken-booty/branding/12.png)
+
+##### *screenshot demonstrates `WRECK'D TREASURE's` back end, testing all routes with **ApolloGQL**, and the functional application deployed on **Heroku***
+
+<!-- <p align="center">
+<img src="./sunken-booty/demo/ss.png"/>
+</p> -->
+
+### ![demo](./sunken-booty/branding/13.png)
+coming soon!
+
+#
