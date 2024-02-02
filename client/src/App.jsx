@@ -1,7 +1,6 @@
 import "./App.css";
 import { Outlet } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MapDisplay from "./components/MapDisplay";
 import {
   ApolloClient,
   ApolloProvider,
@@ -9,6 +8,8 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+
+// Remove one of the MapDisplay import statements
 import MapDisplay from './components/MapDisplay'; // Import the new MapDisplay component
 
 import SearchShipWrecks from "./pages/SearchShipWrecks";
