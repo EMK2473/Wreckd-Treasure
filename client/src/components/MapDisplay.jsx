@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MapDisplay = () => {
-  const zoomLevel = 2; // Set your desired zoom level
+  const zoomLevel = 2; 
 
   return (
     <div className="map-container">
