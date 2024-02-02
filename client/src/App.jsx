@@ -1,7 +1,7 @@
 import "./App.css";
 import { Outlet } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import MapDisplay from "./components/MapDisplay";
 import {
   ApolloClient,
   ApolloProvider,
@@ -41,7 +41,13 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <>
+        {/* Display Navbar component */}
         <Navbar />
+        
+        {/* Display MapDisplay component */}
+        <MapDisplay />
+
+        {/* Display the content based on the route */}
         <Routes>
           <Route path="*" element={<SearchShipWrecks />} />
           <Route path="/saved" element={<SavedShipWrecks />} />

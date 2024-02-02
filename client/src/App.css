@@ -1,5 +1,10 @@
 body {
   font-family: 'Rubik', sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 h1,
@@ -14,4 +19,15 @@ h6 {
 .small {
   font-weight: 300;
   font-style: italic;
+}
+
+.map-container {
+  text-align: center; /* Center the content within the container */
+  padding: 20px; /* Add padding around the map */
+  border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
+}
+
+iframe {
+  max-width: 100%; /* Ensure the iframe doesn't overflow its container */
 }
