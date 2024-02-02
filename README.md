@@ -1,25 +1,62 @@
-# MERN-Pirate-Project
-![Github license](https://img.shields.io/badge/mit-blue.svg)
- 
- Licensing: [mit](https://choosealicense.com/licenses/mit/)
+<p align="center">
+<img src="./sunken-booty/branding/header.png"/>
+</p>
 
-## Table of Contents
-- [Description](#description)
-- [Installation Requirements](#installation-requirements)
-- [Application Usage](#application-usage)
-- [License](#licensing-information)
-- [Contributions](#contributions)
-- [Questions](#questions)
-## Description
+[![apollo badge](https://img.shields.io/badge/-apollographQL-darkblue?&logo=apollo-graphql)](https://www.apollographql.com/)
+
+<p align="left">
+  <img alt="mode" src="https://img.shields.io/badge/view-darkmode-black.svg?&logo=Github&logoColor=white" >
+</p>
 
 
-## Installation Requirements
-npm i
+### ![table-of-contents](./sunken-booty/branding/toc.png)
 
-## Application Usage
+- [OVERVIEW](#overview)
+  - [*user story*](#user-story)
+  - [*concept design*](#concept-design)
+  - [*booty list*](#luck-list)
+  - [*the treasure team*](#team)
+- [INSTALLATION](#installation)
+- [USAGE](#usage)
+  - [*screenshot*](#screenshot)
+  - [*demo*](#demo)
+- [TESTING](#testing)
+- [SOURCES](#sources)
+- [LICENSE](#license)
+- [LINKS](#links)
+- [CONNECT](#connect)
 
-## Contributions
-Eric Keeton
 
-## Questions
-For Questions, contact me at emk2473@gmail.com or visit My Github: [EMK2473](https://github.com/EMK2473)
+### ![overview](./sunken-booty/branding/1.png)
+
+#
+
+### ![user-story](./sunken-booty/branding/9.png)
+
+<!-- <p align="center"> -->
+  <!-- <img src="./sunken-booty/branding/user-story.png"/>
+</p> -->
+
+### ![concept-design](./luck/branding/10.png)
+
+### ![booty-list](./sunken-booty/branding/11.png)
+
+<!-- <p align="center">
+  <img src="./sunken-booty/branding/booty-list.png"/>
+</p> -->
+
+### ![team](./sunken-booty/branding/treasure-team.png)
+
+
+### ![screenshot](./sunken-booty/branding/12.png)
+
+##### *screenshot demonstrates `WRECK'D TREASURE's` back end, testing all routes with **ApolloGQL**, and the functional application deployed on **Heroku***
+
+<!-- <p align="center">
+<img src="./sunken-booty/demo/ss.png"/>
+</p> -->
+
+### ![demo](./sunken-booty/branding/13.png)
+coming soon!
+
+#
