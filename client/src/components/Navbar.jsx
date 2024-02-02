@@ -26,9 +26,9 @@ const AppNavbar = () => {
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to='/saved'>
-                   Expeditions
+                   Your Expeditions
                   </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Disembark</Nav.Link>
+                  <Nav.Link onClick={Auth.logout}>Log out</Nav.Link>
                 </>
               ) : (
                 <Nav.Link onClick={() => setShowModal(true)}>Log in/Sign up</Nav.Link>
@@ -49,10 +49,10 @@ const AppNavbar = () => {
             <Modal.Title id='signup-modal'>
               <Nav variant='pills'>
                 <Nav.Item>
-                  <Nav.Link eventKey='login'>Log in!</Nav.Link>
+                  <Nav.Link eventKey='login'>Log in.</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey='signup'>Sign up</Nav.Link>
+                  <Nav.Link eventKey='signup'>Sign up.</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Modal.Title>
