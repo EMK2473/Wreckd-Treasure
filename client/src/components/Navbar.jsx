@@ -15,23 +15,23 @@ const AppNavbar = () => {
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            Pirate Expeditions
+            Wreck'd Treasure
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar' className='d-flex flex-row-reverse'>
             <Nav className='ml-auto d-flex'>
               <Nav.Link as={Link} to='/'>
-                Search Shipwrecks
+                Search
               </Nav.Link>
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to='/saved'>
-                    Your Expeditions
+                   Expeditions
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Disembark</Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Aboard!/Pledge fealty to the seas!</Nav.Link>
+                <Nav.Link onClick={() => setShowModal(true)}>Log in/Sign up</Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>
@@ -49,10 +49,10 @@ const AppNavbar = () => {
             <Modal.Title id='signup-modal'>
               <Nav variant='pills'>
                 <Nav.Item>
-                  <Nav.Link eventKey='login'>Aboard!</Nav.Link>
+                  <Nav.Link eventKey='login'>Log in!</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey='signup'>Pledge fealty to the seas!</Nav.Link>
+                  <Nav.Link eventKey='signup'>Sign up</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Modal.Title>
