@@ -1,4 +1,3 @@
-// MapDisplay.jsx
 import React from 'react';
 
 const MapDisplay = () => {
