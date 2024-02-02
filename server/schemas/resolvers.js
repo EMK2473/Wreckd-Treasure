@@ -38,22 +38,22 @@ const resolvers = {
           console.log('Logged IN')
           return { token, user };
         },
-        saveBook: async (parent, { newBook }, context) => {
+        saveShipWreck: async (parent, { newShipWreck }, context) => {
           if (context.user) {
             const updatedUser = await User.findByIdAndUpdate(
               { _id: context.user._id },
-              { $push: { savedBooks: newBook }},
+              { $push: { savedShipWrecks: newShipWreck }},
               { new: true }
             );
             return updatedUser;
           }
           throw new AuthenticationError('You need to be logged in!');
         },
-        removeBook: async (parent, { bookId }, context) => {
+        removeShipWreck: async (parent, { shipWreckId }, context) => {
           if (context.user) {
             const updatedUser = await User.findByIdAndUpdate(
               { _id: context.user._id },
-              { $pull: { savedBooks: { bookId }}},
+              { $pull: { savedShipWrecks: { shipWreckId }}},
               { new: true }
             );
             return updatedUser;

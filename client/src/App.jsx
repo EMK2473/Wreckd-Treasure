@@ -10,16 +10,14 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
-import SearchBooks from "./pages/SearchBooks";
-import SavedBooks from "./pages/SavedBooks";
+import SearchShipWrecks from "./pages/SearchShipWrecks";
+import SavedShipWrecks from "./pages/SavedShipWrecks";
 import Navbar from "./components/Navbar";
 
 // set graphQL api endpoint
 const httpLink = createHttpLink({
-  uri: "/graphql", 
+  uri: "/graphql",
 });
-
-
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -36,9 +34,7 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   // Set up client to execute the `authLink` middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache({
-    
-  }),
+  cache: new InMemoryCache({}),
 });
 
 function App() {
@@ -47,8 +43,8 @@ function App() {
       <>
         <Navbar />
         <Routes>
-          <Route path="*" element={<SearchBooks />} />
-          <Route path="/saved" element={<SavedBooks />} />
+          <Route path="*" element={<SearchShipWrecks />} />
+          <Route path="/saved" element={<SavedShipWrecks />} />
           <Route
             path="*"
             element={<h1 className="display-2">Wrong page!</h1>}

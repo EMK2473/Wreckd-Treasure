@@ -26,10 +26,10 @@ export const ADD_USER = gql`
         _id
         username
         email
-        bookCount
-        savedBooks {
+        shipWreckCount
+        savedShipWrecks {
           authors
-          bookId
+          shipWreckId
           image
           link
           title
@@ -39,21 +39,21 @@ export const ADD_USER = gql`
     }
   }
 `;
-// SAVE_BOOK
+// SAVE_SHIPWRECK
 // template tag gql` `
 // define: mutation($value1: valueType, $value2: valueType)
 // call: mutation(key: $value1, key2: $value2 )
-// export const SAVE_BOOK = gql`
-// mutation saveBook()
+// export const SAVE_SHIPWRECK = gql`
+// mutation saveShipWreck()
 // `
-export const SAVE_BOOK = gql`
-  mutation saveBook($newBook: InputBook!) {
-    saveBook(newBook: $newBook) {
+export const SAVE_SHIPWRECK = gql`
+  mutation saveShipWreck($newShipWreck: InputShipWreck!) {
+    saveShipWreck(newShipWreck: $newShipWreck) {
       _id
       username
       email
-      savedBooks {
-        bookId
+      savedShipWrecks {
+        shipWreckId
         authors
         description
         title
@@ -67,16 +67,16 @@ export const SAVE_BOOK = gql`
 // template tag gql` `
 // define: mutation($value: valueType, $value2: valueType)
 // call: mutation(key: $value, key2: $value2 )
-// REMOVE_BOOK
+// REMOVE_SHIPWRECK
 
-export const REMOVE_BOOK = gql`
-  mutation removeBook($bookId: ID!) {
-    removeBook(bookId: $bookId) {
+export const REMOVE_SHIPWRECK = gql`
+  mutation removeShipWreck($shipWreckId: ID!) {
+    removeShipWreck(shipWreckId: $shipWreckId) {
       _id
       username
       email
-      savedBooks {
-        bookId
+      savedShipWrecks {
+        shipWreckId
         authors
         description
         title
@@ -87,10 +87,10 @@ export const REMOVE_BOOK = gql`
   }
 `;
 
-// new SEARCH_BOOKS query
-export const SEARCH_BOOKS = gql`
-  query searchBooks($searchTerm: String!) {
-    searchBooks(searchTerm: $searchTerm) {
+// new SEARCH_SHIPWRECKS query
+export const SEARCH_SHIPWRECKS = gql`
+  query searchShipWrecks($searchTerm: String!) {
+    searchShipWrecks(searchTerm: $searchTerm) {
       id
       volumeInfo {
         authors

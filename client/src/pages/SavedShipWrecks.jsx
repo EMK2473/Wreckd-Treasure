@@ -10,15 +10,15 @@ import {
 // bring in hooks/queries/mutations
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
-import { REMOVE_BOOK } from '../utils/mutations';
+import { REMOVE_SHIPWRECK } from '../utils/mutations';
 
 // remove API call
-// import { getMe, deleteBook } from '../utils/API';
+// import { getMe, deleteShipWreck } from '../utils/API';
 import Auth from '../utils/auth';
-import { removeBookId } from '../utils/localStorage';
-const SavedBooks = () => {
+import { removeShipWreckId } from '../utils/localStorage';
+const SavedShipWrecks = () => {
   const { loading, data } = useQuery(GET_ME);
-  const [removeBook] = useMutation(REMOVE_BOOK);
+  const [removeShipWreck] = useMutation(REMOVE_SHIPWRECK);
 
   if (loading) {
     return <h2>LOADING...</h2>;
@@ -35,19 +35,19 @@ const SavedBooks = () => {
   
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteBook = async (bookId) => {
+  const handleDeleteShipWreck = async (bookId) => {
     try {
-      const response = await removeBook({
+      const response = await removeShipWreck({
         variables: { bookId }
       });
 
-      const updatedUser = response.data.removeBook;
+      const updatedUser = response.data.removeShipWreck;
       // setUserData(updatedUser);
       // no need to call setUserData
 
       
       // upon success, remove book's id from localStorage
-      removeBookId(bookId);
+      removeShipWreckId(bookId);
     } catch (err) {
       console.error(err);
     }
@@ -55,7 +55,7 @@ const SavedBooks = () => {
 
 
 // if data isn't here yet, say so
-if (!userData || !userData.savedBooks) {
+if (!userData || !userData.savedShipWrecks) {
   return <h2>LOADING...</h2>;
 }
 
@@ -69,12 +69,12 @@ if (!userData || !userData.savedBooks) {
       </div>
       <Container>
         <h2 className='pt-5'>
-          {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
+          {userData.savedShipWrecks.length
+            ? `Viewing ${userData.savedShipWrecks.length} saved ${userData.savedShipWrecks.length === 1 ? 'book' : 'books'}:`
             : 'You have no saved expeditions!'}
         </h2>
         <Row>
-  {userData.savedBooks.map((book) => {
+  {userData.savedShipWrecks.map((book) => {
     return (
       <Col md="4">
         <Card key={book.bookId} border='dark'>
@@ -83,8 +83,8 @@ if (!userData || !userData.savedBooks) {
             <Card.Title>{book.title}</Card.Title>
             <p className='small'>Authors: {book.authors}</p>
             <Card.Text>{book.description}</Card.Text>
-            <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
-              Delete this Book!
+            <Button className='btn-block btn-danger' onClick={() => handleDeleteShipWreck(book.bookId)}>
+              Delete this ShipWreck!
             </Button>
           </Card.Body>
         </Card>
@@ -97,4 +97,4 @@ if (!userData || !userData.savedBooks) {
   );
 };
 
-export default SavedBooks;
+export default SavedShipWrecks;

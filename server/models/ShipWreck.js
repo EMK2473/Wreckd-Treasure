@@ -16,7 +16,7 @@ const shipwreckSchema = new Schema({
     type: String,
     required: true,
   },
-  causeOfWreck: {
+  reasonForSinking: {
     type: String,
     required: true,
   },
@@ -32,6 +32,9 @@ const shipwreckSchema = new Schema({
     type: String,
     required: true,
   },
+  bodyOfWater: {
+    type: String
+  }
 });
 
 module.exports = shipwreckSchema;
