@@ -2,7 +2,15 @@
 <img src="./sunken-booty/branding/header.png"/>
 </p>
 
-[![apollo badge](https://img.shields.io/badge/-apollographQL-darkblue?&logo=apollo-graphql)](https://www.apollographql.com/)
+[![license: mit](https://img.shields.io/badge/license-mit-blue)](https://opensource.org/licenses/MIT)
+[![mongodb badge](https://img.shields.io/badge/mongodb-darkblue.svg?&logo=MongoDB&logoColor=white)]()
+[![express.js badge](https://img.shields.io/badge/express-yellow.svg?&logo=Express&logoColor=white)](https://expressjs.com/)
+[![react badge](https://img.shields.io/badge/react-lightgrey.svg?&logo=React&logoColor=white)]()
+[![node.js badge](https://img.shields.io/badge/node-teal?logo=nodedotjs&logoColor=white&style=flat)](https://nodejs.org/en)
+[![apollo badge](https://img.shields.io/badge/-apollographQL-lightblue?&logo=apollo-graphql)](https://www.apollographql.com/)
+[![heroku badge](https://img.shields.io/badge/heroku-grey.svg?&logo=Insomnia&logoColor=white)](https://heroku.com)
+[![canva badge](https://img.shields.io/badge/canva-lightyellow.svg?&logo=Canva&logoColor=white)](https://canva.com/)
+
 
 <p align="left">
   <img alt="mode" src="https://img.shields.io/badge/view-darkmode-black.svg?&logo=Github&logoColor=white" >
@@ -29,6 +37,11 @@
 
 ### ![overview](./sunken-booty/branding/1.png)
 
+`WRECK'D TREASURE` is a [MERN]() full-stack web application that meets the [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) criteria - runs in the browser, and will function offline. The app uses [Express.js](https://www.npmjs.com/package/express) for **routing**, [webpack](https://webpack.js.org/) to **budle** JavaScript files for usage in the browser, and [idb](https://www.npmjs.com/package/idb) for **storing & retrieving data**.
+
+>The [.npmrc](https://docs.npmjs.com/cli/v10/configuring-npm/npmrc) file will set config values specific to this project, and ensures the app will deploy properly to [Heroku](https://www.heroku.com).
+
+
 #
 
 ### ![user-story](./sunken-booty/branding/9.png)
@@ -37,7 +50,7 @@
   <!-- <img src="./sunken-booty/branding/user-story.png"/>
 </p> -->
 
-### ![concept-design](./luck/branding/10.png)
+### ![concept-design](./sunken-booty/branding/10.png)
 
 ### ![booty-list](./sunken-booty/branding/11.png)
 
