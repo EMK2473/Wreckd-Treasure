@@ -1,7 +1,7 @@
 import "./App.css";
 import { Outlet } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import MapDisplay from "./components/MapDisplay";
 import {
   ApolloClient,
   ApolloProvider,
