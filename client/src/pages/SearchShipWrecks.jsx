@@ -22,7 +22,7 @@ const shipwrecks = [
 
   { name: "Mary Rose", image: "/ShipWreckPictures/MaryRose1.png", reasonForSinking: "War/battle damage", yearSunk: "1545", country: "United Kingdom", bodyOfWater: "The Solent", casualties: "179", coordinates: "50°47′59″N 1°06′24″W"},
 
-  { name: "HMHS Britannic", image: "/ShipWreckPictures/HMHSBritannic2.png", reasonForSinking: "War/battle damage", yearSunk: "1913", country: "United Kingdom", bodyOfWater: "Aegean Sea", casualties: "28", coordinates: "37°42′05″N 24°17′02″E"},
+  { name: "HMHS Britannic", image: "/ShipWreckPictures/HMHSBritannic1.png", reasonForSinking: "War/battle damage", yearSunk: "1913", country: "United Kingdom", bodyOfWater: "Aegean Sea", casualties: "28", coordinates: "37°42′05″N 24°17′02″E"},
 
   { name: "MS Estonia", image: "/ShipWreckPictures/MSEstonia1.png", reasonForSinking: "Onboard accident", yearSunk: "1994", country: "Estonia", bodyOfWater: "Baltic Sea", casualties: "850", coordinates: "59°23′0″N 21°40′0″E"},
 
