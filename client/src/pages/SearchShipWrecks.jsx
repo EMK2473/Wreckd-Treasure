@@ -78,30 +78,27 @@ const SearchShipWrecks = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+  
     if (!selectedShipwreck) {
       return false;
     }
-
+  
     try {
-      const selectedShipwreckDetails = shipwrecks.find(
-        (shipwreck) => shipwreck.shipwreckId === selectedShipwreck
-      );
-
+      const selectedShipwreckDetails = shipwrecks[selectedShipwreck];
+  
       if (!selectedShipwreckDetails) {
         throw new Error("Selected shipwreck not found!");
       }
-
+  
       const shipWreckData = [
         {
-          shipWreckId: selectedShipwreckDetails.shipwreckId,
-          authors: ["No author to display"],
-          title: selectedShipwreckDetails.name,
-          description: `Coordinates: ${selectedShipwreckDetails.coordinates}\nYear Sunk: ${selectedShipwreckDetails.yearSunk}\nCasualties: ${selectedShipwreckDetails.casualties}\nCountry: ${selectedShipwreckDetails.country}`,
+          ...selectedShipwreckDetails,
+          description: 
+          `Coordinates: ${selectedShipwreckDetails.coordinates}\nYear Sunk: ${selectedShipwreckDetails.yearSunk}\nCasualties: ${selectedShipwreckDetails.casualties}\nCountry: ${selectedShipwreckDetails.country}`,
           image: selectedShipwreckDetails.image || "",
         },
       ];
-
+  
       setSearchedShipWrecks(shipWreckData);
       setSelectedShipwreck("");
     } catch (err) {
@@ -154,10 +151,10 @@ const SearchShipWrecks = () => {
                     Select a shipwreck
                   </option>
                   {shipwrecks.map((shipwreck, index) => (
-  <option key={index} value={index}>
-    {shipwreck.name}
-  </option>
-))}
+                    <option key={index} value={index}>
+                      {shipwreck.name}
+                    </option>
+                  ))}
                 </Form.Control>
               </Col>
               <Col xs={12} md={4}>
@@ -177,39 +174,41 @@ const SearchShipWrecks = () => {
             : "Search for a shipWreck to begin"}
         </h2>
         <Row>
-          {searchedShipWrecks.map((shipWreck) => (
-            <Col md="4" key={shipWreck.shipWreckId}>
-              <Card border="dark">
-                {shipWreck.image ? (
-                  <Card.Img
-                    src={shipWreck.image}
-                    alt={`The cover for ${shipWreck.title}`}
-                    variant="top"
-                  />
-                ) : null}
-                <Card.Body>
-                  <Card.Title>{shipWreck.title}</Card.Title>
-                  <p className="small">Authors: {shipWreck.authors}</p>
-                  <Card.Text>{shipWreck.description}</Card.Text>
-                  {Auth.loggedIn() && (
-                    <Button
-                      disabled={savedShipWreckIds?.some(
-                        (savedShipWreckId) => savedShipWreckId === String(shipWreck.shipWreckId)
-                      )}
-                      className="btn-block btn-info"
-                      onClick={() => handleSaveShipWreck(shipWreck.shipWreckId)}
-                    >
-                      {savedShipWreckIds?.some(
-                        (savedShipWreckId) => savedShipWreckId === String(shipWreck.shipWreckId)
-                      )
-                        ? "This shipWreck has already been saved!"
-                        : "Save this ShipWreck!"}
-                    </Button>
-                  )}
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
+        {searchedShipWrecks.map((shipWreck, index) => (
+  <Col md="4" key={index}>
+    <Card border="dark">
+      {shipWreck.image && (
+        <Card.Img src={shipWreck.image} alt={`The cover for ${shipWreck.title}`} variant="top" />
+      )}
+      <Card.Body>
+        <Card.Title>{shipWreck.name}</Card.Title>
+        <Card.Text>
+          <strong>Reason for Sinking:</strong> {shipWreck.reasonForSinking}<br />
+          <strong>Year Sunk:</strong> {shipWreck.yearSunk}<br />
+          <strong>Country:</strong> {shipWreck.country}<br />
+          <strong>Body of Water:</strong> {shipWreck.bodyOfWater}<br />
+          <strong>Casualties:</strong> {shipWreck.casualties}<br />
+          <strong>Coordinates:</strong> {shipWreck.coordinates}
+        </Card.Text>
+        {Auth.loggedIn() && (
+          <Button
+            disabled={savedShipWreckIds?.some(
+              (savedShipWreckId) => savedShipWreckId === String(shipWreck.shipWreckId)
+            )}
+            className="btn-block btn-info"
+            onClick={() => handleSaveShipWreck(shipWreck.shipWreckId)}
+          >
+            {savedShipWreckIds?.some(
+              (savedShipWreckId) => savedShipWreckId === String(shipWreck.shipWreckId)
+            )
+              ? "This shipWreck has already been saved!"
+              : "Save this ShipWreck!"}
+          </Button>
+        )}
+      </Card.Body>
+    </Card>
+  </Col>
+))}
         </Row>
       </Container>
     </>
