@@ -6,9 +6,9 @@ import { useMutation } from "@apollo/client";
 import { SAVE_SHIPWRECK } from "../utils/mutations";
 
 const shipwrecks = [
-  { name: "Empress of Ireland", image: "", reasonForSinking: "Collision", yearSunk: "1914", country: "United Kingdom", bodyOfWater: "Gulf of Saint Lawrence", casualties: "1012", coordinates: "48°37.5′N 68°24.5′W"},
+  { name: "Empress of Ireland", image: '/ShipWreckPictures/EmpressOfIreland1.png', reasonForSinking: "Collision", yearSunk: "1914", country: "United Kingdom", bodyOfWater: "Gulf of Saint Lawrence", casualties: "1012", coordinates: "48°37.5′N 68°24.5′W"},
 
-  { name: "Gunilda", image: "", reasonForSinking: "Ran aground and sank", yearSunk: "1911", country: "United States", bodyOfWater: "Lake Superior", casualties: "0", coordinates: "48° 47′ 3″ N, 87° 25′ 20″ W"},
+  { name: "Gunilda", image: '', reasonForSinking: "Ran aground and sank", yearSunk: "1911", country: "United States", bodyOfWater: "Lake Superior", casualties: "0", coordinates: "48° 47′ 3″ N, 87° 25′ 20″ W"},
 
   { name: "HMHS Britannic", image: "", reasonForSinking: "War/battle damage", yearSunk: "1916", country: "United Kingdom", bodyOfWater: "Aegean Sea", casualties: "30", coordinates: "37° 42′ 5″ N, 24° 17′ 2″ E"},
 
