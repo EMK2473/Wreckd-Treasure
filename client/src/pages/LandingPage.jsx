@@ -61,17 +61,28 @@ const LandingPage = () => {
           </button>
           {confettiActive && (
             <Confetti
-              numberOfPieces={100}
-              width={800}
-              height={600}
+              numberOfPieces={149}
+              width={3000}
+              recycle={true}
+              height={3000}
               gravity={0.6}
               drawShape={(ctx) => {
                 ctx.beginPath();
+
+                // Outer circle (main coin)
                 ctx.arc(0, 0, 20, 0, 2 * Math.PI);
                 ctx.fillStyle = 'gold';
                 ctx.fill();
                 ctx.closePath();
 
+                // Inner circle (3D effect?)
+                ctx.beginPath();
+                ctx.arc(0, 0, 18, 0, 2 * Math.PI);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5 0.5 0.5)'; 
+                ctx.fill();
+                ctx.closePath();
+
+                // Black "$" in center of coin
                 ctx.font = '24px Arial';
                 ctx.fillStyle = 'black';
                 ctx.textAlign = 'center';
@@ -80,7 +91,7 @@ const LandingPage = () => {
               }}
               position={{
                 x: getRandomInt(0, window.innerWidth),
-                y: getRandomInt(-50, -10), // Adjust the range for the starting point above the screen
+                y: getRandomInt(-50, -10),
               }}
             />
           )}
