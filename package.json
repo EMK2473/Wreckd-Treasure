@@ -19,6 +19,7 @@
     "@apollo/client": "^3.8.10",
     "@react-google-maps/api": "^2.19.2",
     "apollo-server-express": "^3.13.0",
+    "react-confetti": "^6.1.0",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.5"
   }
