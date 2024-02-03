@@ -1,5 +1,4 @@
 import "./App.css";
-import { Outlet } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   ApolloClient,
@@ -10,7 +9,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 
 // Remove one of the MapDisplay import statements
-import MapDisplay from './components/MapDisplay'; // Import the new MapDisplay component
+import MapDisplay from "./components/MapDisplay"; // Import the new MapDisplay component
 
 import SearchShipWrecks from "./pages/SearchShipWrecks";
 import SavedShipWrecks from "./pages/SavedShipWrecks";
@@ -45,7 +44,7 @@ function App() {
       <>
         {/* Display Navbar component */}
         <Navbar />
-        
+
         {/* Display MapDisplay component */}
         <MapDisplay />
 

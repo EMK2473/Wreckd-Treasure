@@ -93,7 +93,7 @@ const LoginForm = () => {
           disabled={!(userFormData.email && userFormData.password)}
           type='submit'
           variant='success'>
-          Embark on the seas!
+          Login
         </Button>
       </Form>
     </>
