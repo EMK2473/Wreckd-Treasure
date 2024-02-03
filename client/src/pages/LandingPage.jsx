@@ -1,44 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Container, Col, Button, Row, Modal, Tab, Nav } from 'react-bootstrap';
 import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignupForm';
 import Auth from '../utils/auth';
-// import backgroundImage from '../path/to/your/image.jpg'; // Adjust the path accordingly
+import Confetti from 'react-confetti';
+import '../App.css';
 
-import SearchShipWrecks from "./SearchShipWrecks"
-import App from '../App';
-// import SavedShipWrecks from "./pages/SavedShipWrecks";
-// import Navbar from "./components/Navbar";
-import '../App.css'
 const LandingPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
+  const [confettiActive, setConfettiActive] = useState(false);
+  const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
+  const buttonRef = useRef();
+
+  useEffect(() => {
+    if (buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setButtonPosition({ x: rect.left, y: rect.top });
+    }
+  }, [buttonRef]);
 
   const handleYesButtonClick = () => {
     setShowLoginForm(true);
     setShowSignupForm(true);
+    setConfettiActive(true);
+
+    if (buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setButtonPosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+    }
+  };
+  const getRandomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  // const handleNoButtonClick = () => {
-  //   setShowLoginForm(false);
-  //   setShowSignupForm(false);
-  // };
-
   const handleLoginSignup = () => {
-    // Handle login or signup logic here
-    setUserLoggedIn(Auth.loggedIn()); // Update userLoggedIn state
-
-    // After successful login or signup, update the state to reflect user logged in
-    // setUserLoggedIn(true);
-    
-    // Redirect to SearchShipWrecks after successful login or signup
+    setUserLoggedIn(Auth.loggedIn());
+    setConfettiActive(false);
     setShowLoginForm(false);
     setShowSignupForm(false);
   };
 
-  // Redirect to SearchShipWrecks if the user is logged in
-  // Redirect to LandingPage if the user is not logged in
   if (userLoggedIn) {
     return <App />;
   }
@@ -49,20 +52,54 @@ const LandingPage = () => {
         <>
           <img src={'/public/PirateGIF.gif'} className="App-logo" alt="logo" />
           <p>Argh, Matey. Ready to plunder some booty!?</p>
-          <button className="action-button" onClick={handleYesButtonClick}>Yes!</button>
-          {/* <button className="action-button" onClick={handleNoButtonClick}>No.</button> */}
+          <button
+            className="action-button"
+            onClick={handleYesButtonClick}
+            ref={buttonRef}
+          >
+            Yes!
+          </button>
+          {confettiActive && (
+            <Confetti
+              numberOfPieces={100}
+              width={800}
+              height={600}
+              gravity={0.6}
+              drawShape={(ctx) => {
+                ctx.beginPath();
+                ctx.arc(0, 0, 20, 0, 2 * Math.PI);
+                ctx.fillStyle = 'gold';
+                ctx.fill();
+                ctx.closePath();
+
+                ctx.font = '24px Arial';
+                ctx.fillStyle = 'black';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('$', 0, 0);
+              }}
+              position={{
+                x: getRandomInt(0, window.innerWidth),
+                y: getRandomInt(-50, -10), // Adjust the range for the starting point above the screen
+              }}
+            />
+          )}
         </>
         {showLoginForm && (
-          <LoginForm onClose={() => {
-            setShowLoginForm(false);
-            handleLoginSignup();
-          }} />
+          <LoginForm
+            onClose={() => {
+              setShowLoginForm(false);
+              handleLoginSignup();
+            }}
+          />
         )}
         {showSignupForm && (
-          <SignupForm onClose={() => {
-            setShowSignupForm(false);
-            handleLoginSignup();
-          }} />
+          <SignupForm
+            onClose={() => {
+              setShowSignupForm(false);
+              handleLoginSignup();
+            }}
+          />
         )}
       </header>
     </div>
