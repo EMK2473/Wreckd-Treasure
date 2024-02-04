@@ -1,10 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Container, Col, Button, Row, Modal, Tab, Nav } from 'react-bootstrap';
-import LoginForm from '../components/LoginForm';
-import SignupForm from '../components/SignupForm';
-import Auth from '../utils/auth';
-import Confetti from 'react-confetti';
-import '../App.css';
+import React, { useState, useRef, useEffect } from "react";
+import { Container, Col, Button, Row, Modal, Tab, Nav } from "react-bootstrap";
+import LoginForm from "../components/LoginForm";
+import SignupForm from "../components/SignupForm";
+import Auth from "../utils/auth";
+import Confetti from "react-confetti";
+import "../App.css";
+import App from '../App'
 
 const LandingPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -28,7 +29,10 @@ const LandingPage = () => {
 
     if (buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
-      setButtonPosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+      setButtonPosition({
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      });
     }
   };
   const getRandomInt = (min, max) => {
@@ -50,7 +54,7 @@ const LandingPage = () => {
     <div className="App">
       <header className="App-header">
         <>
-          <img src={'/public/PirateGIF.gif'} className="App-logo" alt="logo" />
+          <img src={"/public/PirateGIF.gif"} className="App-logo" alt="logo" />
           <p>Argh, Matey. Ready to plunder some booty!?</p>
           <button
             className="action-button"
@@ -71,27 +75,27 @@ const LandingPage = () => {
 
                 // Outer circle (main coin)
                 ctx.arc(0, 0, 20, 0, 2 * Math.PI);
-                ctx.fillStyle = 'gold';
+                ctx.fillStyle = "gold";
                 ctx.fill();
                 ctx.closePath();
 
                 // Inner circle (3D effect?)
                 ctx.beginPath();
                 ctx.arc(0, 0, 18, 0, 2 * Math.PI);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.5 0.5 0.5)'; 
+                ctx.fillStyle = "rgba(255, 255, 255, 0.5 0.5 0.5)";
                 ctx.fill();
                 ctx.closePath();
 
                 // Black "$" in center of coin
-                ctx.font = '24px Arial';
-                ctx.fillStyle = 'black';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText('$', 0, 0);
+                ctx.font = "24px Arial";
+                ctx.fillStyle = "black";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText("$", 0, 0);
               }}
               position={{
                 x: getRandomInt(0, window.innerWidth),
-                y: getRandomInt(-50, -10),
+                y: getRandomInt(-50, -10), // can prob scrap this, wasn't working as intended
               }}
             />
           )}
