@@ -9,7 +9,13 @@ import Auth from '../utils/auth';
 const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
+  const handleMouseEnter = (event) => {
+    event.target.classList.add('gold-text');
+  };
 
+  const handleMouseLeave = (event) => {
+    event.target.classList.remove('gold-text');
+  };
   return (
     <>
       <Navbar bg='dark' variant='dark' expand='lg'>
@@ -19,24 +25,38 @@ const AppNavbar = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar' className='d-flex flex-row-reverse'>
-            <Nav className='ml-auto d-flex'>
-              {Auth.loggedIn() && (
-                <Nav.Link as={Link} to='/'>
-                  Search
+          <Nav className='ml-auto d-flex'>
+            {Auth.loggedIn() && (
+              <Nav.Link
+                as={Link}
+                to='/'
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                Search
+              </Nav.Link>
+            )}
+            {Auth.loggedIn() ? (
+              <>
+                <Nav.Link
+                  as={Link}
+                  to='/saved'
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  Your Expeditions
                 </Nav.Link>
-              )}
-              {Auth.loggedIn() ? (
-                <>
-                  <Nav.Link as={Link} to='/saved'>
-                    Your Expeditions
-                  </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Log out</Nav.Link>
-                </>
-              ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Log in/Sign up</Nav.Link>
-              )}
-            </Nav>
-          </Navbar.Collapse>
+                <Nav.Link onClick={Auth.logout} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                  Log out
+                </Nav.Link>
+              </>
+            ) : (
+              <Nav.Link onClick={() => setShowModal(true)} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                Log in/Sign up
+              </Nav.Link>
+            )}
+          </Nav>
+        </Navbar.Collapse>
         </Container>
       </Navbar>
       {/* set modal data up */}

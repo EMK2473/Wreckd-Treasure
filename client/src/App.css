@@ -30,7 +30,7 @@ h6 {
 }
 
 .App-header {
-  background-color: #5276be;
+  background-color: #000000;
   padding: 20px;
   color: white;
   
@@ -60,6 +60,10 @@ h6 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.gold-text {
+  color: gold !important;
 }
 
 iframe {

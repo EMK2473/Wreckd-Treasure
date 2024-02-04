@@ -66,7 +66,7 @@ const LandingPage = () => {
           {confettiActive && (
             <Confetti
               numberOfPieces={149}
-              width={3000}
+              width={2275}
               recycle={true}
               height={3000}
               gravity={0.6}
