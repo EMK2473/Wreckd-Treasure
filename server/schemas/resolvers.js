@@ -38,6 +38,15 @@ const resolvers = {
           console.log('Logged IN')
           return { token, user };
         },
+        logout: async (parent, args, context) => {
+          if(context.user) {
+            context.user = null;
+            return {success: true, message: 'Logout Successful'}
+          } else {
+            throw new AuthenticationError('You are not logged in.')
+          }
+        
+      },
         saveShipWreck: async (parent, { newShipWreck }, context) => {
           if (context.user) {
             const updatedUser = await User.findByIdAndUpdate(
