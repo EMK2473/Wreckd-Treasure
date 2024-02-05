@@ -51,8 +51,8 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <Container fluid className="App">
+      <div className="App-header">
         <>
           <img src={"/public/PirateGIF.gif"} className="App-logo" alt="logo" />
           <p>Argh, Matey. Ready to plunder some booty!?</p>
@@ -63,6 +63,7 @@ const LandingPage = () => {
           >
             Yes!
           </button>
+
           {confettiActive && (
             <Confetti
               numberOfPieces={149}
@@ -116,8 +117,8 @@ const LandingPage = () => {
             }}
           />
         )}
-      </header>
-    </div>
+        </div>
+      </Container>
   );
 };
 
