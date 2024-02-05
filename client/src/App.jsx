@@ -1,42 +1,12 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {
-  ApolloClient,
-  ApolloProvider,
-  createHttpLink,
-  InMemoryCache,
-} from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-
-// Remove one of the MapDisplay import statements
 import MapDisplay from "./components/MapDisplay"; // Import the new MapDisplay component
-
+import  client  from './apollSetup.jsx'
 import SearchShipWrecks from "./pages/SearchShipWrecks";
 import SavedShipWrecks from "./pages/SavedShipWrecks";
 import Navbar from "./components/Navbar";
-
-// set graphQL api endpoint
-const httpLink = createHttpLink({
-  uri: "/graphql",
-});
-
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("id_token");
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    },
-  };
-});
-
-const client = new ApolloClient({
-  // Set up client to execute the `authLink` middleware prior to making the request to our GraphQL API
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache({}),
-});
 
 function App() {
   return (

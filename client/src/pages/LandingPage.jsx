@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Container, Col, Button, Row, Modal, Tab, Nav } from "react-bootstrap";
+import { Container, Modal, Button, Tab, Nav } from "react-bootstrap";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
 import Auth from "../utils/auth";
@@ -13,6 +13,7 @@ const LandingPage = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
   const [confettiActive, setConfettiActive] = useState(false);
   const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
+  const [activeTab, setActiveTab] = useState("login-tab")
   const buttonRef = useRef();
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const LandingPage = () => {
 
   const handleYesButtonClick = () => {
     setShowLoginForm(true);
-    setShowSignupForm(true);
+    setShowSignupForm(false);
     setConfettiActive(true);
 
     if (buttonRef.current) {
@@ -35,6 +36,7 @@ const LandingPage = () => {
       });
     }
   };
+
   const getRandomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
@@ -44,6 +46,17 @@ const LandingPage = () => {
     setConfettiActive(false);
     setShowLoginForm(false);
     setShowSignupForm(false);
+    setActiveTab('login-tab')
+  };
+  const handleTabSelect = (selectedTab) => {
+    setActiveTab(selectedTab);
+    if (selectedTab === "login-tab") {
+      setShowLoginForm(true);
+      setShowSignupForm(false);
+    } else {
+      setShowLoginForm(false);
+      setShowSignupForm(true);
+    }
   };
 
   if (userLoggedIn) {
@@ -73,20 +86,20 @@ const LandingPage = () => {
               gravity={0.6}
               drawShape={(ctx) => {
                 ctx.beginPath();
-
+              
                 // Outer circle (main coin)
                 ctx.arc(0, 0, 20, 0, 2 * Math.PI);
                 ctx.fillStyle = "gold";
                 ctx.fill();
                 ctx.closePath();
-
+              
                 // Inner circle (3D effect?)
                 ctx.beginPath();
                 ctx.arc(0, 0, 18, 0, 2 * Math.PI);
                 ctx.fillStyle = "rgba(255, 255, 255, 0.5 0.5 0.5)";
                 ctx.fill();
                 ctx.closePath();
-
+              
                 // Black "$" in center of coin
                 ctx.font = "24px Arial";
                 ctx.fillStyle = "black";
@@ -96,29 +109,43 @@ const LandingPage = () => {
               }}
               position={{
                 x: getRandomInt(0, window.innerWidth),
-                y: getRandomInt(-50, -10), // can prob scrap this, wasn't working as intended
+                y: getRandomInt(-50, -10),
               }}
             />
           )}
         </>
-        {showLoginForm && (
-          <LoginForm
-            onClose={() => {
-              setShowLoginForm(false);
-              handleLoginSignup();
-            }}
-          />
-        )}
-        {showSignupForm && (
-          <SignupForm
-            onClose={() => {
-              setShowSignupForm(false);
-              handleLoginSignup();
-            }}
-          />
-        )}
-        </div>
-      </Container>
+        <Modal show={showLoginForm || showSignupForm} onHide={handleLoginSignup}>
+          <Modal.Header closeButton>
+            <Nav variant="pills" activeKey={activeTab} onSelect={handleTabSelect}>
+              <Nav.Item>
+                <Nav.Link eventKey="login-tab">Login</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="signup-tab">Sign Up</Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Modal.Header>
+          <Modal.Body>
+            {showLoginForm && (
+              <LoginForm
+                onClose={() => {
+                  setShowLoginForm(false);
+                  handleLoginSignup();
+                }}
+              />
+            )}
+            {showSignupForm && (
+              <SignupForm
+                onClose={() => {
+                  setShowSignupForm(false);
+                  handleLoginSignup();
+                }}
+              />
+            )}
+          </Modal.Body>
+        </Modal>
+      </div>
+    </Container>
   );
 };
 
