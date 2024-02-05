@@ -14,7 +14,6 @@ const typeDefs = gql`
     }
     type ShipWreck {
         shipWreckId: ID!
-        authors: [String]
         description: String
         title: String
         image: String
@@ -22,7 +21,6 @@ const typeDefs = gql`
     }
     input InputShipWreck {
         shipWreckId: String
-        authors: [String]
         title: String
         description: String
         image: String
@@ -31,8 +29,14 @@ const typeDefs = gql`
     type Query {
         me: User
     }
+    type LogoutResponse {
+    success: Boolean!
+    message: String
+    }
+
     type Mutation {
         login(email: String!, password: String!): Auth
+        logout: LogoutResponse
         addUser(username: String!, email: String!, password: String!): Auth
         saveShipWreck(newShipWreck: InputShipWreck!): User
         removeShipWreck(shipWreckId: ID!): User

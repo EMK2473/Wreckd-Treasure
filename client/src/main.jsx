@@ -7,13 +7,13 @@ import {
   createHttpLink,
   InMemoryCache,
 } from "@apollo/client";
+
 import App from "./App.jsx";
 import SearchShipWrecks from "./pages/SearchShipWrecks";
 import SavedShipWrecks from "./pages/SavedShipWrecks";
 import Navbar from "./components/Navbar";
 import LandingPage from "./pages/LandingPage.jsx";
 import { setContext } from "@apollo/client/link/context";
-
 
 // Set up Apollo Client
 const httpLink = createHttpLink({

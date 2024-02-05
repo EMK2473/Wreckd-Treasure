@@ -12,6 +12,15 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const LOGOUT_USER = gql`
+  mutation logout {
+    logout {
+      success
+      message
+    }
+  }
+`;
+
 // Include:
 // ADD_USER
 // template tag gql` `
@@ -28,7 +37,6 @@ export const ADD_USER = gql`
         email
         shipWreckCount
         savedShipWrecks {
-          authors
           shipWreckId
           image
           link
@@ -54,7 +62,6 @@ export const SAVE_SHIPWRECK = gql`
       email
       savedShipWrecks {
         shipWreckId
-        authors
         description
         title
         image
@@ -77,7 +84,6 @@ export const REMOVE_SHIPWRECK = gql`
       email
       savedShipWrecks {
         shipWreckId
-        authors
         description
         title
         image

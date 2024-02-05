@@ -9,7 +9,6 @@ export const GET_ME = gql`
       shipWreckCount
       savedShipWrecks {
         shipWreckId
-        authors
         description
         title
         image
