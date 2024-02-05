@@ -36,24 +36,20 @@
 
 ### ![overview](./sunken-booty/branding/1.png)
 
-`WRECK'D TREASURE` is an interactive user-focuced [MERN](https://www.geeksforgeeks.org/mern-stack/) application dedicated to ***shipwrecks of the sea***. The app uses [React](https://react.dev/) for the **font end**, [GraphQl] with a [Node.js](https://nodejs.org/en) and [Express.js](https://www.npmjs.com/package/express) **server**, and [MongoDB](https://www.mongodb.com/) and the [Mongoose](https://mongoosejs.com/docs/) `ODM` for the database.
+`WRECK'D TREASURE` is an interactive, user-focuced [MERN](https://www.geeksforgeeks.org/mern-stack/) application dedicated to ***shipwrecks of the sea***. The app uses [React](https://react.dev/) for the **front-end**, [GraphQl](https://graphql.org/) API with a [Node.js](https://nodejs.org/en) and [Express.js](https://www.npmjs.com/package/express) **server**, and [MongoDB](https://www.mongodb.com/) / [Mongoose](https://mongoosejs.com/docs/) `ODM` for the **database**.
 
-* The app meets the [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) criteria - runs in the browser, and will function offline.
+* [vite](https://vitejs.dev/) to **leverage** modern browser features & deliver an extremely fast development experience
 
-* [vite](https://vitejs.dev/)
+* [Apollo Server]() to help implement and use the *GraphQL API*
 
-* [ApolloGraphQl]()
+* *[queries](https://www.apollographql.com/docs/react/data/queries)* & *[mutations](https://www.apollographql.com/docs/react/data/mutations/)* for **retrieving**, **adding**, **updating**, and **deleting** data
 
-* *queries* and *mutations* for **retrieving**, **adding**, **updating**, and **deleting** data.
+* meets [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) criteria - runs in the browser, functions offline, and is downloadable.
 
 * [bcrypt package](https://www.npmjs.com/package/bcrypt) to **hash passwords** and [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) to *securely transmit* information between parties as a **JSON object**
 
 
->The [.npmrc](https://docs.npmjs.com/cli/v10/configuring-npm/npmrc) file will set config values specific to this project, and ensures the app will deploy properly to [Heroku](https://www.heroku.com).
-
-
-[webpack](https://webpack.js.org/) to **budle** JavaScript files for usage in the browser, and [idb](https://www.npmjs.com/package/idb) for **storing & retrieving data**.
-
+>The [.npmrc](https://docs.npmjs.com/cli/v10/configuring-npm/npmrc) file will set config values specific to this project, and ensures the app will deploy properly to [Heroku](https://www.heroku.com)
 
 #
 
