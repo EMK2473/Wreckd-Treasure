@@ -1,5 +1,5 @@
 {
-  "name": "wreckd-treasure",
+  "name": "wreckd_treasure",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
