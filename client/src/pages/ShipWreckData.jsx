@@ -47,5 +47,4 @@ const shipwrecks = [
 ];
 
 
-
 export default shipwrecks;

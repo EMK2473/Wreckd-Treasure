@@ -1,4 +1,3 @@
-// App.jsx
 import { Routes, Route } from 'react-router-dom';
 import SearchShipWrecks from './pages/SearchShipWrecks';
 import SavedShipWrecks from './pages/SavedShipWrecks';

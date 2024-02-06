@@ -1,4 +1,3 @@
-// MapPage.jsx
 import React from 'react';
 import MapDisplay from '../components/MapDisplay';
 
@@ -13,4 +12,3 @@ const MapPage = () => {
 };
 
 export default MapPage;
-

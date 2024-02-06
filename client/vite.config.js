@@ -1,3 +1,21 @@
+// import { defineConfig } from 'vite'
+// import react from '@vitejs/plugin-react'
+
+// // https://vitejs.dev/config/
+// export default defineConfig({
+//   plugins: [react()],
+//   server: {
+//     port: 3000,
+//     open: true,
+//     proxy: {
+//       '/graphQL': {
+//         target: 'http://localhost:3001',
+//         secure: false,
+//         changeOrigin: true
+//       }
+//     }
+//   }
+// })
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
@@ -5,9 +23,9 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
      plugins: [react()],
      build: {
-          base: "./",//add this line
-          outDir: "dist",//output directory for the build
-          emptyOutDir: true, //empty the output directory when the build starts
+          base: "./", // Add this line
+          outDir: "dist", // Output directory for the build.
+          emptyOutDir: true, // Empty the output directory when the build starts.
      },
      server: {
           port: 3000,
