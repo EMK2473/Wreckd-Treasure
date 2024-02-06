@@ -1,9 +1,10 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// import schema from ShipWreck.js
+//import schema from ShipWreck.js
 const shipWreckSchema = require('./ShipWreck');
 
+//create user schema
 const userSchema = new Schema(
   {
     username: {
@@ -15,16 +16,16 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: [/.+@.+\..+/, 'Must use a valid email address'],
+      match: [/.+@.+\..+/, 'Must use a valid email address'], //regex for email
     },
     password: {
       type: String,
       required: true,
     },
-    // set savedShipWrecks to be an array of data that adheres to the shipWreckSchema
+    //associate user with saved shipWrecks
     savedShipWrecks: [shipWreckSchema],
   },
-  // set this to use virtual below
+  //set this to use virtual below
   {
     toJSON: {
       virtuals: true,
@@ -32,26 +33,29 @@ const userSchema = new Schema(
   }
 );
 
-// hash user password
+//pre-save middleware to create password
 userSchema.pre('save', async function (next) {
+  //if password is new or modified, hash it
   if (this.isNew || this.isModified('password')) {
+    //number of rounds run
     const saltRounds = 10;
-    this.password = await bcrypt.hash(this.password, saltRounds);
+    this.password = await bcrypt.hash(this.password, saltRounds); //hash password
   }
 
   next();
 });
 
-// custom method to compare and validate password for logging in
+//compare incoming password with hashed password
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-// when we query a user, we'll also get another field called `shipWreckCount` with the number of saved shipWrecks we have
+//virtual to count saved shipWrecks
 userSchema.virtual('shipWreckCount').get(function () {
   return this.savedShipWrecks.length;
 });
 
+//create model
 const User = model('User', userSchema);
 
 module.exports = User;
