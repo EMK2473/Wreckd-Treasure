@@ -5,7 +5,7 @@ import {
   Row,
   Col
 } from 'react-bootstrap';
-
+import '../SavedWrecks.css'
 
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
@@ -23,13 +23,9 @@ const SavedShipWrecks = () => {
 
   const userData = data ? data.me : {};
 
-
   if (!Auth.loggedIn()) {
     return <h2>Please log in to view your saved expeditions.</h2>;
   }
-
-  
-
 
   const handleDeleteShipWreck = async (bookId) => {
     try {
@@ -51,7 +47,7 @@ if (!userData || !userData.savedShipWrecks) {
 
   return (
     <>
-      <div className="text-light bg-dark p-5">
+      <div className="saved-shipwreck-container text-light bg-dark p-5">
         <Container>
           <h1>Viewing saved expeditions!</h1>
         </Container>

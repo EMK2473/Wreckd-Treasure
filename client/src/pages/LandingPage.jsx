@@ -4,7 +4,6 @@ import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
 import Auth from "../utils/auth";
 import Confetti from "react-confetti";
-import { Link } from "react-router-dom";
 import "../App.css";
 import App from '../App'
 
@@ -14,7 +13,7 @@ const LandingPage = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
   const [confettiActive, setConfettiActive] = useState(false);
   const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
-  const [activeForm, setActiveForm] = useState("login"); // Added state for active form
+  const [activeForm, setActiveForm] = useState("login"); 
 
   const buttonRef = useRef();
 
@@ -47,7 +46,7 @@ const LandingPage = () => {
     setConfettiActive(false);
     setShowLoginForm(false);
     setShowSignupForm(false);
-    setActiveForm("login"); // Reset to login form after closing
+    setActiveForm("login"); 
   };
 
   if (userLoggedIn) {
@@ -59,17 +58,17 @@ const LandingPage = () => {
   }
 
   return (
-    <Container fluid className="App">
+    <Container fluid className="landing-page-container">
       <div className="App-header">
         <>
           <img src={""} className="App-logo" alt="logo" />
-          <p>Argh, Matey. Ready to plunder some booty!?</p>
-          <button
+          <p className="pirate-text">Argh, Matey. Ready to plunder some booty!?</p>
+          <button id="enterBTN"
             className="action-button"
             onClick={handleYesButtonClick}
             ref={buttonRef}
           >
-            Yes!
+            Enter
           </button>
 
           {confettiActive && (
