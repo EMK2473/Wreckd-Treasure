@@ -1,38 +1,33 @@
+// main.jsx
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  ApolloClient,
-  ApolloProvider,
-  createHttpLink,
-  InMemoryCache,
-} from "@apollo/client";
-
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from "@apollo/client";
 import App from "./App.jsx";
-import SearchShipWrecks from "./pages/SearchShipWrecks";
-import SavedShipWrecks from "./pages/SavedShipWrecks";
-import Navbar from "./components/Navbar";
 import LandingPage from "./pages/LandingPage.jsx";
-import { setContext } from "@apollo/client/link/context";
+import SavedShipWrecks from "./pages/SavedShipWrecks.jsx";
+import MapPage from "./pages/MapPage.jsx"; // Import the MapPage component
+import { setContext } from '@apollo/client/link/context';
 
-// Set up Apollo Client
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
 
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("id_token");
+const authLink = setContext((_, {headers}) =>{
+  const token = localStorage.getItem('id_token');
+  console.log("authlink:", token )
   return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    },
+      headers: {
+          ...headers,
+          authorization: token ? `Bearer ${token}` : "",
+      }
   };
 });
 
 const client = new ApolloClient({
+  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache({}),
+  cache: new InMemoryCache(),
 });
 
 const router = createBrowserRouter([
@@ -43,7 +38,6 @@ const router = createBrowserRouter([
         <LandingPage />
       </ApolloProvider>
     ),
-    errorElement: <h1 className="display-2">Wrong page!</h1>,
     children: [
       {
         index: true,
@@ -58,6 +52,14 @@ const router = createBrowserRouter([
         element: (
           <ApolloProvider client={client}>
             <SavedShipWrecks />
+          </ApolloProvider>
+        ),
+      },
+      {
+        path: "/map", // Add a route for the MapPage component
+        element: (
+          <ApolloProvider client={client}>
+            <MapPage />
           </ApolloProvider>
         ),
       },

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Container, Col, Button, Row, Modal, Tab, Nav } from "react-bootstrap";
+import { Container, Tabs, Tab } from "react-bootstrap";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
 import Auth from "../utils/auth";
@@ -13,6 +13,8 @@ const LandingPage = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
   const [confettiActive, setConfettiActive] = useState(false);
   const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
+  const [activeForm, setActiveForm] = useState("login"); 
+
   const buttonRef = useRef();
 
   useEffect(() => {
@@ -24,7 +26,6 @@ const LandingPage = () => {
 
   const handleYesButtonClick = () => {
     setShowLoginForm(true);
-    setShowSignupForm(true);
     setConfettiActive(true);
 
     if (buttonRef.current) {
@@ -35,8 +36,9 @@ const LandingPage = () => {
       });
     }
   };
-  const getRandomInt = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+
+  const handleTabClick = (form) => {
+    setActiveForm(form);
   };
 
   const handleLoginSignup = () => {
@@ -44,81 +46,88 @@ const LandingPage = () => {
     setConfettiActive(false);
     setShowLoginForm(false);
     setShowSignupForm(false);
+    setActiveForm("login"); 
   };
 
   if (userLoggedIn) {
-    return <App />;
+    return (
+      <>
+        <App />
+      </>
+    );
   }
 
   return (
-    <Container fluid className="App">
+    <Container fluid className="landing-page-container">
       <div className="App-header">
         <>
-          <img src={"/public/PirateGIF.gif"} className="App-logo" alt="logo" />
-          <p>Argh, Matey. Ready to plunder some booty!?</p>
-          <button
+          <img src={""} className="App-logo" alt="logo" />
+          <p className="pirate-text">Argh, Matey. Ready to plunder some booty!?</p>
+          <button id="enterBTN"
             className="action-button"
             onClick={handleYesButtonClick}
             ref={buttonRef}
           >
-            Yes!
+            Enter
           </button>
 
           {confettiActive && (
             <Confetti
               numberOfPieces={149}
               width={2275}
-              recycle={true}
+              recycle={false}
               height={3000}
               gravity={0.6}
               drawShape={(ctx) => {
                 ctx.beginPath();
-
-                // Outer circle (main coin)
                 ctx.arc(0, 0, 20, 0, 2 * Math.PI);
                 ctx.fillStyle = "gold";
                 ctx.fill();
                 ctx.closePath();
 
-                // Inner circle (3D effect?)
                 ctx.beginPath();
                 ctx.arc(0, 0, 18, 0, 2 * Math.PI);
                 ctx.fillStyle = "rgba(255, 255, 255, 0.5 0.5 0.5)";
                 ctx.fill();
                 ctx.closePath();
 
-                // Black "$" in center of coin
                 ctx.font = "24px Arial";
                 ctx.fillStyle = "black";
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.fillText("$", 0, 0);
               }}
-              position={{
-                x: getRandomInt(0, window.innerWidth),
-                y: getRandomInt(-50, -10), // can prob scrap this, wasn't working as intended
-              }}
             />
           )}
         </>
+        
         {showLoginForm && (
-          <LoginForm
-            onClose={() => {
-              setShowLoginForm(false);
-              handleLoginSignup();
-            }}
-          />
+          <Tabs
+            activeKey={activeForm}
+            onSelect={(k) => setActiveForm(k)}
+            id="uncontrolled-tab-example"
+            className="mb-3"
+          >
+            <Tab eventKey="login" title="Login">
+              <LoginForm
+                onClose={() => {
+                  setShowLoginForm(false);
+                  handleLoginSignup();
+                }}
+              />
+            </Tab>
+            <Tab eventKey="signup" title="Sign Up">
+              <SignupForm
+                onClose={() => {
+                  setShowSignupForm(false);
+                  handleLoginSignup();
+                }}
+              />
+            </Tab>
+          </Tabs>
         )}
-        {showSignupForm && (
-          <SignupForm
-            onClose={() => {
-              setShowSignupForm(false);
-              handleLoginSignup();
-            }}
-          />
-        )}
-        </div>
-      </Container>
+      </div>
+    </Container>
   );
 };
 
