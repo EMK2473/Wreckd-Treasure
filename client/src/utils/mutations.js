@@ -43,20 +43,11 @@ export const ADD_USER = gql`
 `;
 
 export const SAVE_SHIPWRECK = gql`
-  mutation saveShipWreck($newShipWreck: InputShipWreck!) {
-    saveShipWreck(newShipWreck: $newShipWreck) {
-      _id
-      username
-      email
-      savedShipWrecks {
-        shipWreckId
-        description
-        title
-        image
-        link
-      }
-    }
+ mutation SaveShipWreck($newShipWreck: InputShipWreck!) {
+  saveShipWreck(newShipWreck: $newShipWreck) {
+    _id
   }
+}
 `;
 
 export const REMOVE_SHIPWRECK = gql`
