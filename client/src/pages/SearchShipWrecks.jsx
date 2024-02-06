@@ -98,7 +98,7 @@ const SearchShipWrecks = () => {
 
   return (
     <>
-      <div className="text-light bg-dark p-5" fluid="true">
+      <div className="text-light p-5" fluid="true">
         <Container>
           <h1>Search for Lost treasure!</h1>
           <Form onSubmit={handleFormSubmit}>

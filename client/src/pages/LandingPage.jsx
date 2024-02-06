@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Container,} from "react-bootstrap";
+import { Container, Tabs, Tab } from "react-bootstrap";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
 import Auth from "../utils/auth";
@@ -14,6 +14,8 @@ const LandingPage = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
   const [confettiActive, setConfettiActive] = useState(false);
   const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
+  const [activeForm, setActiveForm] = useState("login"); // Added state for active form
+
   const buttonRef = useRef();
 
   useEffect(() => {
@@ -25,7 +27,6 @@ const LandingPage = () => {
 
   const handleYesButtonClick = () => {
     setShowLoginForm(true);
-    setShowSignupForm(true);
     setConfettiActive(true);
 
     if (buttonRef.current) {
@@ -37,11 +38,16 @@ const LandingPage = () => {
     }
   };
 
+  const handleTabClick = (form) => {
+    setActiveForm(form);
+  };
+
   const handleLoginSignup = () => {
     setUserLoggedIn(Auth.loggedIn());
     setConfettiActive(false);
     setShowLoginForm(false);
     setShowSignupForm(false);
+    setActiveForm("login"); // Reset to login form after closing
   };
 
   if (userLoggedIn) {
@@ -56,7 +62,7 @@ const LandingPage = () => {
     <Container fluid className="App">
       <div className="App-header">
         <>
-          <img src={"/public/PirateGIF.gif"} className="App-logo" alt="logo" />
+          <img src={""} className="App-logo" alt="logo" />
           <p>Argh, Matey. Ready to plunder some booty!?</p>
           <button
             className="action-button"
@@ -70,26 +76,22 @@ const LandingPage = () => {
             <Confetti
               numberOfPieces={149}
               width={2275}
-              recycle={true}
+              recycle={false}
               height={3000}
               gravity={0.6}
               drawShape={(ctx) => {
                 ctx.beginPath();
-
-                // Outer circle (main coin)
                 ctx.arc(0, 0, 20, 0, 2 * Math.PI);
                 ctx.fillStyle = "gold";
                 ctx.fill();
                 ctx.closePath();
 
-                // Inner circle (3D effect?)
                 ctx.beginPath();
                 ctx.arc(0, 0, 18, 0, 2 * Math.PI);
                 ctx.fillStyle = "rgba(255, 255, 255, 0.5 0.5 0.5)";
                 ctx.fill();
                 ctx.closePath();
 
-                // Black "$" in center of coin
                 ctx.font = "24px Arial";
                 ctx.fillStyle = "black";
                 ctx.textAlign = "center";
@@ -99,24 +101,34 @@ const LandingPage = () => {
             />
           )}
         </>
+        
         {showLoginForm && (
-          <LoginForm
-            onClose={() => {
-              setShowLoginForm(false);
-              handleLoginSignup();
-            }}
-          />
+          <Tabs
+            activeKey={activeForm}
+            onSelect={(k) => setActiveForm(k)}
+            id="uncontrolled-tab-example"
+            className="mb-3"
+          >
+            <Tab eventKey="login" title="Login">
+              <LoginForm
+                onClose={() => {
+                  setShowLoginForm(false);
+                  handleLoginSignup();
+                }}
+              />
+            </Tab>
+            <Tab eventKey="signup" title="Sign Up">
+              <SignupForm
+                onClose={() => {
+                  setShowSignupForm(false);
+                  handleLoginSignup();
+                }}
+              />
+            </Tab>
+          </Tabs>
         )}
-        {showSignupForm && (
-          <SignupForm
-            onClose={() => {
-              setShowSignupForm(false);
-              handleLoginSignup();
-            }}
-          />
-        )}
-        </div>
-      </Container>
+      </div>
+    </Container>
   );
 };
 
