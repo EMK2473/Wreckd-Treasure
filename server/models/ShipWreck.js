@@ -38,6 +38,9 @@ const shipwreckSchema = new Schema({
   },
   bodyOfWater: {
     type: String
+  },
+  description: {
+    type: String
   }
 });
 

@@ -24,6 +24,15 @@ const typeDefs = `
         casualties: String!
         country: String!
         bodyOfWater: String
+        shipWreckId: String!
+        name: String!
+        image: String
+        coordinates: String!
+        reasonForSinking: String!
+        yearSunk: String!
+        casualties: String!
+        country: String!
+        bodyOfWater: String
         description: String
 
     }
