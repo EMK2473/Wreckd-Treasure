@@ -42,7 +42,7 @@ const resolvers = {
         context.user = null;
           return {success: true, message: 'Logout Successful'}
         } else {
-          throw new AuthenticationError('You are not logged in!')
+          throw new AuthenticationError;
         }
     },
 
@@ -62,7 +62,7 @@ const resolvers = {
         if (!context.user) {
           throw new AuthenticationError;
         }
-        const updatedUser = await User.findByIdAndUpdate(
+        const updatedUser = await User.findByOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { savedShipWrecks: newShipWreck }},
           { new: true, runValidators: true}
@@ -77,14 +77,14 @@ const resolvers = {
     //removeShipWreck
     removeShipWreck: async (_, { shipWreckId }, context) => {
       if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
+        const updatedUser = await User.findByOneAndUpdate(
           { _id: context.user._id },
           { $pull: { savedShipWrecks: { shipWreckId }}},
           { new: true }
         );
         return updatedUser;
       }
-        throw new AuthenticationError('Login required!');
+        throw new AuthenticationError;
     },
   }
 };
