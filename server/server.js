@@ -1,22 +1,24 @@
 const express = require("express");
 //import ApolloServer
-const { ApolloServer } = require("apollo-server-express");
+const { ApolloServer } = require("@apollo/server");
 const path = require("path");
 //import middleware
 const { authMiddleware } = require("./utils/auth");
-
 // Import the two parts of a GraphQL schema
 const { typeDefs, resolvers } = require("./schemas");
 const booty = require("./config/connection");
 
-
 const PORT = process.env.PORT || 3001;
 const pirate = express();
+//create instance of ApolloServer and pass in schema data
 const shipwreck = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware,
 });
+
+//create instance of ApolloServer and pass in schema data
+const startApolloServer = async () => {
+  await shipwreck.start();
 
 pirate.use(express.urlencoded({ extended: true }));
 pirate.use(express.json());
@@ -25,16 +27,15 @@ pirate.use(express.json());
 if (process.env.NODE_ENV === "production") {
   pirate.use(express.static(path.join(__dirname, "../client/dist")));
 }
+
 pirate.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
-//create instance of ApolloServer and pass in schema data
-const startApolloServer = async () => {
-  await shipwreck.start();
-
 //integrate Apollo server with Express application as middleware
-shipwreck.applyMiddleware({ pirate });
+pirate.get('/graphql', expressMiddleware(server, {
+  context: authMiddleware
+}));
 
 booty.once("open", () => {
   pirate.listen(PORT, () => {
@@ -62,13 +63,12 @@ booty.once("open", () => {
                  http://localhost:${PORT}
               ==============================      
 
-            graphql path: 
-            http://localhost:${PORT}${server.graphqlPath}
+        graphql path: 
+        http://localhost:${PORT}${server.graphqlPath}
 
       `);    
     });
   });
 };
 
-// Call the async function to start the server
 startApolloServer(typeDefs, resolvers);
