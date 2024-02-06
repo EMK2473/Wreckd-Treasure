@@ -6,6 +6,7 @@ import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from "@ap
 import App from "./App.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import SavedShipWrecks from "./pages/SavedShipWrecks.jsx";
+import MapPage from "./pages/MapPage.jsx"; // Import the MapPage component
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
@@ -37,6 +38,14 @@ const router = createBrowserRouter([
         element: (
           <ApolloProvider client={client}>
             <SavedShipWrecks />
+          </ApolloProvider>
+        ),
+      },
+      {
+        path: "/map", // Add a route for the MapPage component
+        element: (
+          <ApolloProvider client={client}>
+            <MapPage />
           </ApolloProvider>
         ),
       },

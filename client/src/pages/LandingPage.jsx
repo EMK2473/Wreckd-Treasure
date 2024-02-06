@@ -4,6 +4,7 @@ import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
 import Auth from "../utils/auth";
 import Confetti from "react-confetti";
+import { Link } from "react-router-dom";
 import "../App.css";
 import App from '../App'
 
@@ -44,7 +45,11 @@ const LandingPage = () => {
   };
 
   if (userLoggedIn) {
-    return <App />;
+    return (
+      <>
+        <App />
+      </>
+    );
   }
 
   return (
