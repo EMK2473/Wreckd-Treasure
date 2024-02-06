@@ -1,7 +1,7 @@
 // Activity 21
-const { AuthenticationError } = require('apollo-server-express');
+// const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
-const { signToken } = require('../utils/auth');
+const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
     Query: {
@@ -10,7 +10,7 @@ const resolvers = {
               data = await User.findOne({ _id: context.user._id }).select('-__v -password');
               return data;
             }
-            throw new AuthenticationError('You need to be logged in!');
+            throw AuthenticationError;
         },
     },
 
@@ -24,17 +24,18 @@ const resolvers = {
           const user = await User.findOne({ email });
     
           if (!user) {
-            throw new AuthenticationError('User not found. Do you have an account?');
+            throw AuthenticationError;
           }
     
           const correctPw = await user.isCorrectPassword(password);
     
           if (!correctPw) {
-            throw new AuthenticationError('Incorrect credentials!');
+            throw new AuthenticationError;
           }
     
           const token = signToken(user);
           console.log('Logged IN')
+
           return { token, user };
         },
         logout: async (parent, args, context) => {
@@ -42,11 +43,12 @@ const resolvers = {
             context.user = null;
             return {success: true, message: 'Logout Successful'}
           } else {
-            throw new AuthenticationError('You are not logged in.')
+            throw AuthenticationError
           }
         
       },
         saveShipWreck: async (parent, { newShipWreck }, context) => {
+          console.log("user context", context.user)
           if (context.user) {
             const updatedUser = await User.findByIdAndUpdate(
               { _id: context.user._id },
@@ -55,7 +57,7 @@ const resolvers = {
             );
             return updatedUser;
           }
-          throw new AuthenticationError('You need to be logged in!');
+          throw AuthenticationError;
         },
         removeShipWreck: async (parent, { shipWreckId }, context) => {
           if (context.user) {
@@ -66,7 +68,7 @@ const resolvers = {
             );
             return updatedUser;
           }
-          throw new AuthenticationError('Login required!');
+          throw AuthenticationError;
         },
     }
 };
