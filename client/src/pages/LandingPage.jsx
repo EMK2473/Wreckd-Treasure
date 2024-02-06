@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Container, Col, Button, Row, Modal, Tab, Nav } from "react-bootstrap";
+import { Container,} from "react-bootstrap";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
 import Auth from "../utils/auth";
@@ -34,9 +34,6 @@ const LandingPage = () => {
         y: rect.top + rect.height / 2,
       });
     }
-  };
-  const getRandomInt = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
   const handleLoginSignup = () => {
@@ -93,10 +90,6 @@ const LandingPage = () => {
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.fillText("$", 0, 0);
-              }}
-              position={{
-                x: getRandomInt(0, window.innerWidth),
-                y: getRandomInt(-50, -10), // can prob scrap this, wasn't working as intended
               }}
             />
           )}

@@ -21,12 +21,6 @@ export const LOGOUT_USER = gql`
   }
 `;
 
-// Include:
-// ADD_USER
-// template tag gql` `
-// define: mutation($value1: valueType, $value2: valueType)
-// call: mutation(key: $value1, key2: $value2 )
-// requesting fields/nested object queries
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {
@@ -47,13 +41,7 @@ export const ADD_USER = gql`
     }
   }
 `;
-// SAVE_SHIPWRECK
-// template tag gql` `
-// define: mutation($value1: valueType, $value2: valueType)
-// call: mutation(key: $value1, key2: $value2 )
-// export const SAVE_SHIPWRECK = gql`
-// mutation saveShipWreck()
-// `
+
 export const SAVE_SHIPWRECK = gql`
   mutation saveShipWreck($newShipWreck: InputShipWreck!) {
     saveShipWreck(newShipWreck: $newShipWreck) {
@@ -70,11 +58,6 @@ export const SAVE_SHIPWRECK = gql`
     }
   }
 `;
-
-// template tag gql` `
-// define: mutation($value: valueType, $value2: valueType)
-// call: mutation(key: $value, key2: $value2 )
-// REMOVE_SHIPWRECK
 
 export const REMOVE_SHIPWRECK = gql`
   mutation removeShipWreck($shipWreckId: ID!) {
@@ -93,7 +76,6 @@ export const REMOVE_SHIPWRECK = gql`
   }
 `;
 
-// new SEARCH_SHIPWRECKS query
 export const SEARCH_SHIPWRECKS = gql`
   query searchShipWrecks($searchTerm: String!) {
     searchShipWrecks(searchTerm: $searchTerm) {
