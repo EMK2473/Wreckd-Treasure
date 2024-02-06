@@ -70,6 +70,7 @@ const SearchShipWrecks = () => {
         ...prevSavedShipWreckIds,
         shipWreckToSave.shipWreckId,
       ]);
+      console.log("ShipWreck to Save:", shipWreckToSave);
 
       const { data } = await saveShipWreck({
         variables: { newShipWreck: shipWreckToSave },

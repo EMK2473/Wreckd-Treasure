@@ -10,7 +10,7 @@ const LoginForm = () => {
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   
-  // bring in hooks
+
   const [loginUser, { error}] = useMutation(LOGIN_USER);
 
   useEffect(()=>{
@@ -28,15 +28,11 @@ const LoginForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-
-    // bring in new hook
     try {
       const response = await loginUser({
         variables: {...userFormData}
@@ -49,7 +45,6 @@ const LoginForm = () => {
 
 
     setUserFormData({
-      // username: '',
       email: '',
       password: '',
     });
