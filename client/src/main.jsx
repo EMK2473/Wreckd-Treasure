@@ -12,7 +12,7 @@ const httpLink = createHttpLink({
   uri: "/graphql",
 });
 
-const authLink = setContext((_, {headers}) =>{
+const authLink = setContext((_, {headers}) => {
   const token = localStorage.getItem('id_token');
   console.log("authlink:", token )
   return {
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/map", // Add a route for the MapPage component
+        path: "/map",
         element: (
           <ApolloProvider client={client}>
             <MapPage />

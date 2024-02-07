@@ -24,8 +24,8 @@ const typeDefs = `
         casualties: String!
         country: String!
         bodyOfWater: String
-        description: String
-
+        rarity: String
+        treasure: []
     }
     type Query {
         me: User

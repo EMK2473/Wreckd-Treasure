@@ -1,5 +1,6 @@
 const shipwrecks = [
-  { name: "Empress of Ireland", rarity: "Rare", image: '/ShipWreckPictures/EmpressOfIreland1.png', reasonForSinking: "Collision", yearSunk: "1914", country: "United Kingdom", bodyOfWater: "Gulf of Saint Lawrence", casualties: "1012", coordinates: "48°37.5'N 68°24.5'W", shipWreckId: "1"},
+
+  { name: "Empress of Ireland", image: '/ShipWreckPictures/EmpressOfIreland1.png', reasonForSinking: "Collision", yearSunk: "1914", country: "United Kingdom", bodyOfWater: "Gulf of Saint Lawrence", casualties: "1012", coordinates: "48°37.5'N 68°24.5'W", shipWreckId: "1", rarity: "Rare", treasure: ["🏎	", "🏍", "🍴", "🎲", "☠", "💀", "💰", "🪙", "🎷", "💎", "💍"		]},
 
   { name: "Gunilda", rarity: "Common", image: "/ShipWreckPictures/Gunilda1.png", reasonForSinking: "Ran aground and sank", yearSunk: "1911", country: "United States", bodyOfWater: "Lake Superior", casualties: "0", coordinates: "48°47.3'N 87°25.20'W", shipWreckId: "2"}, 
 

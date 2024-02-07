@@ -5,7 +5,7 @@ import SignupForm from "../components/SignupForm";
 import Auth from "../utils/auth";
 import Confetti from "react-confetti";
 import "../App.css";
-import App from '../App'
+import App from "../App";
 
 const LandingPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -13,7 +13,7 @@ const LandingPage = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
   const [confettiActive, setConfettiActive] = useState(false);
   const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
-  const [activeForm, setActiveForm] = useState("login"); 
+  const [activeForm, setActiveForm] = useState("login");
 
   const buttonRef = useRef();
 
@@ -46,7 +46,7 @@ const LandingPage = () => {
     setConfettiActive(false);
     setShowLoginForm(false);
     setShowSignupForm(false);
-    setActiveForm("login"); 
+    setActiveForm("login");
   };
 
   if (userLoggedIn) {
@@ -61,9 +61,12 @@ const LandingPage = () => {
     <Container fluid className="landing-page-container">
       <div className="App-header">
         <>
-          <img src={""} className="App-logo" alt="logo" />
-          <p className="pirate-text">Argh, Matey. Ready to plunder some booty!?</p>
-          <button id="enterBTN"
+          <img src={"/logo-1.png"} className="App-logo" alt="logo" />
+          <p className="pirate-text">
+            Argh, Matey. Ready to plunder some booty!?
+          </p>
+          <button
+            id="enterBTN"
             className="action-button"
             onClick={handleYesButtonClick}
             ref={buttonRef}
@@ -100,7 +103,7 @@ const LandingPage = () => {
             />
           )}
         </>
-        
+
         {showLoginForm && (
           <Tabs
             activeKey={activeForm}
