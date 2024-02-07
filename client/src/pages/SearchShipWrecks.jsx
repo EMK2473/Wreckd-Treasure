@@ -66,17 +66,15 @@ const SearchShipWrecks = () => {
     }
 
     try {
+      console.log("ShipWreck to Save:", shipWreckToSave);
+      console.log('token', token)
       setSavedShipWreckIds((prevSavedShipWreckIds) => [
         ...prevSavedShipWreckIds,
         shipWreckToSave.shipWreckId,
       ]);
-      console.log("ShipWreck to Save:", shipWreckToSave);
-      console.log('token', token)
-
       const { data } = await saveShipWreck({
         variables: { newShipWreck: shipWreckToSave },
       });
-
       if (
         data?.saveShipWreck?._id &&
         !savedShipWreckIds.includes(data.saveShipWreck._id)
@@ -151,6 +149,10 @@ const SearchShipWrecks = () => {
                 <Card.Body>
                   <Card.Title>{shipWreck.name}</Card.Title>
                   <Card.Text>
+                    <strong>Rarity: </strong> {shipWreck.rarity}
+                    <br />
+                    <strong>Treasure: </strong> <br /><span style={{ fontSize: '2em' }}>{shipWreck.treasure}</span>
+                    <br />
                     <strong>Reason for Sinking:</strong>{" "}
                     {shipWreck.reasonForSinking}
                     <br />
