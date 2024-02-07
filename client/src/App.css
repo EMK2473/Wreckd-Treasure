@@ -38,7 +38,7 @@ h6 {
 .App-Header {
   background-color: transparent;
   position: relative;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
