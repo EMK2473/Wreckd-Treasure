@@ -24,7 +24,7 @@ const SearchShipWrecks = () => {
 
   useEffect(() => {
     setSavedShipWreckIds(savedShipWreckIds);
-    console.log("Saved ShipWreck Ids:", savedShipWreckIds);
+    console.log("Saved ShipWreck Id:", savedShipWreckIds);
   }, [savedShipWreckIds]);
 
   const handleFormSubmit = async (event) => {
@@ -71,6 +71,7 @@ const SearchShipWrecks = () => {
         shipWreckToSave.shipWreckId,
       ]);
       console.log("ShipWreck to Save:", shipWreckToSave);
+      console.log('token', token)
 
       const { data } = await saveShipWreck({
         variables: { newShipWreck: shipWreckToSave },
@@ -86,11 +87,11 @@ const SearchShipWrecks = () => {
         ]);
       }
     } catch (err) {
-      setSavedShipWreckIds((prevSavedShipWreckIds) =>
-        prevSavedShipWreckIds.filter(
-          (savedShipWreckId) => savedShipWreckId !== shipWreckToSave.shipWreckId
-        )
-      );
+      // setSavedShipWreckIds((prevSavedShipWreckIds) =>
+      //   prevSavedShipWreckIds.filter(
+      //     (savedShipWreckId) => savedShipWreckId !== shipWreckToSave.shipWreckId
+      //   )
+      // );
 
       console.error("Save ShipWreck Mutation Error:", err);
     }
@@ -172,15 +173,15 @@ const SearchShipWrecks = () => {
                         (savedShipWreckId) =>
                           savedShipWreckId === String(shipWreck.shipWreckId)
                       )}
-                      className="btn-block btn-info"
+                      className="bookBTN btn-block btn-info"
                       onClick={() => handleSaveShipWreck(shipWreck.shipWreckId)}
                     >
                       {savedShipWreckIds?.some(
                         (savedShipWreckId) =>
                           savedShipWreckId === String(shipWreck.shipWreckId)
                       )
-                        ? "This shipWreck has already been saved!"
-                        : "Save this ShipWreck!"}
+                        ? "Expedition Booked!"
+                        : "Book an expedition!"}
                     </Button>
                   )}
                 </Card.Body>
