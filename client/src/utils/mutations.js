@@ -7,19 +7,20 @@ export const LOGIN_USER = gql`
       user {
         _id
         username
+        email
       }
     }
   }
 `;
 
-export const LOGOUT_USER = gql`
-  mutation logout {
-    logout {
-      success
-      message
-    }
-  }
-`;
+// export const LOGOUT_USER = gql`
+//   mutation logout {
+//     logout {
+//       success
+//       message
+//     }
+//   }
+// `;
 
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
@@ -33,9 +34,6 @@ export const ADD_USER = gql`
         savedShipWrecks {
           shipWreckId
           image
-          link
-          title
-          description
         }
       }
     }
@@ -45,7 +43,7 @@ export const ADD_USER = gql`
 export const SAVE_SHIPWRECK = gql`
  mutation SaveShipWreck($newShipWreck: InputShipWreck!) {
   saveShipWreck(newShipWreck: $newShipWreck) {
-    _id
+    shipWreckId
   }
 }
 `;
@@ -59,7 +57,6 @@ export const REMOVE_SHIPWRECK = gql`
       savedShipWrecks {
         shipWreckId
         description
-        title
         image
         link
       }
