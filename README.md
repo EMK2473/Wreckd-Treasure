@@ -55,17 +55,17 @@
 
 ### ![user-story](./sunken-booty/branding/9.png)
 
-<!-- <p align="center"> -->
-  <!-- <img src="./sunken-booty/branding/user-story.png"/>
-</p> -->
+<p align="center"> 
+  <img src="./sunken-booty/branding/user-story.png"/>
+</p>  
 
 ### ![concept-design](./sunken-booty/branding/10.png)
 
 ### ![booty-list](./sunken-booty/branding/11.png)
 
-<!-- <p align="center">
+<p align="center">
   <img src="./sunken-booty/branding/booty-list.png"/>
-</p> -->
+</p>
 
 ### ![team](./sunken-booty/branding/treasure-team.png)
 
