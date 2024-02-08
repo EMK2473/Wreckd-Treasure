@@ -6,7 +6,7 @@ import Auth from "../utils/auth";
 import shipwrecks from "./ShipWreckData";
 import ShipwreckMap from "../components/ShipwreckMap";
 
-//import shipwreck search 
+//import shipwreck search
 const getSavedShipWreckIds = () => {
   const savedShipWreckIds =
     JSON.parse(localStorage.getItem("savedShipWreckIds")) || [];
@@ -101,6 +101,12 @@ const SearchShipWrecks = () => {
       console.error("Save ShipWreck Mutation Error:", err);
     }
   };
+
+//   <div className="display: flex justify-content: end">
+//   <img src="/partyParakeet.gif" alt="" />
+//   <img src="/portalPartyParakeet.gif" alt="" />
+//   <img src="/portalPartyParakeet2.gif" alt="" />
+// </div>
 
   return (
     <>
@@ -204,6 +210,7 @@ const SearchShipWrecks = () => {
           ))}
         </Row>
       </Container>
+      
     </>
   );
 };

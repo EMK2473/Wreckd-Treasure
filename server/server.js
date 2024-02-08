@@ -14,6 +14,8 @@ const server = new ApolloServer({
   resolvers,
 });
 
+// start apollo server and apply middleware 
+// including: typeDefs, resolvers, and authentication Middleware
 const startApolloServer = async () => {
   await server.start();
 
@@ -27,7 +29,7 @@ const startApolloServer = async () => {
     app.use(express.static(path.join(__dirname, '../client/dist')));
     app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-    });
+    }); // catch all route
   }
 
   db.once('open', () => {

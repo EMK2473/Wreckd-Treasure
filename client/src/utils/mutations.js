@@ -53,27 +53,27 @@ mutation SaveShipWreck($newShipWreck: InputShipWreck!) {
 }
 `;
 
-// TO DO:
-export const SEARCH_SHIPWRECKS = gql`
-  query searchShipWrecks($searchTerm: String!) {
-    searchShipWrecks(searchTerm: $searchTerm) {
-      id
-      volumeInfo {
-        authors
-        title
-        description
-        imageLinks {
-          thumbnail
-        }
-      }
-    }
-  }
-`;
+// not used
+// export const SEARCH_SHIPWRECKS = gql`
+//   query searchShipWrecks($searchTerm: String!) {
+//     searchShipWrecks(searchTerm: $searchTerm) {
+//       id
+//       volumeInfo {
+//         authors
+//         title
+//         description
+//         imageLinks {
+//           thumbnail
+//         }
+//       }
+//     }
+//   }
+// `;
 
 
-// TO DO:
+
 export const REMOVE_SHIPWRECK = gql`
-  mutation removeShipWreck($shipWreckId: ID!) {
+  mutation removeShipWreck($shipWreckId: String) {
     removeShipWreck(shipWreckId: $shipWreckId) {
       _id
       username
@@ -82,7 +82,6 @@ export const REMOVE_SHIPWRECK = gql`
         shipWreckId
         description
         image
-        link
       }
     }
   }

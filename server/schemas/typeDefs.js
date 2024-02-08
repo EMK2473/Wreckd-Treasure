@@ -50,7 +50,7 @@ const typeDefs = `
         logout: LogoutResponse
         addUser(username: String!, email: String!, password: String!): Auth
         saveShipWreck(newShipWreck: InputShipWreck!): User
-        removeShipWreck(shipWreckId: ID!): User
+        removeShipWreck(shipWreckId: String): User
     }
 `;
 
