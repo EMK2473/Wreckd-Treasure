@@ -52,7 +52,8 @@ const LoginForm = () => {
 
   return (
     <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit} style={{ width: '300px', margin: 'auto' }}>
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit} 
+      style={{ width: "300px", height: "1000px", margin: "auto" }}className="login-form">
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials!
         </Alert>
