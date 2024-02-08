@@ -1,21 +1,16 @@
 import { useState, useEffect } from "react";
 import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
-
-//graphql import
 import { useMutation } from "@apollo/client";
-//import mutation
 import { SAVE_SHIPWRECK } from "../utils/mutations";
-//import helpers
 import Auth from "../utils/auth";
 import shipwrecks from "./ShipWreckData";
 import ShipwreckMap from "../components/ShipwreckMap";
 
-//import shipwreck search API
+//import shipwreck search 
 const getSavedShipWreckIds = () => {
   const savedShipWreckIds =
     JSON.parse(localStorage.getItem("savedShipWreckIds")) || [];
   return savedShipWreckIds;
-  // return [];
 };
 
 const SearchShipWrecks = () => {
@@ -103,12 +98,6 @@ const SearchShipWrecks = () => {
         ]);
       }
     } catch (err) {
-      // setSavedShipWreckIds((prevSavedShipWreckIds) =>
-      //   prevSavedShipWreckIds.filter(
-      //     (savedShipWreckId) => savedShipWreckId !== shipWreckToSave.shipWreckId
-      //   )
-      // );
-
       console.error("Save ShipWreck Mutation Error:", err);
     }
   };

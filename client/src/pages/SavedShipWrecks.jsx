@@ -1,6 +1,5 @@
 import { Container, Card, Button, Row, Col } from "react-bootstrap";
 import "../SavedWrecks.css";
-
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_ME } from "../utils/queries";
 import { REMOVE_SHIPWRECK } from "../utils/mutations";

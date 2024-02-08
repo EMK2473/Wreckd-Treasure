@@ -4,7 +4,6 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
-      console.log("queryME context:", context);
       if (context.user) {
         const data = await User.findOne({ _id: context.user._id }).select(
           "-__v -password"
@@ -49,7 +48,6 @@ const resolvers = {
       }
     },
     saveShipWreck: async (parent, { newShipWreck }, context) => {
-      console.log("user context", context.user);
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
