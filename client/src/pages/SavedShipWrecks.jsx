@@ -20,14 +20,14 @@ const SavedShipWrecks = () => {
     return <h2>Please log in to view your saved expeditions.</h2>;
   }
 
-  const handleDeleteShipWreck = async (bookId) => {
+  const handleDeleteShipWreck = async (shipWreckId) => {
     try {
       const response = await removeShipWreck({
-        variables: { bookId },
+        variables: { shipWreckId },
       });
 
-      const updatedUser = response.data.removeShipWreck;
-      removeShipWreckId(bookId);
+      const updatedUser = response.data.removeShipWreck();
+      removeShipWreckId(shipWreckId);
     } catch (err) {
       console.error(err);
     }
@@ -48,31 +48,31 @@ const SavedShipWrecks = () => {
         <h2 className="pt-5">
           {userData.savedShipWrecks.length
             ? `Viewing ${userData.savedShipWrecks.length} saved ${
-                userData.savedShipWrecks.length === 1 ? "book" : "books"
+                userData.savedShipWrecks.length === 1 ? "shipWreck" : "shipWrecks"
               }:`
             : "You have no saved expeditions!"}
         </h2>
         <Row>
-          {userData.savedShipWrecks.map((book) => {
+          {userData.savedShipWrecks.map((shipWreck) => {
             return (
               <Col md="4">
-                <Card key={book.bookId} border="dark">
-                  {book.image ? (
+                <Card key={shipWreck.shipWreckId} border="dark">
+                  {shipWreck.image ? (
                     <Card.Img
-                      src={book.image}
-                      alt={`The cover for ${book.title}`}
+                      src={shipWreck.image}
+                      alt={`The cover for ${shipWreck.title}`}
                       variant="top"
                     />
                   ) : null}
                   <Card.Body>
-                    <Card.Title>{book.name}</Card.Title>
-                    <p className="small">Authors: {book.bodyOfWater}</p>
+                    <Card.Title>{shipWreck.name}</Card.Title>
+                    <p className="small">Authors: {shipWreck.bodyOfWater}</p>
                     <Card.Text>
-                      {book.chair ? book.chair : "No Chair"}
+                      {shipWreck.chair ? shipWreck.chair : "No Chair"}
                     </Card.Text>
                     <Button
                       className="btn-block btn-danger"
-                      onClick={() => handleDeleteShipWreck(book.bookId)}
+                      onClick={() => handleDeleteShipWreck(shipWreck.shipWreckId)}
                     >
                       Delete this ShipWreck!
                     </Button>

@@ -8,6 +8,7 @@ import "../App.css";
 import App from "../App";
 
 const LandingPage = () => {
+  // use state variables and functions
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
@@ -15,8 +16,7 @@ const LandingPage = () => {
   const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
   const [activeForm, setActiveForm] = useState("login");
   const [enterButtonClicked, setEnterButtonClicked] = useState(false);
-
-  const buttonRef = useRef();
+  const buttonRef = useRef(); // returns reference object
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -25,6 +25,7 @@ const LandingPage = () => {
     }
   }, [buttonRef]);
 
+  // function to handle Yes/Enter
   const handleYesButtonClick = () => {
     setEnterButtonClicked(true);
     setShowLoginForm(true);
@@ -39,10 +40,12 @@ const LandingPage = () => {
     }
   };
 
+  // function to handle Login/Signup tabs
   const handleTabClick = (form) => {
     setActiveForm(form);
   };
 
+  // function to handle login and sign up forms
   const handleLoginSignup = () => {
     setUserLoggedIn(Auth.loggedIn());
     setConfettiActive(false);
@@ -63,10 +66,10 @@ const LandingPage = () => {
     <Container fluid className="landing-page-container">
       <div className="App-header">
         <>
-          <img src={"/logo-1.png"} className="App-logo" alt="logo" />
           <p className="pirate-text">
             Argh, Matey. Ready to plunder some booty!?
           </p>
+          <img src={"/logo-1.png"} className="App-logo" alt="logo" />
           {!enterButtonClicked && (
             <button
               id="enterBTN"
