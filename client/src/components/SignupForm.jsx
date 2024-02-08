@@ -58,7 +58,7 @@ const SignupForm = () => {
         noValidate
         validated={validated}
         onSubmit={handleFormSubmit}
-        style={{ width: "300px", height: "1000px", margin: "auto" }}
+        style={{ width: "300px", height: "1100px", margin: "auto" }}
       >
         <Alert
           dismissible
@@ -69,8 +69,8 @@ const SignupForm = () => {
           Something went wrong with your signup!
         </Alert>
 
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="username">Username</Form.Label>
+        <Form.Group className="mb-3" style={{ color: "#F4CB5C"}}>
+          <Form.Label htmlFor="username" style={{ marginTop: "100px" }}>Username</Form.Label>
           <Form.Control
             type="text"
             placeholder="Your username"
@@ -84,7 +84,7 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3" style={{ color: "#F4CB5C"}}>
           <Form.Label htmlFor="email">Email</Form.Label>
           <Form.Control
             type="email"
@@ -99,7 +99,7 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3" style={{ color: "#F4CB5C"}}>
           <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Control
             type="password"
@@ -113,19 +113,16 @@ const SignupForm = () => {
             Password is required!
           </Form.Control.Feedback>
         </Form.Group>
-        <Button
-          disabled={
-            !(
-              userFormData.username &&
-              userFormData.email &&
-              userFormData.password
-            )
-          }
-          type="submit"
-          variant="success"
-        >
-          Sign up
-        </Button>
+        <div style={{ textAlign: "center" }}> {/* Center the button horizontally */}
+    <Button
+      disabled={!(userFormData.email && userFormData.password)}
+      type="submit"
+      style={{ backgroundColor: "#F4CB5C", color: "#000000", borderColor: "#ffffff"}}
+      variant="success"
+    >
+      Sign up
+    </Button>
+  </div>
       </Form>
     </>
   );

@@ -56,8 +56,8 @@ const LoginForm = () => {
         noValidate
         validated={validated}
         onSubmit={handleFormSubmit}
-        style={{ width: "300px", height: "1000px", margin: "auto" }}
-        className="login-form"
+        style={{ width: "350px", height: "1000px", margin: "auto", marginTop: "100px"}}
+        className="login-form "
       >
         <Alert
           dismissible
@@ -67,8 +67,8 @@ const LoginForm = () => {
         >
           Something went wrong with your login credentials!
         </Alert>
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="email">Email</Form.Label>
+        <Form.Group className="mb-3" style={{ color: "#F4CB5C"}}>
+          <Form.Label htmlFor="email"  style={{ marginTop: "100px" }}>Email</Form.Label>
           <Form.Control
             type="text"
             placeholder="Your email"
@@ -81,8 +81,8 @@ const LoginForm = () => {
             Email is required!
           </Form.Control.Feedback>
         </Form.Group>
-
-        <Form.Group className="mb-3">
+  
+        <Form.Group className="mb-3" style={{ color: "#F4CB5C"}}>
           <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Control
             type="password"
@@ -96,16 +96,18 @@ const LoginForm = () => {
             Password is required!
           </Form.Control.Feedback>
         </Form.Group>
-        <Button
-          disabled={!(userFormData.email && userFormData.password)}
-          type="submit"
-          variant="success"
-        >
-          Login
-        </Button>
+        <div style={{ textAlign: "center" }}> {/* Center the button horizontally */}
+    <Button
+      disabled={!(userFormData.email && userFormData.password)}
+      type="submit"
+      style={{ backgroundColor: "#F4CB5C", color: "#000000", borderColor: "#ffffff"}}
+      variant="success"
+    >
+      Login
+    </Button>
+  </div>
       </Form>
     </>
   );
-};
-
+  }  
 export default LoginForm;
