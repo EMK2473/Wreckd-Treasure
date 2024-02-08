@@ -1,46 +1,57 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
-import ShipwreckMap from "../components/ShipwreckMap";
-import Auth from "../utils/auth";
-import { useMutation } from "@apollo/client";
-import { SAVE_SHIPWRECK } from "../utils/mutations";
-import shipwrecks from "./ShipWreckData";
 
-// Placeholder for getSavedShipWreckIds function
+//graphql import
+import { useMutation } from "@apollo/client";
+//import mutation
+import { SAVE_SHIPWRECK } from "../utils/mutations";
+//import helpers
+import Auth from "../utils/auth";
+import shipwrecks from "./ShipWreckData";
+import ShipwreckMap from "../components/ShipwreckMap";
+
+//import shipwreck search API
 const getSavedShipWreckIds = () => {
-  const savedShipWreckIds = JSON.parse(localStorage.getItem('savedShipWreckIds')) || [];
+  const savedShipWreckIds =
+    JSON.parse(localStorage.getItem("savedShipWreckIds")) || [];
   return savedShipWreckIds;
-  return [];
+  // return [];
 };
 
 const SearchShipWrecks = () => {
+  //create state - hold returned shipwreck data
   const [searchedShipWrecks, setSearchedShipWrecks] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
-  const [saveShipWreck] = useMutation(SAVE_SHIPWRECK);
+  //create state - hold search field data
+  const [selectedShipwreck, setSelectedShipwreck] = useState("");
+  //create state - hold saved shipWreckId values
   const [savedShipWreckIds, setSavedShipWreckIds] = useState(
     getSavedShipWreckIds()
   );
-  const [selectedShipwreck, setSelectedShipwreck] = useState("");
 
+  //get user's saved shipwrecks on component load
   useEffect(() => {
     setSavedShipWreckIds(savedShipWreckIds);
     console.log("Saved ShipWreck Id:", savedShipWreckIds);
   }, [savedShipWreckIds]);
 
+  //mutation request
+  const [saveShipWreck] = useMutation(SAVE_SHIPWRECK);
+
+  //search shipwrecks & set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    //validate search input
     if (!selectedShipwreck) {
       return false;
     }
-
+    //get shipwreck details
     try {
       const selectedShipwreckDetails = shipwrecks[selectedShipwreck];
-
       if (!selectedShipwreckDetails) {
-        throw new Error("Selected shipwreck not found!");
+        throw new Error("shipwreck not found!");
       }
 
+      //filter shipwreck data
       const shipWreckData = [
         {
           ...selectedShipwreckDetails,
@@ -49,25 +60,32 @@ const SearchShipWrecks = () => {
         },
       ];
 
+      //state update
       setSearchedShipWrecks(shipWreckData);
       setSelectedShipwreck("");
     } catch (err) {
       console.error(err);
     }
   };
+
+  //save shipwreck to user's account
   const handleSaveShipWreck = async (shipWreckId) => {
+    //find shipwreck in `searchedShipWrecks` state by the matching id
     const shipWreckToSave = searchedShipWrecks.find(
       (shipWreck) => shipWreck.shipWreckId === shipWreckId
     );
+    //get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-
+    //validate token
     if (!token) {
       return false;
     }
-
+    //make mutation request
     try {
       console.log("ShipWreck to Save:", shipWreckToSave);
-      console.log('token', token)
+      console.log("token", token);
+
+      //set updated user object
       setSavedShipWreckIds((prevSavedShipWreckIds) => [
         ...prevSavedShipWreckIds,
         shipWreckToSave.shipWreckId,
@@ -97,7 +115,7 @@ const SearchShipWrecks = () => {
 
   return (
     <>
-      <div className="text-light p-5" fluid="true">
+      <div className="text-light p-5">
         <Container>
           <h1>Search for Lost treasure!</h1>
           <Form onSubmit={handleFormSubmit}>
@@ -107,10 +125,10 @@ const SearchShipWrecks = () => {
                   as="select"
                   value={selectedShipwreck}
                   onChange={(e) => setSelectedShipwreck(e.target.value)}
-                  size="lg"
+                  size="sm"
                 >
                   <option value="" disabled>
-                    Select a shipwreck
+                    select shipwreck
                   </option>
                   {shipwrecks.map((shipwreck, index) => (
                     <option key={index} value={index}>
@@ -120,8 +138,8 @@ const SearchShipWrecks = () => {
                 </Form.Control>
               </Col>
               <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg">
-                  Find treasure!
+                <Button type="submit" variant="success" size="sm">
+                  plunder
                 </Button>
               </Col>
             </Row>
@@ -130,28 +148,32 @@ const SearchShipWrecks = () => {
       </div>
 
       <Container>
-        <h2 className="pt-5">
+        <h3 className="pt-2 text-light">
           {searchedShipWrecks.length
-            ? `Viewing ${searchedShipWrecks.length} results:`
-            : "Search for a shipWreck to begin"}
-        </h2>
+            ? `viewing ${searchedShipWrecks.length} results:`
+            : "plunder for a shipwreck to begin"}
+        </h3>
         <Row>
           {searchedShipWrecks.map((shipWreck, index) => (
             <Col md="4" key={index}>
               <Card border="dark">
-                {shipWreck.image && (
+                {shipWreck.image ? (
                   <Card.Img
                     src={shipWreck.image}
                     alt={`The cover for ${shipWreck.title}`}
                     variant="top"
                   />
-                )}
+                ) : null}
                 <Card.Body>
                   <Card.Title>{shipWreck.name}</Card.Title>
+
                   <Card.Text>
                     <strong>Rarity: </strong> {shipWreck.rarity}
                     <br />
-                    <strong>Treasure: </strong> <br /><span style={{ fontSize: '2em' }}>{shipWreck.treasure}</span>
+                    <strong>Treasure: </strong> <br />
+                    <span style={{ fontSize: "2em" }}>
+                      {shipWreck.treasure}
+                    </span>
                     <br />
                     <strong>Reason for Sinking:</strong>{" "}
                     {shipWreck.reasonForSinking}
@@ -177,13 +199,14 @@ const SearchShipWrecks = () => {
                       )}
                       className="bookBTN btn-block btn-info"
                       onClick={() => handleSaveShipWreck(shipWreck.shipWreckId)}
+                      size="sm"
                     >
                       {savedShipWreckIds?.some(
                         (savedShipWreckId) =>
                           savedShipWreckId === String(shipWreck.shipWreckId)
                       )
-                        ? "Expedition Booked!"
-                        : "Book an expedition!"}
+                        ? "expedition booked!"
+                        : "book expedition!"}
                     </Button>
                   )}
                 </Card.Body>

@@ -25,7 +25,7 @@ const typeDefs = `
         country: String!
         bodyOfWater: String
         rarity: String
-        treasure: []
+        treasure: [String]
     }
     type Query {
         me: User
