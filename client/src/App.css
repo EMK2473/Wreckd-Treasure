@@ -2,7 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Pirata One', sans-serif;
   background-image: url('./src/assets/bg-3.png'); 
   background-color: black;
   background-size:contain;
@@ -20,7 +20,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family: 'Pirata One', sans-serif;
 }
 
 .small {
