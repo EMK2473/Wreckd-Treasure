@@ -13,14 +13,6 @@ export const LOGIN_USER = gql`
   }
 `;
 
-// export const LOGOUT_USER = gql`
-//   mutation logout {
-//     logout {
-//       success
-//       message
-//     }
-//   }
-// `;
 
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
@@ -61,6 +53,25 @@ mutation SaveShipWreck($newShipWreck: InputShipWreck!) {
 }
 `;
 
+// TO DO:
+export const SEARCH_SHIPWRECKS = gql`
+  query searchShipWrecks($searchTerm: String!) {
+    searchShipWrecks(searchTerm: $searchTerm) {
+      id
+      volumeInfo {
+        authors
+        title
+        description
+        imageLinks {
+          thumbnail
+        }
+      }
+    }
+  }
+`;
+
+
+// TO DO:
 export const REMOVE_SHIPWRECK = gql`
   mutation removeShipWreck($shipWreckId: ID!) {
     removeShipWreck(shipWreckId: $shipWreckId) {
@@ -77,18 +88,3 @@ export const REMOVE_SHIPWRECK = gql`
   }
 `;
 
-export const SEARCH_SHIPWRECKS = gql`
-  query searchShipWrecks($searchTerm: String!) {
-    searchShipWrecks(searchTerm: $searchTerm) {
-      id
-      volumeInfo {
-        authors
-        title
-        description
-        imageLinks {
-          thumbnail
-        }
-      }
-    }
-  }
-`;

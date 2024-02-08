@@ -14,6 +14,7 @@ const LandingPage = () => {
   const [confettiActive, setConfettiActive] = useState(false);
   const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
   const [activeForm, setActiveForm] = useState("login");
+  const [enterButtonClicked, setEnterButtonClicked] = useState(false);
 
   const buttonRef = useRef();
 
@@ -25,6 +26,7 @@ const LandingPage = () => {
   }, [buttonRef]);
 
   const handleYesButtonClick = () => {
+    setEnterButtonClicked(true);
     setShowLoginForm(true);
     setConfettiActive(true);
 
@@ -65,14 +67,16 @@ const LandingPage = () => {
           <p className="pirate-text">
             Argh, Matey. Ready to plunder some booty!?
           </p>
-          <button
-            id="enterBTN"
-            className="action-button"
-            onClick={handleYesButtonClick}
-            ref={buttonRef}
-          >
-            Enter
-          </button>
+          {!enterButtonClicked && (
+            <button
+              id="enterBTN"
+              className="action-button"
+              onClick={handleYesButtonClick}
+              ref={buttonRef}
+            >
+              Enter
+            </button>
+          )}
 
           {confettiActive && (
             <Confetti
