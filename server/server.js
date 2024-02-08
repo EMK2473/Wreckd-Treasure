@@ -1,39 +1,43 @@
 const express = require("express");
 const path = require("path");
-const db = require("./config/connection");
-const { authMiddleware } = require("./utils/auth");
-const { typeDefs, resolvers } = require("./schemas");
+//import ApolloServer
 const { ApolloServer } = require('@apollo/server');
+//import middleware
+const { authMiddleware } = require("./utils/auth");
 const { expressMiddleware } = require('@apollo/server/express4');
+//import GraphQL type definitions and resolvers
+const { typeDefs, resolvers } = require("./schemas");
+const booty = require("./config/connection");
 
-const app = express();
+//create instance of ApolloServer and pass in schema data
+const pirate = express();
 const PORT = process.env.PORT || 3001;
-
-const server = new ApolloServer({
+const matey = new ApolloServer({
   typeDefs,
   resolvers,
 });
 
-// start apollo server and apply middleware 
-// including: typeDefs, resolvers, and authentication Middleware
+//start Apollo server
 const startApolloServer = async () => {
-  await server.start();
+  await matey.start();
 
-  app.use(express.urlencoded({ extended: false }));
-  app.use(express.json());
-  app.use('/graphql', expressMiddleware(server, {
+  //integrate Apollo server with Express application as middleware
+  pirate.use(express.urlencoded({ extended: false }));
+  pirate.use(express.json());
+  pirate.use('/graphql', expressMiddleware(matey, {
     context: authMiddleware
   }));
 
+  //serve up static assets in production
   if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/dist')));
-    app.get('*', (req, res) => {
+    pirate.use(express.static(path.join(__dirname, '../client/dist')));
+    pirate.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-    }); // catch all route
+    });
   }
 
-  db.once('open', () => {
-    app.listen(PORT, () => {
+  booty.once('open', () => {
+    pirate.listen(PORT, () => {
       console.log(`
 ============================================================
                W R E C K ' D   T R E A S U R E 
@@ -69,5 +73,5 @@ const startApolloServer = async () => {
   });
 };
 
-// Call the async function to start the server
-  startApolloServer();
+//start server
+startApolloServer();
