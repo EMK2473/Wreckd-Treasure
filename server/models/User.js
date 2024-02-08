@@ -1,9 +1,10 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-
+//import schema from ShipWreck.js
 const shipWreckSchema = require('./ShipWreck');
 
+//create user schema
 const userSchema = new Schema(
   {
     username: {
@@ -15,16 +16,16 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: [/.+@.+\..+/, 'Must use a valid email address'],
+      match: [/.+@.+\..+/, 'Must use a valid email address'], //regex for email
     },
     password: {
       type: String,
       required: true,
     },
-
+    //associate user with saved shipwrecks
     savedShipWrecks: [shipWreckSchema],
   },
-
+  //set up virtual to count saved shipwrecks
   {
     toJSON: {
       virtuals: true,
@@ -32,26 +33,27 @@ const userSchema = new Schema(
   }
 );
 
-
+//pre-save middleware to create password
 userSchema.pre('save', async function (next) {
+  //if password is new or modified, hash it
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
-    this.password = await bcrypt.hash(this.password, saltRounds);
+    this.password = await bcrypt.hash(this.password, saltRounds); //hash password
   }
-
   next();
 });
 
-
+//compare incoming password with hashed password
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-
+//virtual to count saved shipwrecks
 userSchema.virtual('shipWreckCount').get(function () {
   return this.savedShipWrecks.length;
 });
 
+//create model
 const User = model('User', userSchema);
 
 module.exports = User;

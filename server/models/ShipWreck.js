@@ -1,5 +1,6 @@
 const { Schema } = require('mongoose');
 
+//subdocument schema for shipwrecks
 const shipwreckSchema = new Schema({
   name: {
     type: String,

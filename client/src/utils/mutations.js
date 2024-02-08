@@ -53,25 +53,6 @@ mutation SaveShipWreck($newShipWreck: InputShipWreck!) {
 }
 `;
 
-// not used
-// export const SEARCH_SHIPWRECKS = gql`
-//   query searchShipWrecks($searchTerm: String!) {
-//     searchShipWrecks(searchTerm: $searchTerm) {
-//       id
-//       volumeInfo {
-//         authors
-//         title
-//         description
-//         imageLinks {
-//           thumbnail
-//         }
-//       }
-//     }
-//   }
-// `;
-
-
-
 export const REMOVE_SHIPWRECK = gql`
   mutation removeShipWreck($shipWreckId: String) {
     removeShipWreck(shipWreckId: $shipWreckId) {

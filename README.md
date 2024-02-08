@@ -133,8 +133,23 @@ npm run dev
 
 #
 
-
 ### ![testing](./sunken-booty/branding/8.png)
+
+
+**TESTING WITH MONGODB COMPASS:**
+
+There are different tools available that can test reading/writing operations in a web browser - in this application we use [MongoDB Compass](https://www.mongodb.com/products/tools/compass), a interactive tool for querying, optimizing, and analyzing **MongoDB data**.
+
+1. Read [documentation](https://www.mongodb.com/docs/compass/current/) to install MongoDB Compass. Once downloaded, open the GUI.
+
+2. Create a new connection and input the MongoDB connection string:
+
+```json
+mongodb://localhost:27017/
+```
+
+3. Interact with `WRECK'D TREASURE's` back end by testing the below commands:
+
 
 #
 
