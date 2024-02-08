@@ -1,19 +1,25 @@
 import { gql } from '@apollo/client';
 
 export const GET_ME = gql`
-  {
-    me {
-      _id
-      username
-      email
-      shipWreckCount
-      savedShipWrecks {
-        shipWreckId
-        description
-        title
-        image
-        link
-      }
+ query Query {
+  me {
+    _id
+    username
+    email
+    savedShipWrecks {
+      name
+      shipWreckId
+      image
+      coordinates
+      reasonForSinking
+      yearSunk
+      casualties
+      country
+      bodyOfWater
+      description
+      rarity
+      treasure
     }
   }
+}
 `;

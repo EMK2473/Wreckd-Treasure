@@ -41,9 +41,22 @@ export const ADD_USER = gql`
 `;
 
 export const SAVE_SHIPWRECK = gql`
- mutation SaveShipWreck($newShipWreck: InputShipWreck!) {
+mutation SaveShipWreck($newShipWreck: InputShipWreck!) {
   saveShipWreck(newShipWreck: $newShipWreck) {
-    shipWreckId
+    savedShipWrecks {
+      name
+      shipWreckId
+      image
+      coordinates
+      reasonForSinking
+      yearSunk
+      casualties
+      country
+      bodyOfWater
+      description
+      rarity
+      treasure
+    }
   }
 }
 `;

@@ -3,7 +3,6 @@ const typeDefs = `
         _id: ID!
         username: String!
         email: String!
-        shipWreckCount: Int
         savedShipWrecks: [ShipWreck]
     }
     type Auth {
@@ -11,19 +10,30 @@ const typeDefs = `
         user: User
     }
     type ShipWreck {
-        shipWreckId: ID!
+        name: String
+        shipWreckId: String
         image: String
+        coordinates: String
+        reasonForSinking: String
+        yearSunk: String
+        casualties: String
+        country: String
+        bodyOfWater: String
+        description: String
+        rarity: String
+        treasure: [String]
     }
     input InputShipWreck {
-        shipWreckId: String!
-        name: String!
+        name: String
+        shipWreckId: String
         image: String
-        coordinates: String!
-        reasonForSinking: String!
-        yearSunk: String!
-        casualties: String!
-        country: String!
+        coordinates: String
+        reasonForSinking: String
+        yearSunk: String
+        casualties: String
+        country: String
         bodyOfWater: String
+        description: String
         rarity: String
         treasure: [String]
     }
