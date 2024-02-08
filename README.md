@@ -4,13 +4,13 @@
 
 [![license: mit](https://img.shields.io/badge/license-mit-blue)](https://opensource.org/licenses/MIT)
 [![mongodb badge](https://img.shields.io/badge/mongodb-darkblue.svg?&logo=MongoDB&logoColor=white)](https://www.mongodb.com/)
-[![express.js badge](https://img.shields.io/badge/express-yellow.svg?&logo=Express&logoColor=white)](https://expressjs.com/)
-[![react badge](https://img.shields.io/badge/react-lightgrey.svg?&logo=React&logoColor=white)](https://react.dev/)
+[![express.js badge](https://img.shields.io/badge/express-gold.svg?&logo=Express&logoColor=white)](https://expressjs.com/)
+[![react badge](https://img.shields.io/badge/react-cyan.svg?&logo=React&logoColor=white)](https://react.dev/)
 [![node.js badge](https://img.shields.io/badge/node-teal?logo=nodedotjs&logoColor=white&style=flat)](https://nodejs.org/en)
 [![apollo badge](https://img.shields.io/badge/-apollographQL-lightblue?&logo=apollo-graphql)](https://www.apollographql.com/)
+[![vite badge](https://img.shields.io/badge/vite-lightyellow.svg?&logo=Vite&logoColor=white)](https://vitejs.dev/)
 [![heroku badge](https://img.shields.io/badge/heroku-grey.svg?&logo=Insomnia&logoColor=white)](https://heroku.com)
-[![canva badge](https://img.shields.io/badge/canva-lightyellow.svg?&logo=Canva&logoColor=white)](https://canva.com/)
-[![vite badge](https://img.shields.io/badge/vite-midnightblue.svg?&logo=Vite&logoColor=white)](https://vitejs.dev/)
+[![canva badge](https://img.shields.io/badge/canva-lightgrey.svg?&logo=Canva&logoColor=white)](https://canva.com/)
 
 <p align="left">
   <img alt="mode" src="https://img.shields.io/badge/view-darkmode-black.svg?&logo=Github&logoColor=white" >
@@ -55,17 +55,17 @@
 
 ### ![user-story](./sunken-booty/branding/9.png)
 
-<!-- <p align="center"> -->
-  <!-- <img src="./sunken-booty/branding/user-story.png"/>
-</p> -->
+<p align="center"> 
+  <img src="./sunken-booty/branding/user-story.png"/>
+</p>  
 
 ### ![concept-design](./sunken-booty/branding/10.png)
 
 ### ![booty-list](./sunken-booty/branding/11.png)
 
-<!-- <p align="center">
+<p align="center">
   <img src="./sunken-booty/branding/booty-list.png"/>
-</p> -->
+</p>
 
 ### ![team](./sunken-booty/branding/treasure-team.png)
 
