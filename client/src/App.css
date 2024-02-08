@@ -30,9 +30,29 @@ h6 {
 
 /* login/signup background */
 .tab-content {
-  background-image: url('../src/assets/bg-2.png');
+  border-radius: 100px;
+  border-color: gold;
+  border-width: 10px;
+  background-image: url('../src/assets/skeleton.png');
   background-size:contain;
+  background-position: center;
   background-color: black;
+  background-repeat:no-repeat;
+}
+
+.tab-header {
+  position: absolute;
+  z-index: 0;
+}
+
+.login-form {
+  position: relative;
+  z-index: 1;
+}
+
+.form{
+  position: inherit;
+  transform: translate(50%);
 }
 
 .App-Header {
@@ -43,6 +63,8 @@ h6 {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  z-index: -1;
+  position: relative;
 }
 
 .pirate-text {
