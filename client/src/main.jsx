@@ -8,7 +8,6 @@ import SavedShipWrecks from "./pages/SavedShipWrecks.jsx";
 import MapPage from "./pages/MapPage.jsx"; // Import the MapPage component
 import { setContext } from '@apollo/client/link/context';
 
-// variable for graphQL endpoint
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
