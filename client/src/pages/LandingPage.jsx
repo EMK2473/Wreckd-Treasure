@@ -14,7 +14,6 @@ const LandingPage = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
   const [confettiActive, setConfettiActive] = useState(false);
   const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
-  const [activeForm, setActiveForm] = useState("login");
   const [enterButtonClicked, setEnterButtonClicked] = useState(false);
   const buttonRef = useRef(); // returns reference object
 
@@ -33,16 +32,21 @@ const LandingPage = () => {
 
     if (buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
-      setButtonPosition({
-        x: rect.left + rect.width / 2,
-        y: rect.top + rect.height / 2,
-      });
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      setButtonPosition({ x: centerX, y: centerY });
     }
   };
 
   // function to handle Login/Signup tabs
   const handleTabClick = (form) => {
-    setActiveForm(form);
+    if (form === "login") {
+      setShowLoginForm(true);
+      setShowSignupForm(false);
+    } else if (form === "signup") {
+      setShowLoginForm(false);
+      setShowSignupForm(true);
+    }
   };
 
   // function to handle login and sign up forms
@@ -51,7 +55,6 @@ const LandingPage = () => {
     setConfettiActive(false);
     setShowLoginForm(false);
     setShowSignupForm(false);
-    setActiveForm("login");
   };
 
   if (userLoggedIn) {
@@ -66,10 +69,14 @@ const LandingPage = () => {
     <Container fluid className="landing-page-container">
       <div className="App-header">
         <>
-          <p className="pirate-text">
-            Argh, Matey. Ready to plunder some booty!?
-          </p>
-          <img src={"/logo-1.png"} className="App-logo" alt="logo" />
+          {!enterButtonClicked && (
+            <>
+              <p className="pirate-text">
+                Argh, Matey. Ready to plunder some booty!?
+              </p>
+              <img src={"/logo-1.png"} className="App-logo" alt="logo" />
+            </>
+          )}
           {!enterButtonClicked && (
             <button
               id="enterBTN"
@@ -111,30 +118,55 @@ const LandingPage = () => {
           )}
         </>
 
-        {showLoginForm && (
-          <Tabs
-            activeKey={activeForm}
-            onSelect={(k) => setActiveForm(k)}
-            id="uncontrolled-tab-example"
-            className="mb-3"
-          >
-            <Tab eventKey="login" title="Login">
-              <LoginForm
-                onClose={() => {
-                  setShowLoginForm(false);
-                  handleLoginSignup();
-                }}
-              />
-            </Tab>
-            <Tab eventKey="signup" title="Sign Up">
-              <SignupForm
-                onClose={() => {
-                  setShowSignupForm(false);
-                  handleLoginSignup();
-                }}
-              />
-            </Tab>
-          </Tabs>
+        {enterButtonClicked && (
+          <div style={{ marginTop: "350px" }}>
+            <Tabs
+              activeKey={showLoginForm ? "login" : "signup"}
+              onSelect={handleTabClick}
+              id="login-signup-tabs"
+              className="mb-3 d-flex justify-content-center"
+              style={{ position: "absolute", top: "250px", width: "100%" }}
+            >
+              <Tab
+                eventKey="login"
+                title={
+                  <span
+                    style={{
+                      color: "#000000",
+                      backgroundColor: "#fada8a",
+                      padding: "5px 15px",
+                      marginTop: "100px", 
+                    }}
+                  >
+                    Login
+                  </span>
+                }
+              >
+                {showLoginForm && (
+                  <LoginForm handleLoginSignup={handleLoginSignup} />
+                )}
+              </Tab>
+              <Tab
+                eventKey="signup"
+                title={
+                  <span
+                    style={{
+                      color: "#000000",
+                      backgroundColor: "#fada8a",
+                      padding: "5px 15px",
+                      marginTop: "100px", 
+                    }}
+                  >
+                    Sign Up
+                  </span>
+                }
+              >
+                {showSignupForm && (
+                  <SignupForm handleLoginSignup={handleLoginSignup} />
+                )}
+              </Tab>
+            </Tabs>
+          </div>
         )}
       </div>
     </Container>

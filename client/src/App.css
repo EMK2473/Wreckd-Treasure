@@ -14,6 +14,7 @@ body {
   padding: 0;
 }
 
+/* pirate font for headers */
 h1,
 h2,
 h3,
@@ -23,50 +24,24 @@ h6 {
   font-family: 'Pirata One', sans-serif;
 }
 
-.small {
-  font-weight: 300;
-  font-style: italic;
+/* navbar gold text on hover */
+.gold-text {
+  color: gold !important;
 }
 
-/* login/signup background */
+
+/* login & signup form tab and background */
 .tab-content {
+  width: 500px;
   border-radius: 100px;
-  border-color: gold;
-  border-width: 10px;
   background-image: url('../src/assets/skeleton.png');
   background-size:contain;
   background-position: center;
-  background-color: black;
+  /* background-color: rgb(0, 0, 0); */
   background-repeat:no-repeat;
 }
 
-.tab-header {
-  position: absolute;
-  z-index: 0;
-}
-
-.login-form {
-  position: relative;
-  z-index: 1;
-}
-
-.form{
-  position: inherit;
-  transform: translate(50%);
-}
-
-.App-Header {
-  background-color: transparent;
-  position: relative;
-  /* height: 100vh; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  z-index: -1;
-  position: relative;
-}
-
+/* landing page text 'argh, matey...' */
 .pirate-text {
   color: white;
   font-size: 24px;
@@ -75,15 +50,8 @@ h6 {
   transform: translate(5%);
 }
 
-.action-button {
-  margin: 10px;
-  padding: 10px, 20px;
-  font-size: 16px;
-}
-
+/* landing page enter button */
 #enterBTN{
-  /* margin: 10px;
-  padding: 10px, 20px; */
   font-size: 16px;
   cursor: pointer;
   position: absolute;
@@ -92,22 +60,11 @@ h6 {
   border-radius: 30px ;
   width: 300px;
   transform: translate(30%);
+  cursor: pointer;
 }
 
-.map-container {
-  text-align: center;
-  padding: 20px; 
-  border: 1px solid #ccc; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-}
-
-
-.App-logo {
-  display: flex;
-  height: 500px;
-  width: 500px;
-}
-
+/* also enter button styling */
+/* TODO consolidate with #enterBTN? */
 .action-button {
   margin: 10px;
   padding: 10px 20px;
@@ -118,7 +75,23 @@ h6 {
   cursor: pointer;
 }
 
-/* styles.css */
+/* treasure map container */
+/* really only providing a white border... */
+.map-container {
+  text-align: center;
+  padding: 20px; 
+  border: 1px solid #ccc; 
+}
+
+/* currently holding wreck'd treasure */
+/* skull & cross bones logo */
+.App-logo {
+  display: flex;
+  height: 500px;
+  width: 500px;
+}
+
+/* holds form container for login & sign up in current position */
 .landing-page-container {
   background-image: url(''); 
   background-size: cover;
@@ -130,28 +103,29 @@ h6 {
   position: relative;
 }
 
-.saved-shipwrecks-container {
-  background-image: url(../src/assets/bg-2.png);
-}
-
+/* TODO consider consolidating with enter button styling */
+/* needs to be contained and have absolute & relative position */
 .bookBTN{
   font-size: 16px;
   cursor: pointer;
   bottom: 20px;
-  background: linear-gradient(0.5turn, #929191,#cfcf09);
+  background-color: #3F2517;
+  background: linear-gradient(0.5turn, #D4A666,#3F2517);
   border-radius: 30px ;
+  border-color: #5E2916;
   width: 300px;
-  color: white;
-  font-weight: bold;
+  color: #e1b687;
+  font-weight: bolder;
+  text-decoration:underline ;
 }
 
-.gold-text {
-  color: gold !important;
-}
-
+/* embeded google maps api iframe element */
+/* ensures iframe doesn't overflow its container */
 iframe {
-  max-width: 100%; /* Ensure the iframe doesn't overflow its container */
+  max-width: 100%; 
 }
+
+
 @media screen and (min-width: 768px) {
   /* Base screens */
 }
