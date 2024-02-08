@@ -3,65 +3,75 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
 import SignUpForm from "./SignupForm";
 import LoginForm from "./LoginForm";
-
 import Auth from "../utils/auth";
 
 const AppNavbar = () => {
+  //set modal display state
   const [showModal, setShowModal] = useState(false);
+
+  //handle mouse enter and leave events
   const handleMouseEnter = (event) => {
     event.target.classList.add("gold-text");
   };
-
   const handleMouseLeave = (event) => {
     event.target.classList.remove("gold-text");
   };
+
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar variant="dark" expand="md">
         <Container fluid>
-          <Navbar.Brand as={Link} to='/'>
-            Wreck'd Treasure
+          <Navbar.Brand as={Link} to="/">
+            wreckd treasure
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls='navbar' />
-          <Navbar.Collapse id='navbar' className='d-flex flex-row-reverse'>
-            <Nav className='ml-auto d-flex'>
+          <Navbar.Toggle aria-controls="navbar" />
+          <Navbar.Collapse id="navbar">
+            <Nav className="ms-auto text-end">
               {Auth.loggedIn() && (
-              <Nav.Link
-              as={Link}
-              to='/map'
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              Treasure Map
-            </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to="/map"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  treasure map
+                </Nav.Link>
               )}
               {Auth.loggedIn() && (
                 <Nav.Link
                   as={Link}
-                  to='/'
+                  to="/"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  Search
+                  search
                 </Nav.Link>
               )}
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link
                     as={Link}
-                    to='/saved'
+                    to="/saved"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    Your Expeditions
+                    expeditions
                   </Nav.Link>
-                  <Nav.Link onClick={Auth.logout} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    Log out
+                  <Nav.Link
+                    onClick={Auth.logout}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    logout
                   </Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                  Log in/Sign up
+                <Nav.Link
+                  onClick={() => setShowModal(true)}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  login/signup
                 </Nav.Link>
               )}
             </Nav>
@@ -79,10 +89,10 @@ const AppNavbar = () => {
             <Modal.Title id="signup-modal">
               <Nav variant="pills">
                 <Nav.Item>
-                  <Nav.Link eventKey="login">Log in.</Nav.Link>
+                  <Nav.Link eventKey="login">login</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="signup">Sign up.</Nav.Link>
+                  <Nav.Link eventKey="signup">signup</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Modal.Title>
