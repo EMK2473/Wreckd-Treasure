@@ -30,16 +30,6 @@ const AppNavbar = () => {
               {Auth.loggedIn() && (
                 <Nav.Link
                   as={Link}
-                  to="/map"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  treasure map
-                </Nav.Link>
-              )}
-              {Auth.loggedIn() && (
-                <Nav.Link
-                  as={Link}
                   to="/"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
@@ -49,14 +39,6 @@ const AppNavbar = () => {
               )}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link
-                    as={Link}
-                    to="/saved"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    expeditions
-                  </Nav.Link>
                   <Nav.Link
                     onClick={Auth.logout}
                     onMouseEnter={handleMouseEnter}
