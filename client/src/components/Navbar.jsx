@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
-import SignUpForm from "./SignupForm";
-import LoginForm from "./LoginForm";
+// import SignUpForm from "./SignupForm";
+// import LoginForm from "./LoginForm";
 import Auth from "../utils/auth";
 
 const AppNavbar = () => {
@@ -27,11 +27,14 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
             <Nav className="ms-auto text-end">
-              {Auth.loggedIn() && (
                 <Nav.Link as={Link} to="/" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                   search
                 </Nav.Link>
-              )}
+{/* 
+                <Nav.Link as={Link} to="/saved" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                  view treasure
+                </Nav.Link> */}
+              
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link onClick={Auth.logout} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>

@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Container, Tabs, Tab } from "react-bootstrap";
+import { useState } from "react";
+import { Container, Tabs, Tab, Button } from "react-bootstrap";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
 import Auth from "../utils/auth";
@@ -11,23 +11,23 @@ const LandingPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
-  const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
+  // const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
   const [enterButtonClicked, setEnterButtonClicked] = useState(false);
-  const buttonRef = useRef(); 
+  // const buttonRef = useRef();
 
-  useEffect(() => {
-    if (buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      setButtonPosition({ x: rect.left, y: rect.top });
-    }
-  }, [buttonRef]);
+  // useEffect(() => {
+  //   if (buttonRef.current) {
+  //     const rect = buttonRef.current.getBoundingClientRect();
+  //     setButtonPosition({ x: rect.left, y: rect.top });
+  //   }
+  // }, [buttonRef]);
 
   // function to handle Yes/Enter
   const handleYesButtonClick = () => {
     setEnterButtonClicked(true);
     setShowLoginForm(true);
 
-    document.body.classList.add('new-background-class');
+    document.body.classList.add("new-background-class");
   };
 
   // function to handle Login/Signup tabs
@@ -44,7 +44,7 @@ const LandingPage = () => {
   // function to handle login and sign up forms
   const handleLoginSignup = () => {
     setUserLoggedIn(Auth.loggedIn());
-    setConfettiActive(false);
+    // setConfettiActive(false);
     setShowLoginForm(false);
     setShowSignupForm(false);
   };
@@ -63,21 +63,30 @@ const LandingPage = () => {
         <>
           {!enterButtonClicked && (
             <>
-              <p className="pirate-text">
-                Argh, Matey. Ready to plunder some booty!?
-              </p>
-              <img src={"/logo-1.png"} className="App-logo" alt="logo" />
+              <img
+                src={"/logo-1.png"}
+                className="App-logo"
+                alt="logo"
+                style={{ width: "400px", height: "400px", marginTop: "50px" }}
+              />
             </>
           )}
           {!enterButtonClicked && (
-            <button
-              id="enterBTN"
+            <Button
+              variant="primary"
+              style={{
+                display: "block",
+                margin: "auto",
+                marginTop: "50px",
+                backgroundColor: "#fada8a",
+                borderColor: "#fada8a",
+              }}
               className="action-button"
               onClick={handleYesButtonClick}
-              ref={buttonRef}
+              // ref={buttonRef}
             >
-              Enter
-            </button>
+              plunder
+            </Button>
           )}
         </>
 
@@ -98,7 +107,7 @@ const LandingPage = () => {
                       color: "#000000",
                       backgroundColor: "#fada8a",
                       padding: "5px 15px",
-                      marginTop: "50px", 
+                      marginTop: "50px",
                     }}
                   >
                     Login
@@ -117,7 +126,7 @@ const LandingPage = () => {
                       color: "#000000",
                       backgroundColor: "#fada8a",
                       padding: "5px 15px",
-                      marginTop: "100px", 
+                      marginTop: "100px",
                     }}
                   >
                     Sign Up

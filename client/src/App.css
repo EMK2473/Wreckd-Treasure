@@ -7,8 +7,8 @@ body {
   /* background-image: url('../src/assets/skeleton.png'); */
   /* background-image: url('../src/assets/signup-bg.png'); */
   background-color: black;
-  background-size: contain;
   background-position: center;
+  background-size: contain;
   background-repeat: no-repeat;
   align-items: center;
   margin: 0;
@@ -26,7 +26,7 @@ h6 {
 }
 
 .new-background-class {
-  background-image: url('/skeleton.png');
+  background-image: url("/signup-bg.png");
   background-size: contain;
 }
 
@@ -64,16 +64,16 @@ h6 {
 }
 
 /* landing page text 'argh, matey...' */
-.pirate-text {
+/* .pirate-text {
   color: white;
   font-size: 24px;
   position: absolute;
   top: 20px;
   transform: translate(5%);
-}
+} */
 
 /* landing page enter button */
-#enterBTN {
+/* #enterBTN {
   font-size: 16px;
   cursor: pointer;
   position: absolute;
@@ -83,17 +83,11 @@ h6 {
   width: 300px;
   transform: translate(30%);
   cursor: pointer;
-}
+} */
 
-/* also enter button styling */
-/* TODO consolidate with #enterBTN? */
 .action-button {
-  margin: 10px;
-  padding: 10px 20px;
   font-size: 16px;
-  background-color: #61dafb;
-  color: white;
-  border: none;
+  color: black;
   cursor: pointer;
 }
 
@@ -109,6 +103,7 @@ h6 {
 /* skull & cross bones logo */
 .App-logo {
   display: flex;
+  justify-content: center;
   height: 500px;
   width: 500px;
 }
