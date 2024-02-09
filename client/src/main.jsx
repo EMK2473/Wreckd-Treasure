@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from "@apollo/client";
 import App from "./App.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
-import SavedShipWrecks from "./pages/SavedShipWrecks.jsx";
-import MapPage from "./pages/MapPage.jsx"; // Import the MapPage component
+// import SavedShipWrecks from "./pages/SavedShipWrecks.jsx";
+// import MapPage from "./pages/MapPage.jsx"; // Import the MapPage component
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
@@ -48,22 +48,6 @@ const router = createBrowserRouter([
         element: (
           <ApolloProvider client={client}>
             <App />
-          </ApolloProvider>
-        ),
-      },
-      {
-        path: "/saved",
-        element: (
-          <ApolloProvider client={client}>
-            <SavedShipWrecks />
-          </ApolloProvider>
-        ),
-      },
-      {
-        path: "/map",
-        element: (
-          <ApolloProvider client={client}>
-            <MapPage />
           </ApolloProvider>
         ),
       },
