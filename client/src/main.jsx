@@ -4,8 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from "@apollo/client";
 import App from "./App.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
-// import SavedShipWrecks from "./pages/SavedShipWrecks.jsx";
-// import MapPage from "./pages/MapPage.jsx"; // Import the MapPage component
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({

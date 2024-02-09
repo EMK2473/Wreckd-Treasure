@@ -10,7 +10,6 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<SearchShipWrecks />} />
-
         <Route path="*" element={<h1 className="display-2">Wrong page!</h1>} />
       </Routes>
     </>

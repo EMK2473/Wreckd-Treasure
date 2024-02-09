@@ -1,222 +1,3 @@
-// import { useState, useEffect } from "react";
-// import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
-// import { useMutation } from "@apollo/client";
-// import { SAVE_SHIPWRECK } from "../utils/mutations";
-// import Auth from "../utils/auth";
-// import shipwrecks from "./ShipWreckData";
-
-// //import shipwreck search
-// const getSavedShipWreckIds = () => {
-//   const savedShipWreckIds =
-//     JSON.parse(localStorage.getItem("savedShipWreckIds")) || [];
-//   return savedShipWreckIds;
-// };
-
-// const SearchShipWrecks = () => {
-//   //create state - hold returned shipwreck data
-//   const [searchedShipWrecks, setSearchedShipWrecks] = useState([]);
-//   //create state - hold search field data
-//   const [selectedShipwreck, setSelectedShipwreck] = useState("");
-//   //create state - hold saved shipWreckId values
-//   const [savedShipWreckIds, setSavedShipWreckIds] = useState(
-//     getSavedShipWreckIds()
-//   );
-
-//   //get user's saved shipwrecks on component load
-//   useEffect(() => {
-//     setSavedShipWreckIds(savedShipWreckIds);
-//     console.log("Saved ShipWreck Id:", savedShipWreckIds);
-//   }, [savedShipWreckIds]);
-
-//   //mutation request
-//   const [saveShipWreck] = useMutation(SAVE_SHIPWRECK);
-
-//   //search shipwrecks & set state on form submit
-//   const handleFormSubmit = async (event) => {
-//     event.preventDefault();
-//     //validate search input
-//     if (!selectedShipwreck) {
-//       return false;
-//     }
-//     //get shipwreck details
-//     try {
-//       const selectedShipwreckDetails = shipwrecks[selectedShipwreck];
-//       if (!selectedShipwreckDetails) {
-//         throw new Error("shipwreck not found!");
-//       }
-
-//       //filter shipwreck data
-//       const shipWreckData = [
-//         {
-//           ...selectedShipwreckDetails,
-//           description: `Coordinates: ${selectedShipwreckDetails.coordinates}\nYear Sunk: ${selectedShipwreckDetails.yearSunk}\nCasualties: ${selectedShipwreckDetails.casualties}\nCountry: ${selectedShipwreckDetails.country}`,
-//           image: selectedShipwreckDetails.image || "",
-//         },
-//       ];
-
-//       //state update
-//       setSearchedShipWrecks(shipWreckData);
-//       setSelectedShipwreck("");
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   };
-
-//   //save shipwreck to user's account
-//   const handleSaveShipWreck = async (shipWreckId) => {
-//     //find shipwreck in `searchedShipWrecks` state by the matching id
-//     const shipWreckToSave = searchedShipWrecks.find(
-//       (shipWreck) => shipWreck.shipWreckId === shipWreckId
-//     );
-//     //get token
-//     const token = Auth.loggedIn() ? Auth.getToken() : null;
-//     //validate token
-//     if (!token) {
-//       return false;
-//     }
-//     //make mutation request
-//     try {
-//       console.log("ShipWreck to Save:", shipWreckToSave);
-//       console.log("token", token);
-
-//       //set updated user object
-//       setSavedShipWreckIds((prevSavedShipWreckIds) => [
-//         ...prevSavedShipWreckIds,
-//         shipWreckToSave.shipWreckId,
-//       ]);
-//       const { data } = await saveShipWreck({
-//         variables: { newShipWreck: shipWreckToSave },
-//       });
-//       if (
-//         data?.saveShipWreck?._id &&
-//         !savedShipWreckIds.includes(data.saveShipWreck._id)
-//       ) {
-//         setSavedShipWreckIds((prevSavedShipWreckIds) => [
-//           ...prevSavedShipWreckIds,
-//           data.saveShipWreck._id,
-//         ]);
-//       }
-//     } catch (err) {
-//       console.error("Save ShipWreck Mutation Error:", err);
-//     }
-//   };
-
-// //   <div className="display: flex justify-content: end">
-// //   <img src="/partyParakeet.gif" alt="" />
-// //   <img src="/portalPartyParakeet.gif" alt="" />
-// //   <img src="/portalPartyParakeet2.gif" alt="" />
-// // </div>
-
-//   return (
-//     <>
-//       <div className="text-light p-5">
-//         <Container>
-//           <h1>Search for Lost treasure!</h1>
-//           <Form onSubmit={handleFormSubmit}>
-//             <Row>
-//               <Col xs={12} md={4}>
-//                 <Form.Control
-//                   as="select"
-//                   value={selectedShipwreck}
-//                   onChange={(e) => setSelectedShipwreck(e.target.value)}
-//                   size="sm"
-//                 >
-//                   <option value="" disabled>
-//                     select shipwreck
-//                   </option>
-//                   {shipwrecks.map((shipwreck, index) => (
-//                     <option key={index} value={index}>
-//                       {shipwreck.name}
-//                     </option>
-//                   ))}
-//                 </Form.Control>
-//               </Col>
-//               <Col xs={12} md={4}>
-//                 <Button type="submit" variant="success" size="sm">
-//                   plunder
-//                 </Button>
-//               </Col>
-//             </Row>
-//           </Form>
-//         </Container>
-//       </div>
-
-//       <Container>
-//         <h3 className="pt-2 text-light">
-//           {searchedShipWrecks.length
-//             ? `viewing ${searchedShipWrecks.length} results:`
-//             : "plunder for a shipwreck to begin"}
-//         </h3>
-//         <Row>
-//           {searchedShipWrecks.map((shipWreck, index) => (
-//             <Col md="4" key={index}>
-//               <Card border="dark">
-//                 {shipWreck.image ? (
-//                   <Card.Img
-//                     src={shipWreck.image}
-//                     alt={`The cover for ${shipWreck.title}`}
-//                     variant="top"
-//                   />
-//                 ) : null}
-//                 <Card.Body>
-//                   <Card.Title>{shipWreck.name}</Card.Title>
-
-//                   <Card.Text>
-//                     <strong>Rarity: </strong> {shipWreck.rarity}
-//                     <br />
-//                     <strong>Treasure: </strong> <br />
-//                     <span style={{ fontSize: "2em" }}>
-//                       {shipWreck.treasure}
-//                     </span>
-//                     <br />
-//                     <strong>Reason for Sinking:</strong>{" "}
-//                     {shipWreck.reasonForSinking}
-//                     <br />
-//                     <strong>Year Sunk:</strong> {shipWreck.yearSunk}
-//                     <br />
-//                     <strong>Country:</strong> {shipWreck.country}
-//                     <br />
-//                     <strong>Body of Water:</strong> {shipWreck.bodyOfWater}
-//                     <br />
-//                     <strong>Casualties:</strong> {shipWreck.casualties}
-//                     <br />
-//                     <strong>Coordinates:</strong> {shipWreck.coordinates}
-//                   </Card.Text>
-//                   {shipWreck.coordinates && (
-//                     <ShipwreckMap shipwreck={shipWreck} />
-//                   )}
-//                   {Auth.loggedIn() && (
-//                     <Button
-//                       disabled={savedShipWreckIds?.some(
-//                         (savedShipWreckId) =>
-//                           savedShipWreckId === String(shipWreck.shipWreckId)
-//                       )}
-//                       className="bookBTN btn-block btn-info"
-//                       onClick={() => handleSaveShipWreck(shipWreck.shipWreckId)}
-//                       size="sm"
-//                     >
-//                       {savedShipWreckIds?.some(
-//                         (savedShipWreckId) =>
-//                           savedShipWreckId === String(shipWreck.shipWreckId)
-//                       )
-//                         ? "expedition booked!"
-//                         : "book expedition!"}
-//                     </Button>
-//                   )}
-//                 </Card.Body>
-//               </Card>
-//             </Col>
-//           ))}
-//         </Row>
-//       </Container>
-      
-//     </>
-//   );
-// };
-
-// export default SearchShipWrecks;
-
-
 import React, { useState, useEffect } from "react";
 import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
 import { useMutation, useQuery } from "@apollo/client";
@@ -307,130 +88,153 @@ const SearchShipWrecks = () => {
   };
 
   return (
-    <>
-      <div className="text-light p-5">
-        <Container>
-          <h1>Shipwreck Explorer</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Row>
-              <Col xs={12} md={4}>
-                <Form.Control
-                  as="select"
-                  value={selectedShipwreck}
-                  onChange={(e) => setSelectedShipwreck(e.target.value)}
-                  size="sm"
-                >
-                  <option value="" disabled>
-                    Select Shipwreck
+    <div>
+      <div className="fixed top-0 left-0 right-0 bg-gray-800 text-white py-10 px-5 text-center" style={{ marginTop: '200px' }}>
+        <h1 className="text-3xl mb-5 border-white" style={{ border: "5px solid", borderRight: "5px solid" }}>
+          Shipwreck Explorer
+        </h1>
+        <div className="container mx-auto mt-0">
+          <form onSubmit={handleFormSubmit}>
+            <div className="flex justify-center items-start">
+              <select
+                value={selectedShipwreck}
+                onChange={(e) => setSelectedShipwreck(e.target.value)}
+                className="block px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-2"
+                style={{ marginRight: "50px" }}
+              >
+                <option value="" disabled>
+                  Select Shipwreck
+                </option>
+                {shipwrecks.map((shipwreck, index) => (
+                  <option key={index} value={index}>
+                    {shipwreck.name}
                   </option>
-                  {shipwrecks.map((shipwreck, index) => (
-                    <option key={index} value={index}>
-                      {shipwreck.name}
-                    </option>
-                  ))}
-                </Form.Control>
-              </Col>
-              <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="sm">
-                  Search
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </Container>
+                ))}
+              </select>
+              <button
+                type="submit"
+                className="inline-block px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gold-500"
+              >
+                Plunder
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-
-      <Container>
-        <h3 className="pt-2 text-light">
-          {searchedShipWrecks.length
-            ? `Viewing ${searchedShipWrecks.length} results:`
-            : "Plunder for a shipwreck to begin"}
-        </h3>
-        <Row>
-          {searchedShipWrecks.map((shipWreck, index) => (
-            <Col md="4" key={index}>
-              <Card border="dark">
-                {shipWreck.image && (
-                  <Card.Img
-                    src={shipWreck.image}
-                    alt={`The cover for ${shipWreck.title}`}
-                    variant="top"
-                  />
-                )}
-                <Card.Body>
-                  <Card.Title>{shipWreck.name}</Card.Title>
-                  <Card.Text>
-  <strong>Rarity: </strong> {shipWreck.rarity}
-  <br />
-  <strong>Treasure: </strong> <br />
-  <span style={{ fontSize: "2em" }}>{shipWreck.treasure}</span>
-  <br />
-  <strong>Reason for Sinking:</strong> {shipWreck.reasonForSinking}
-  <br />
-  <strong>Year Sunk:</strong> {shipWreck.yearSunk}
-  <br />
-  <strong>Country:</strong> {shipWreck.country}
-  <br />
-  <strong>Body of Water:</strong> {shipWreck.bodyOfWater}
-  <br />
-  <strong>Casualties:</strong> {shipWreck.casualties}
-  <br />
-  <strong>Coordinates:</strong> {shipWreck.coordinates.lat}, {shipWreck.coordinates.lng}
-</Card.Text>
-
-                  {Auth.loggedIn() && (
-                    <Button
-                      disabled={savedShipWreckIds?.some(id => id === shipWreck.shipWreckId)}
-                      className="bookBTN btn-block btn-info"
-                      onClick={() => handleSaveShipWreck(shipWreck.shipWreckId)}
-                      size="sm"
-                    >
-                      {savedShipWreckIds?.some(id => id === shipWreck.shipWreckId)
-                        ? "Expedition Booked!"
-                        : "Book Expedition!"}
-                    </Button>
-                  )}
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </Container>
-
-      {/* Saved Shipwrecks Section */}
-      <Container>
-        <h2 className="pt-5 text-light">Saved Expeditions</h2>
-        <Row>
+  
+      {/* Shipwreck cards container */}
+      <div className="container mx-auto mt-24">
+        <div className="flex justify-center">
+          <div className="w-full md:w-1/2">
+            <div className="container mx-auto">
+              <h3 className="p-2 text-white border bg-black mt-3">
+                {searchedShipWrecks.length
+                  ? `Viewing ${searchedShipWrecks.length} results:`
+                  : "Plunder for a shipwreck to begin"}
+              </h3>
+              <div className="mt-3 flex flex-wrap">
+                {searchedShipWrecks.map((shipWreck, index) => (
+                  <div key={index} className="w-full md:w-1/4 mb-4">
+                    <div className="border border-gray-300 rounded-lg overflow-hidden bg-white" style={{ width: '100%', height: '100%' }}>
+                      {shipWreck.image && (
+                        <img
+                          src={shipWreck.image}
+                          alt={`The cover for ${shipWreck.title}`}
+                          className="w-full h-40 object-cover" // Fixed height for image
+                          style={{ width: '100%', height: '200px' }} // Fixed size for image
+                        />
+                      )}
+                      <div className="p-4">
+                        <h2 className="text-xl font-semibold">{shipWreck.name}</h2>
+                        <p>
+                          <strong>Rarity: </strong> {shipWreck.rarity}
+                          <br />
+                          <strong>Treasure: </strong> <br />
+                          <span className="text-2xl">{shipWreck.treasure}</span>
+                          <br />
+                          <strong>Reason for Sinking:</strong> {shipWreck.reasonForSinking}
+                          <br />
+                          <strong>Year Sunk:</strong> {shipWreck.yearSunk}
+                          <br />
+                          <strong>Country:</strong> {shipWreck.country}
+                          <br />
+                          <strong>Body of Water:</strong> {shipWreck.bodyOfWater}
+                          <br />
+                          <strong>Casualties:</strong> {shipWreck.casualties}
+                          <br />
+                          <strong>Coordinates:</strong> {shipWreck.coordinates.lat}, {shipWreck.coordinates.lng}
+                        </p>
+                        {Auth.loggedIn() && (
+                          <button
+                            disabled={savedShipWreckIds?.some(id => id === shipWreck.shipWreckId)}
+                            className="block w-full mt-3 bg-black text-white font-bold py-2 px-4 rounded" // Changed background to black and text to white
+                            onClick={() => handleSaveShipWreck(shipWreck.shipWreckId)}
+                          >
+                            {savedShipWreckIds?.some(id => id === shipWreck.shipWreckId)
+                              ? "Expedition Booked!"
+                              : "Book Expedition!"}
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+{/* Saved Expeditions section */}
+<div className="container mx-auto mt-24">
+  <div className="flex justify-center">
+    <div className="w-full">
+      <div className="container mx-auto">
+        <h2 className="text-white text-center text-3xl mb-5 border-white" style={{ border: "5px solid", borderRight: "5px solid" }}>
+          Saved Expeditions
+        </h2>
+        <div className="mt-3 flex flex-wrap justify-center"> {/* Ensure the container is flex and justify-center */}
           {data &&
             data.me &&
             data.me.savedShipWrecks.map((shipWreck) => (
-              <Col md="4" key={shipWreck.shipWreckId}>
-                <Card border="dark">
+              <div key={shipWreck.shipWreckId} className="w-1/2 md:w-1/4 lg:w-1/6 mb-4 flex-none" style={{width: '75%'}}> {/* Adjust the width style here */}
+                <div className="border border-gray-300 rounded-lg overflow-hidden bg-white" style={{ width: '100%', height: '100%' }}>
                   {shipWreck.image && (
-                    <Card.Img
+                    <img
                       src={shipWreck.image}
                       alt={`The cover for ${shipWreck.title}`}
-                      variant="top"
+                      className="w-1/2 h-40 object-cover" // Reduced width to half and fixed height
+                      style={{ width: '100%', height: '200px' }} // Fixed size for image
                     />
                   )}
-                  <Card.Body>
-                    <Card.Title>{shipWreck.name}</Card.Title>
-                    <p className="small">Authors: {shipWreck.bodyOfWater}</p>
-                    <Card.Text>{shipWreck.chair ? shipWreck.chair : "No Chair"}</Card.Text>
-                    <Button
-                      className="btn-block btn-danger"
+                  <div className="p-4">
+                    <h2 className="text-xl font-semibold">{shipWreck.name}</h2>
+                    <p className="text-sm">Body of Water: {shipWreck.bodyOfWater}</p>
+                    <strong>Treasure: </strong> <br />
+                    <span className="text-2xl">{shipWreck.treasure}</span>
+                    <br />
+                    <br />
+                    {/* <p>{shipWreck.chair ? shipWreck.chair : "No Chair"}</p> */}
+                    <button
+                      className="block w-full bg-black hover:bg-black text-white font-bold py-2 px-4 rounded"
                       onClick={() => handleDeleteShipWreck(shipWreck.shipWreckId)}
                     >
                       Delete this Expedition
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
-        </Row>
-      </Container>
-    </>
-  );
-};
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+
+
+    </div>
+  );
+  
+}
 export default SearchShipWrecks;
