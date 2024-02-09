@@ -8,7 +8,7 @@ body {
   background-size:contain;
   background-position: center;
   background-repeat:no-repeat;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   margin: 0;
   padding: 0;
@@ -29,6 +29,21 @@ h6 {
   color: gold !important;
 }
 
+/* 
+.fixed-section {
+  position: fixed;
+  top: 60px; 
+  width: 100%;
+  z-index: 1000; 
+} */
+
+#map {
+  height: 1000px;
+  width: 1500px;
+}
+.info-window-content {
+  font-size: 20px;
+}
 
 /* login & signup form tab and background */
 .tab-content {

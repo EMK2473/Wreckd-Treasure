@@ -19,7 +19,7 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar variant="dark" expand="md">
+      <Navbar variant="dark" expand="md" fixed="top">
         <Container fluid>
           <Navbar.Brand as={Link} to="/">
             wreckd treasure
@@ -28,31 +28,18 @@ const AppNavbar = () => {
           <Navbar.Collapse id="navbar">
             <Nav className="ms-auto text-end">
               {Auth.loggedIn() && (
-                <Nav.Link
-                  as={Link}
-                  to="/"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
+                <Nav.Link as={Link} to="/" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                   search
                 </Nav.Link>
               )}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link
-                    onClick={Auth.logout}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
+                  <Nav.Link onClick={Auth.logout} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                     logout
                   </Nav.Link>
                 </>
               ) : (
-                <Nav.Link
-                  onClick={() => setShowModal(true)}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
+                <Nav.Link onClick={() => setShowModal(true)} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                   login/signup
                 </Nav.Link>
               )}
@@ -60,12 +47,15 @@ const AppNavbar = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Modal
-        size="lg"
-        show={showModal}
-        onHide={() => setShowModal(false)}
-        aria-labelledby="signup-modal"
-      >
+      
+      {/* Content */}
+      <div className="mt-20">
+        {/* Add a margin-top to the content to prevent it from being hidden under the fixed navbar */}
+        {/* Your content goes here */}
+      </div>
+
+      {/* Modal Component */}
+      <Modal size="lg" show={showModal} onHide={() => setShowModal(false)} aria-labelledby="signup-modal">
         <Tab.Container defaultActiveKey="login">
           <Modal.Header closeButton>
             <Modal.Title id="signup-modal">
@@ -82,10 +72,10 @@ const AppNavbar = () => {
           <Modal.Body>
             <Tab.Content>
               <Tab.Pane eventKey="login">
-                <LoginForm handleModalClose={() => setShowModal(false)} />
+                {/* Login Form Component */}
               </Tab.Pane>
               <Tab.Pane eventKey="signup">
-                <SignUpForm handleModalClose={() => setShowModal(false)} />
+                {/* Signup Form Component */}
               </Tab.Pane>
             </Tab.Content>
           </Modal.Body>
