@@ -3,7 +3,6 @@ import { Container, Tabs, Tab } from "react-bootstrap";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
 import Auth from "../utils/auth";
-// import Confetti from "react-confetti";
 import "../App.css";
 import App from "../App";
 
@@ -12,10 +11,9 @@ const LandingPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
-  // const [confettiActive, setConfettiActive] = useState(false);
   const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
   const [enterButtonClicked, setEnterButtonClicked] = useState(false);
-  const buttonRef = useRef(); // returns reference object
+  const buttonRef = useRef(); 
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -28,7 +26,8 @@ const LandingPage = () => {
   const handleYesButtonClick = () => {
     setEnterButtonClicked(true);
     setShowLoginForm(true);
-    setConfettiActive(true);
+
+    document.body.classList.add('new-background-class');
   };
 
   // function to handle Login/Signup tabs

@@ -25,6 +25,11 @@ h6 {
   font-family: "Pirata One", sans-serif;
 }
 
+.new-background-class {
+  background-image: url('/skeleton.png');
+  background-size: contain;
+}
+
 .login-form,
 .signup-form {
   width: 100%;
