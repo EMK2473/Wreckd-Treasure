@@ -2,13 +2,14 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  font-family: 'Pirata One', sans-serif;
-  background-image: url('./src/assets/bg-3.png'); 
+  font-family: "Pirata One", sans-serif;
+  background-image: url("./src/assets/bg-3.png");
+  /* background-image: url('../src/assets/skeleton.png'); */
+  /* background-image: url('../src/assets/signup-bg.png'); */
   background-color: black;
-  background-size:contain;
+  background-size: contain;
   background-position: center;
-  background-repeat:no-repeat;
-  /* justify-content: center; */
+  background-repeat: no-repeat;
   align-items: center;
   margin: 0;
   padding: 0;
@@ -21,21 +22,22 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Pirata One', sans-serif;
+  font-family: "Pirata One", sans-serif;
+}
+
+.login-form,
+.signup-form {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: rgba(244, 203, 92, 0.3);
+  border-radius: 10px;
 }
 
 /* navbar gold text on hover */
 .gold-text {
   color: gold !important;
 }
-
-/* 
-.fixed-section {
-  position: fixed;
-  top: 60px; 
-  width: 100%;
-  z-index: 1000; 
-} */
 
 #map {
   height: 1000px;
@@ -49,11 +51,11 @@ h6 {
 .tab-content {
   width: 500px;
   border-radius: 100px;
-  background-image: url('../src/assets/skeleton.png');
-  background-size:contain;
+  /* background-image: url('../src/assets/skeleton.png'); */
+  background-size: contain;
   background-position: center;
   /* background-color: rgb(0, 0, 0); */
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
 }
 
 /* landing page text 'argh, matey...' */
@@ -66,13 +68,13 @@ h6 {
 }
 
 /* landing page enter button */
-#enterBTN{
+#enterBTN {
   font-size: 16px;
   cursor: pointer;
   position: absolute;
   bottom: 20px;
-  background: linear-gradient(0.5turn, #09A3CF, #056E8B, #113253);
-  border-radius: 30px ;
+  background: linear-gradient(0.5turn, #09a3cf, #056e8b, #113253);
+  border-radius: 30px;
   width: 300px;
   transform: translate(30%);
   cursor: pointer;
@@ -94,8 +96,8 @@ h6 {
 /* really only providing a white border... */
 .map-container {
   text-align: center;
-  padding: 20px; 
-  border: 1px solid #ccc; 
+  padding: 20px;
+  border: 1px solid #ccc;
 }
 
 /* currently holding wreck'd treasure */
@@ -108,37 +110,36 @@ h6 {
 
 /* holds form container for login & sign up in current position */
 .landing-page-container {
-  background-image: url(''); 
+  background-image: url("");
   background-size: cover;
   background-position: center;
-  height: 100vh; 
+  height: 100vh;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   position: relative;
 }
 
 /* TODO consider consolidating with enter button styling */
 /* needs to be contained and have absolute & relative position */
-.bookBTN{
+.bookBTN {
   font-size: 16px;
   cursor: pointer;
   bottom: 20px;
-  background-color: #3F2517;
-  background: linear-gradient(0.5turn, #D4A666,#3F2517);
-  border-radius: 30px ;
+  background-color: #3f2517;
+  background: linear-gradient(0.5turn, #d4a666, #3f2517);
+  border-radius: 30px;
   width: 300px;
   color: #e1b687;
   font-weight: bolder;
-  text-decoration:underline ;
+  text-decoration: underline;
 }
 
 /* embeded google maps api iframe element */
 /* ensures iframe doesn't overflow its container */
 iframe {
-  max-width: 100%; 
+  max-width: 100%;
 }
-
 
 @media screen and (min-width: 768px) {
   /* Base screens */

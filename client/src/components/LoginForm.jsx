@@ -52,12 +52,12 @@ const LoginForm = () => {
 
   return (
     <>
+ <div className="form-container">
       <Form
         noValidate
         validated={validated}
         onSubmit={handleFormSubmit}
-        style={{ width: "350px", height: "1000px", margin: "auto", marginTop: "100px"}}
-        className="login-form "
+        className="login-form"
       >
         <Alert
           dismissible
@@ -68,7 +68,7 @@ const LoginForm = () => {
           Something went wrong with your login credentials!
         </Alert>
         <Form.Group className="mb-3" style={{ color: "#F4CB5C"}}>
-          <Form.Label htmlFor="email"  style={{ marginTop: "100px" }}>Email</Form.Label>
+          <Form.Label htmlFor="email"  style={{ margin: "5px" }}>Email</Form.Label>
           <Form.Control
             type="text"
             placeholder="Your email"
@@ -107,6 +107,7 @@ const LoginForm = () => {
     </Button>
   </div>
       </Form>
+      </div>
     </>
   );
   }  

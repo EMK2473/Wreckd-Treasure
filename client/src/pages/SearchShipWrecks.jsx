@@ -88,6 +88,7 @@ const SearchShipWrecks = () => {
 
   return (
     <div>
+      {/* Shipwreck explorer header section */}
       <div className="fixed top-0 left-0 right-0 bg-gray-800 text-white py-10 px-5 text-center" style={{ marginTop: '200px' }}>
         <h1 className="text-3xl mb-5 border-white" style={{ border: "5px solid", borderRight: "5px solid" }}>
           Shipwreck Explorer
