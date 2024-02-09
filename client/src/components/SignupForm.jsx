@@ -54,11 +54,12 @@ const SignupForm = () => {
 
   return (
     <>
+      <div className="form-container">
       <Form
         noValidate
         validated={validated}
         onSubmit={handleFormSubmit}
-        style={{ width: "300px", height: "1100px", margin: "auto" }}
+        className="signup-form"
       >
         <Alert
           dismissible
@@ -70,7 +71,7 @@ const SignupForm = () => {
         </Alert>
 
         <Form.Group className="mb-3" style={{ color: "#F4CB5C"}}>
-          <Form.Label htmlFor="username" style={{ marginTop: "100px" }}>Username</Form.Label>
+          <Form.Label htmlFor="username" style={{ marginTop: "0px" }}>Username</Form.Label>
           <Form.Control
             type="text"
             placeholder="Your username"
@@ -124,6 +125,7 @@ const SignupForm = () => {
     </Button>
   </div>
       </Form>
+      </div>
     </>
   );
 };

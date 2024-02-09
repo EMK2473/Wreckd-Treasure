@@ -3,7 +3,7 @@ import { Container, Tabs, Tab } from "react-bootstrap";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
 import Auth from "../utils/auth";
-import Confetti from "react-confetti";
+// import Confetti from "react-confetti";
 import "../App.css";
 import App from "../App";
 
@@ -12,7 +12,7 @@ const LandingPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
-  const [confettiActive, setConfettiActive] = useState(false);
+  // const [confettiActive, setConfettiActive] = useState(false);
   const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
   const [enterButtonClicked, setEnterButtonClicked] = useState(false);
   const buttonRef = useRef(); // returns reference object
@@ -29,13 +29,6 @@ const LandingPage = () => {
     setEnterButtonClicked(true);
     setShowLoginForm(true);
     setConfettiActive(true);
-
-    if (buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      setButtonPosition({ x: centerX, y: centerY });
-    }
   };
 
   // function to handle Login/Signup tabs
@@ -87,39 +80,10 @@ const LandingPage = () => {
               Enter
             </button>
           )}
-
-          {confettiActive && (
-            <Confetti
-              numberOfPieces={149}
-              width={2275}
-              recycle={false}
-              height={3000}
-              gravity={0.6}
-              drawShape={(ctx) => {
-                ctx.beginPath();
-                ctx.arc(0, 0, 20, 0, 2 * Math.PI);
-                ctx.fillStyle = "gold";
-                ctx.fill();
-                ctx.closePath();
-
-                ctx.beginPath();
-                ctx.arc(0, 0, 18, 0, 2 * Math.PI);
-                ctx.fillStyle = "rgba(255, 255, 255, 0.5 0.5 0.5)";
-                ctx.fill();
-                ctx.closePath();
-
-                ctx.font = "24px Arial";
-                ctx.fillStyle = "black";
-                ctx.textAlign = "center";
-                ctx.textBaseline = "middle";
-                ctx.fillText("$", 0, 0);
-              }}
-            />
-          )}
         </>
 
         {enterButtonClicked && (
-          <div style={{ marginTop: "350px" }}>
+          <div style={{ marginTop: "50px" }}>
             <Tabs
               activeKey={showLoginForm ? "login" : "signup"}
               onSelect={handleTabClick}
@@ -135,7 +99,7 @@ const LandingPage = () => {
                       color: "#000000",
                       backgroundColor: "#fada8a",
                       padding: "5px 15px",
-                      marginTop: "100px", 
+                      marginTop: "50px", 
                     }}
                   >
                     Login
