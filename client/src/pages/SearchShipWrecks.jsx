@@ -49,8 +49,7 @@ const SearchShipWrecks = () => {
       const shipWreckData = [
         {
           ...selectedShipwreckDetails,
-          coordinates: `${selectedShipwreckDetails.coordinates.lat},${selectedShipwreckDetails.coordinates.lng}`, // Convert coordinates object to string
-          description: `Coordinates: ${selectedShipwreckDetails.coordinates.lat},${selectedShipwreckDetails.coordinates.lng}\nYear Sunk: ${selectedShipwreckDetails.yearSunk}\nCasualties: ${selectedShipwreckDetails.casualties}\nCountry: ${selectedShipwreckDetails.country}`,
+          description: `Year Sunk: ${selectedShipwreckDetails.yearSunk}\nCasualties: ${selectedShipwreckDetails.casualties}\nCountry: ${selectedShipwreckDetails.country}`,
           image: selectedShipwreckDetails.image || "",
         },
       ];
