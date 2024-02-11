@@ -4,9 +4,10 @@ const { Sider } = Layout;
 const { Panel } = Collapse;
 import tours from "./ShipWreckData";
 import { BOOK_TOUR } from "../utils/mutations";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../utils/auth";
-import { saveBookedTour } from "../utils/localStorage";
+import { getBookedTours, saveBookedTour } from "../utils/localStorage";
+import { GET_ME } from "../utils/queries";
 
 const SearchTours = () => {
   // state variables and set functions
@@ -17,7 +18,11 @@ const SearchTours = () => {
   const [siderVisible, setSiderVisible] = useState(false);
   const [totalsVisible, setTotalsVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [alertModalVisible, setAlertModalVisible] = useState(false)
   const [bookTourMutation] = useMutation(BOOK_TOUR);
+  const { loading, error, data } = useQuery(GET_ME);
+
+
 
   useEffect(() => {
     // apply new background class
@@ -36,6 +41,19 @@ const SearchTours = () => {
   const showModal = () => {
     setModalVisible(true);
   };
+
+  const hideModal = () => {
+    setModalVisible(false);
+  }
+  
+  const showAlertModal = () => {
+    setAlertModalVisible(true);
+  };
+
+  const hideAlertModal = () => {
+    setAlertModalVisible(false);
+  };
+
   const changeTour = (event) => {
     setSelectedTour(event.target.value);
   };
@@ -43,11 +61,22 @@ const SearchTours = () => {
   const handleSaveTour = async () => {
     try {
       const userId = Auth.loggedIn() ? Auth.getProfile().data._id : null;
-      if(!userId){
-        console.error('User ID NOT FOUND!!');
+      if (!userId) {
+        console.error("User ID NOT FOUND!!");
         return;
       }
-      const { data } = await bookTourMutation({
+
+      const userBookedTours = data?.me?.bookedTours || [];
+      const tourExists = userBookedTours.some(
+        (tour) => tour.tourName === selectedTour
+      );
+
+      if (tourExists) {
+        showAlertModal()
+        return;
+      }
+
+      const { data: bookTourData } = await bookTourMutation({
         variables: {
           tourName: selectedTour,
           shipwrecks: tours[selectedTour],
@@ -55,9 +84,8 @@ const SearchTours = () => {
       });
 
       saveBookedTour(userId, selectedTour, tours[selectedTour]);
-  
-      showModal();
 
+      showModal();
     } catch (error) {
       console.error("Error booking tour:", error);
     }
@@ -248,7 +276,6 @@ const SearchTours = () => {
   function metersToMiles(meters) {
     return (meters * 0.000621371).toFixed(2);
   }
-
   return (
     <div className="mt-50" style={{ position: "relative" }}>
       <div
@@ -316,6 +343,14 @@ const SearchTours = () => {
     >
       <p>Your tour has been booked successfully!</p>
     </Modal>
+    <Modal
+        title="Tour Already Booked"
+        visible={alertModalVisible}
+        onOk={hideAlertModal}
+        onCancel={hideAlertModal}
+      >
+        <p>This tour is already booked!</p>
+      </Modal>
       </div>
 
       <div

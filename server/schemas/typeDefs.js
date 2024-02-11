@@ -72,6 +72,9 @@ const typeDefs = `
         tours: [Tour]   
     }
 
+    type Query {
+        getBookedTours(userId: ID!): [String]
+    }
     type LogoutResponse {
         success: Boolean!
         message: String
