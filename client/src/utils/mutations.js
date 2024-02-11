@@ -40,6 +40,35 @@ mutation Mutation($username: String!, $email: String!, $password: String!) {
 }
 `;
 
+export const BOOK_TOUR = gql`
+mutation BookTour($tourName: String, $shipwrecks: [InputTour]) {
+  bookTour(tourName: $tourName, shipwrecks: $shipwrecks) {
+    _id
+    username
+    email
+    bookedTours {
+      tourName
+      shipwrecks {
+        name
+        coordinates{
+          lat
+          lng
+        }
+        reasonForSinking
+        yearSunk
+        casualties
+        country
+        bodyOfWater
+        treasure
+        rarity
+        image
+      }
+    }
+  }
+}
+`;
+
+
 
 // TODO rework to tours
 export const SAVE_SHIPWRECK = gql`

@@ -40,14 +40,6 @@ const LandingPage = () => {
     if (form === "login") {
       setShowLoginForm(true);
       setShowSignupForm(false);
-      document.body.classList.remove("signup-background-class"); // Remove signup background class
-      document.body.classList.add("login-background-class"); // Add login background class
-    } else if (form === "signup") {
-      setShowLoginForm(false);
-      setShowSignupForm(true);
-      document.body.classList.remove("login-background-class"); // Remove login background class
-      document.body.classList.add("signup-background-class"); // Add signup background class
-    }
       document.body.classList.remove("signup-background-class"); 
       document.body.classList.add("login-background-class"); 
     } else if (form === "signup") {
@@ -142,11 +134,9 @@ const LandingPage = () => {
                 title={
                   <span
                     style={{
-                      // backgroundColor: "transparent",
                       marginTop: "50px",
                       backgroundColor: "transparent",
                       padding: "5px 15px",
-                      marginTop: "100px",
                       borderRadius: "10px",
                     }}
                   >
