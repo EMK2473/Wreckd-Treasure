@@ -39,7 +39,6 @@ const tours = {
       shipWreckId: "3",
       treasure: ["☠", "💊", "🩹", "💉", "⛑"],
     },
-  
     {
       name: "The Zeila Shipwreck",
       rarity: "Common",
