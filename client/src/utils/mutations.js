@@ -26,7 +26,10 @@ mutation Mutation($username: String!, $email: String!, $password: String!) {
         name
         shipWreckId
         image
-        coordinates
+        coordinates{
+          lat
+          lng
+        }
         reasonForSinking
         yearSunk
         casualties
@@ -78,7 +81,10 @@ mutation SaveShipWreck($newShipWreck: InputShipWreck!) {
       name
       shipWreckId
       image
-      coordinates
+      coordinates{
+          lat
+          lng
+        }
       reasonForSinking
       yearSunk
       casualties
