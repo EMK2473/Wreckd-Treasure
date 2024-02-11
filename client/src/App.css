@@ -4,8 +4,6 @@ body {
   height: 100vh;
   font-family: "Pirata One", sans-serif;
   background-image: url("./src/assets/bg-3.png");
-  /* background-image: url('../src/assets/skeleton.png'); */
-  /* background-image: url('../src/assets/signup-bg.png'); */
   background-color: black;
   background-position: center;
   background-size: contain;
@@ -25,17 +23,63 @@ h6 {
   font-family: "Pirata One", sans-serif;
 }
 
+/* background change 1 */
 .new-background-class {
-  background-image: url("/signup-bg.png");
+  background-image: url("/login.png");
   background-size: contain;
 }
 
-.login-form,
-.signup-form {
+.new-background-class-two {
+  background-image: url("/login-bg.png");
+
+}
+
+.login-background-class {
+  background-image: url("/login.png");
+}
+
+.signup-background-class {
+  background-image: url("/signup.png");
+}
+
+
+.action-button {
+  position: relative;
+}
+
+.button-text {
+  position: relative;
+  z-index: 1;
+}
+
+.hover-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(250, 218, 138, 0);
+  transition: background-color 0.3s ease;
+  z-index: 0;
+}
+
+.action-button:hover .hover-effect {
+  background-color: rgba(250, 218, 138, 0.3);
+}
+
+.login-form {
   width: 100%;
   height: 100%;
   padding: 20px;
   background-color: rgba(244, 203, 92, 0.3);
+  border-radius: 10px;
+}
+
+.signup-form {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: rgba(92, 196, 244, 0.3);
   border-radius: 10px;
 }
 
@@ -56,34 +100,11 @@ h6 {
 .tab-content {
   width: 500px;
   border-radius: 100px;
-  /* background-image: url('../src/assets/skeleton.png'); */
   background-size: contain;
   background-position: center;
-  /* background-color: rgb(0, 0, 0); */
   background-repeat: no-repeat;
 }
 
-/* landing page text 'argh, matey...' */
-/* .pirate-text {
-  color: white;
-  font-size: 24px;
-  position: absolute;
-  top: 20px;
-  transform: translate(5%);
-} */
-
-/* landing page enter button */
-/* #enterBTN {
-  font-size: 16px;
-  cursor: pointer;
-  position: absolute;
-  bottom: 20px;
-  background: linear-gradient(0.5turn, #09a3cf, #056e8b, #113253);
-  border-radius: 30px;
-  width: 300px;
-  transform: translate(30%);
-  cursor: pointer;
-} */
 
 .action-button {
   font-size: 16px;
@@ -92,7 +113,7 @@ h6 {
 }
 
 /* treasure map container */
-/* really only providing a white border... */
+/* only providing a white border... */
 .map-container {
   text-align: center;
   padding: 20px;

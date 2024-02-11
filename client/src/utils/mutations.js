@@ -40,6 +40,8 @@ mutation Mutation($username: String!, $email: String!, $password: String!) {
 }
 `;
 
+
+// TODO rework to tours
 export const SAVE_SHIPWRECK = gql`
 mutation SaveShipWreck($newShipWreck: InputShipWreck!) {
   saveShipWreck(newShipWreck: $newShipWreck) {
@@ -61,6 +63,8 @@ mutation SaveShipWreck($newShipWreck: InputShipWreck!) {
 }
 `;
 
+
+// TODO rework to tours
 export const REMOVE_SHIPWRECK = gql`
   mutation removeShipWreck($shipWreckId: String) {
     removeShipWreck(shipWreckId: $shipWreckId) {
