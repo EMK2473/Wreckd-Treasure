@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Container, Tabs, Tab, Button } from "react-bootstrap";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
@@ -13,7 +13,7 @@ const LandingPage = () => {
   const [showSignupForm, setShowSignupForm] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
   const [enterButtonClicked, setEnterButtonClicked] = useState(false);
-  const plunderButtonRef = useRef(null);
+  // const plunderButtonRef = useRef(null);
 
   // function to trigger confetti
   const handleConfetti = () => {
@@ -49,11 +49,6 @@ const LandingPage = () => {
       document.body.classList.add("signup-background-class"); // Add signup background class
       document.body.classList.remove("signup-background-class");
       document.body.classList.add("login-background-class");
-    } else if (form === "signup") {
-      setShowLoginForm(false);
-      setShowSignupForm(true);
-      document.body.classList.remove("login-background-class");
-      document.body.classList.add("signup-background-class");
     }
   };
 
@@ -124,7 +119,7 @@ const LandingPage = () => {
                     style={{
                       backgroundColor: "transparent",
                       marginTop: "50px",
-                      borderRadius: "10px"
+                      borderRadius: "10px",
                     }}
                   >
                     Login
@@ -140,10 +135,9 @@ const LandingPage = () => {
                 title={
                   <span
                     style={{
-                      backgroundColor: "transparent",
-                      padding: "5px 15px",
-                      marginTop: "100px",
-                      borderRadius: "10px"
+                      // backgroundColor: "transparent",
+                      marginTop: "50px",
+                      borderRadius: "10px",
                     }}
                   >
                     Sign Up

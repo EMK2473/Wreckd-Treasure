@@ -47,15 +47,16 @@ h6 {
   background-image: url("/waves-bg.gif");
 }
 
-
 /* login tab background */
-#login-signup-tabs-tab-login{
-  background-color: #88B4C5;
+#login-signup-tabs-tab-login {
+  background-color: transparent;
+  color: white;
 }
 
 /* signup tab background */
-#login-signup-tabs-tab-signup{
-  background-color: #6B846C;
+#login-signup-tabs-tab-signup {
+  background-color: transparent;
+  color: white;
 }
 
 .action-button {
@@ -85,16 +86,12 @@ h6 {
 .login-form {
   width: 100%;
   height: 100%;
-  padding: 20px;
-  /* background-color: rgba(244, 203, 92, 0.2); */
   border-radius: 10px;
 }
 
 .signup-form {
   width: 100%;
   height: 100%;
-  padding: 20px;
-  /* background-color: rgba(92, 188, 244, 0.2); */
   border-radius: 10px;
 }
 
@@ -145,7 +142,6 @@ h6 {
 
 /* holds form container for login & sign up in current position */
 .landing-page-container {
-  background-image: url("");
   background-size: cover;
   background-position: center;
   height: 100vh;

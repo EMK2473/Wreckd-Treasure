@@ -67,7 +67,7 @@ const LoginForm = () => {
           >
             Something went wrong with your login credentials!
           </Alert>
-          <Form.Group className="mb-3" style={{ color: "#F4CB5C" }}>
+          <Form.Group className="mb-3" style={{ color: "white" }}>
             <Form.Label htmlFor="email" style={{ margin: "5px" }}>
               Email
             </Form.Label>
@@ -84,7 +84,7 @@ const LoginForm = () => {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className="mb-3" style={{ color: "#F4CB5C" }}>
+          <Form.Group className="mb-3" style={{ color: "white" }}>
             <Form.Label htmlFor="password">Password</Form.Label>
             <Form.Control
               type="password"
