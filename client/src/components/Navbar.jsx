@@ -21,14 +21,19 @@ const AppNavbar = () => {
       <Navbar variant="dark" expand="md" fixed="top">
         <Container fluid>
           <Navbar.Brand as={Link} to="/">
-            wreckd treasure
+          wreckd treasure
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
             <Nav className="ms-auto text-end">
-              <Nav.Link as={Link} to="/" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                  Checkout
-                </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                Checkout
+              </Nav.Link>
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link

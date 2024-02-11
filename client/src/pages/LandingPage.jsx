@@ -47,8 +47,6 @@ const LandingPage = () => {
       setShowSignupForm(true);
       document.body.classList.remove("login-background-class"); // Remove login background class
       document.body.classList.add("signup-background-class"); // Add signup background class
-      document.body.classList.remove("signup-background-class");
-      document.body.classList.add("login-background-class");
     }
   };
 
