@@ -66,7 +66,7 @@ const LandingPage = () => {
   }
 
   return (
-    <Container fluid className="landing-page-container">
+<Container fluid className="landing-page-container custom-background-class">
       <div className="App-header">
         <>
           {!enterButtonClicked && (
@@ -119,7 +119,7 @@ const LandingPage = () => {
                       backgroundColor: "#fada8a",
                       padding: "5px 15px",
                       marginTop: "50px",
-                      borderRadius: "10px"
+                      borderRadius: "10px",
                     }}
                   >
                     Login
@@ -139,7 +139,7 @@ const LandingPage = () => {
                       backgroundColor: "#fada8a",
                       padding: "5px 15px",
                       marginTop: "100px",
-                      borderRadius: "10px"
+                      borderRadius: "10px",
                     }}
                   >
                     Sign Up

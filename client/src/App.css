@@ -44,15 +44,24 @@ h6 {
   background-image: url("/signup.png");
 }
 
+div.ant-collapse-content-box {
+  background-color: #3f2517;
+  background: linear-gradient(to bottom, #d6a565, #F1E1C5, #3E1E19);
+  border-radius: 10px;
+  border-color: #3E1E19;
+}
 
+.ant-collapse-header {
+  border-color: #3f2517 !important; /* Change the border color */
+}
 /* login tab background */
-#login-signup-tabs-tab-login{
-  background-color: #88B4C5;
+#login-signup-tabs-tab-login {
+  background-color: #88b4c5;
 }
 
 /* signup tab background */
-#login-signup-tabs-tab-signup{
-  background-color: #6B846C;
+#login-signup-tabs-tab-signup {
+  background-color: #6b846c;
 }
 
 .action-button {

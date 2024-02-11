@@ -4,9 +4,7 @@ const { Sider } = Layout;
 const { Panel } = Collapse;
 import tours from "./ShipWreckData";
 import Confetti from "js-confetti";
-// import { useMutation, useQuery } from "@apollo/client";
-// import { GET_ME } from "../utils/queries";
-// import Auth from "../utils/auth";
+
 
 const SearchTours = () => {
   // state variables and set functions
@@ -56,7 +54,7 @@ const SearchTours = () => {
     // initializes google map
     var map = new google.maps.Map(document.getElementById("map"), {
       center: selectedArray[0].coordinates,
-      zoom: 2,
+      zoom: 1,
     });
 
     // iterate over selectedArray to display markers and polylines
@@ -254,11 +252,11 @@ const SearchTours = () => {
       </div>
       <div
         style={{
-          border: "2px solid #ccc",
+          border: "2px solid #F4CB5C",
           borderRadius: "10px",
           padding: "10px",
-          width: "800px",
-          height: "550px",
+          width: "600px",
+          height: "350px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -266,7 +264,7 @@ const SearchTours = () => {
       >
         <div
           id="map"
-          style={{ height: "500px", width: "750px", borderRadius: "10px" }}
+          style={{ height: "300px", width: "550px", borderRadius: "10px" }}
         ></div>
       </div>
 
@@ -276,6 +274,7 @@ const SearchTours = () => {
           top: "100px",
           right: "10px",
           borderRadius: "5px",
+          marginRight: "5px" 
         }}
       >
         {siderVisible ? (
@@ -296,7 +295,7 @@ const SearchTours = () => {
                   style={{
                     color: "white",
                     marginBottom: "10px",
-                    border: "1px solid white",
+                    border: "1px solid #F4CB5C",
                     borderRadius: "5px",
                     padding: "10px",
                     marginTop: "50px",
@@ -310,7 +309,7 @@ const SearchTours = () => {
                   style={{
                     color: "white",
                     marginBottom: "10px",
-                    border: "1px solid white",
+                    border: "1px solid #F4CB5C",
                     borderRadius: "5px",
                     padding: "10px",
                     marginTop: "15px",
@@ -325,7 +324,7 @@ const SearchTours = () => {
                   style={{
                     color: "white",
                     marginBottom: "10px",
-                    border: "1px solid white",
+                    border: "1px solid #F4CB5C",
                     borderRadius: "5px",
                     padding: "10px",
                     marginTop: "15px",
@@ -341,24 +340,25 @@ const SearchTours = () => {
                   </span>
                 </p>
                 {tours[selectedTour]?.map((shipwreck, index) => (
-                  <Card key={index} style={{ marginBottom: "10px" }}>
-                    <div>
+                  <Card key={index} style={{ marginBottom: "10px", background: "linear-gradient(to bottom, #D6A565, #73513F, #73513F )", borderColor: "#F4CB5C", borderWidth: "2px" }}>
+                    <div >
                       <h3>{shipwreck.name}</h3>
                       <img
                         src={shipwreck.image}
                         alt={shipwreck.name}
-                        style={{ maxWidth: "100%", height: "auto" }}
+                        style={{ maxWidth: "100%", height: "auto", border: "2px solid #F4CB5C", borderRadius: "10px" }}
                       />
                     </div>
-                    <Collapse>
-                      <Panel header="Details" key="1">
-                        <p>Rarity: {shipwreck.rarity}</p>
+                    <Collapse style={{ borderRadius: "10px", background: "linear-gradient(to bottom, #D6A565, #73513F, #73513F )"}}>
+                      <Panel style={{ borderRadius: "10px", background: "linear-gradient(to bottom, #D6A565, #73513F, #73513F )"}} header="Details" key="1">
+                      <div >
                         <p>Reason for Sinking: {shipwreck.reasonForSinking}</p>
                         <p>Year Sunk: {shipwreck.yearSunk}</p>
                         <p>Country: {shipwreck.country}</p>
                         <p>Body of Water: {shipwreck.bodyOfWater}</p>
                         <p>Casualties: {shipwreck.casualties}</p>
-                        <p>Treasure: {shipwreck.treasure.join(", ")}</p>
+                        <p>{shipwreck.treasure.join(", ")}</p>
+                        </div>
                       </Panel>
                     </Collapse>
                   </Card>
