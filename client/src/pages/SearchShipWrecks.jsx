@@ -8,7 +8,7 @@ import Confetti from "js-confetti";
 
 const SearchTours = () => {
   // state variables and set functions
-  const [selectedTour, setSelectedTour] = useState("grandTour");
+  const [selectedTour, setSelectedTour] = useState("passengerTour");
   const [totalDistance, setTotalDistance] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedShipwreck, setSelectedShipwreck] = useState(null);
@@ -72,7 +72,7 @@ const SearchTours = () => {
           },
         });
       } else {
-        // creates marker for each shipwreck
+        // creates red marker for each other shipwreck
         marker = new google.maps.Marker({
           position: shipwreck.coordinates,
           map: map,

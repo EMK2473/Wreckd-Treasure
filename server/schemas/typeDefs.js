@@ -1,21 +1,25 @@
-//typeDefs - string that defines data shape & specifies queries that can be used
-//mutations are used to modify data
 const typeDefs = `
     type User {
         _id: ID!
         username: String!
         email: String!
         savedShipWrecks: [ShipWreck]
+        bookedTours: [Tour]  
     }
     type Auth {
         token: ID!
         user: User
     }
+    type Coordinates {
+        lat: Float
+        lng: Float
+    }
+    
     type ShipWreck {
         name: String
         shipWreckId: String
         image: String
-        coordinates: String
+        coordinates: Coordinates
         reasonForSinking: String
         yearSunk: String
         casualties: String
@@ -25,32 +29,59 @@ const typeDefs = `
         rarity: String
         treasure: [String]
     }
+    
+    type Tour {
+        tourName: String
+        shipwrecks: [ShipWreck]
+    }
+    input InputTour {
+        name: String
+        rarity: String
+        image: String
+        reasonForSinking: String
+        yearSunk: String
+        country: String
+        bodyOfWater: String
+        casualties: String
+        coordinates: CoordinatesInput
+        shipWreckId: String
+        treasure: [String]
+    }
+      
+    input CoordinatesInput {
+        lat: Float
+        lng: Float
+    }
+    
     input InputShipWreck {
         name: String
-        shipWreckId: String
         image: String
-        coordinates: String
+        coordinates: CoordinatesInput
         reasonForSinking: String
         yearSunk: String
         casualties: String
         country: String
         bodyOfWater: String
-        description: String
         rarity: String
         treasure: [String]
-    }
-    type Query {
-        me: User
-    }
-    type LogoutResponse {
-    success: Boolean!
-    message: String
+        shipWreckId: String
     }
 
+    type Query {
+        me: User
+        tours: [Tour]   
+    }
+
+    type LogoutResponse {
+        success: Boolean!
+        message: String
+    }
+    
     type Mutation {
         login(email: String!, password: String!): Auth
         logout: LogoutResponse
         addUser(username: String!, email: String!, password: String!): Auth
+        bookTour(tourName: String, shipwrecks: [InputTour]): User
         saveShipWreck(newShipWreck: InputShipWreck!): User
         removeShipWreck(shipWreckId: String): User
     }

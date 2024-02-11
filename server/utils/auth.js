@@ -27,12 +27,12 @@ module.exports = {
       return req;
     }
     //verify token & add user data to req
-    try {
+    // try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
-    } catch {
-      console.log('Invalid token');
-    }
+    // } catch {
+    //   console.log('Invalid token');
+    // }
     //req object returned with user data
     return req;
   },

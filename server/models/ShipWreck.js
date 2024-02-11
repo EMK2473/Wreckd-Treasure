@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose');
 
-//subdocument schema for shipwrecks
+// subdocument schema for shipwrecks
 const shipwreckSchema = new Schema({
   name: {
     type: String,
@@ -12,7 +12,12 @@ const shipwreckSchema = new Schema({
     type: String,
   },
   coordinates: {
-    type: String,
+    lat: {
+      type: Number,
+    },
+    lng: {
+      type: Number,
+    },
   },
   reasonForSinking: {
     type: String,
@@ -27,17 +32,17 @@ const shipwreckSchema = new Schema({
     type: String,
   },
   bodyOfWater: {
-    type: String
+    type: String,
   },
   description: {
-    type: String
+    type: String,
   },
   rarity: {
-    type: String
+    type: String,
   },
   treasure: {
-    type: [String]
-  }
+    type: [String],
+  },
 });
 
 module.exports = shipwreckSchema;
