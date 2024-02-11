@@ -3,10 +3,10 @@ body {
   flex-direction: column;
   height: 100vh;
   font-family: "Pirata One", sans-serif;
-  background-image: url("./src/assets/bg-3.png");
+  background-image: url("/swirl-bg.gif");
   background-color: black;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   align-items: center;
   margin: 0;
@@ -27,11 +27,14 @@ h6 {
 .new-background-class {
   background-image: url("/creature-bg.gif");
   background-size: cover;
+  background-position: center;
 }
 
 /* background change 2 */
 .new-background-class-two {
-  background-image: url("/map-bg.gif");
+  background-image: url("/shipwreck-bg.gif");
+  background-size: cover;
+  background-position: center;
 }
 
 /* login background change */
@@ -41,7 +44,7 @@ h6 {
 
 /* signup background change */
 .signup-background-class {
-  background-image: url("/signup.png");
+  background-image: url("/waves-bg.gif");
 }
 
 
@@ -110,7 +113,7 @@ h6 {
 
 /* login & signup form tab and background */
 .tab-content {
-  width: 500px;
+  width: 400px;
   border-radius: 100px;
   background-size: contain;
   background-position: center;
@@ -161,7 +164,7 @@ h6 {
   background: linear-gradient(0.5turn, #d4a666, #3f2517);
   border-radius: 30px;
   width: 300px;
-  color: #e1b687;
+  color: transparent;
   font-weight: bolder;
   text-decoration: underline;
 }
