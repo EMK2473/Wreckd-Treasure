@@ -21,21 +21,20 @@ const LandingPage = () => {
   };
 
   // function to handle login/signup tab states
-// function to handle login/signup tab states
-const handleTabClick = (form) => {
-  if (form === "login") {
-    setShowLoginForm(true);
-    setShowSignupForm(false);
-    document.body.classList.remove("signup-background-class"); // Remove signup background class
-    document.body.classList.add("login-background-class"); // Add login background class
-  } else if (form === "signup") {
-    setShowLoginForm(false);
-    setShowSignupForm(true);
-    document.body.classList.remove("login-background-class"); // Remove login background class
-    document.body.classList.add("signup-background-class"); // Add signup background class
-  }
-};
-
+  // function to handle login/signup tab states
+  const handleTabClick = (form) => {
+    if (form === "login") {
+      setShowLoginForm(true);
+      setShowSignupForm(false);
+      document.body.classList.remove("signup-background-class"); // Remove signup background class
+      document.body.classList.add("login-background-class"); // Add login background class
+    } else if (form === "signup") {
+      setShowLoginForm(false);
+      setShowSignupForm(true);
+      document.body.classList.remove("login-background-class"); // Remove login background class
+      document.body.classList.add("signup-background-class"); // Add signup background class
+    }
+  };
 
   // function to handle login and sign up form states
   const handleLoginSignup = () => {
@@ -67,26 +66,25 @@ const handleTabClick = (form) => {
             </>
           )}
           {!enterButtonClicked && (
-           <Button
-           variant="primary"
-           style={{
-             display: "block",
-             margin: "auto",
-             marginTop: "50px",
-             backgroundColor: "black",
-             color: "#fada8a",
-             borderColor: "#fada8a",
-             width: "150px",
-             position: "relative",
-             overflow: "hidden"
-           }}
-           className="action-button"
-           onClick={handleYesButtonClick}
-         >
-           <span className="button-text">plunder</span>
-           <span className="hover-effect" />
-         </Button>
-         
+            <Button
+              variant="primary"
+              style={{
+                display: "block",
+                margin: "auto",
+                marginTop: "50px",
+                backgroundColor: "black",
+                color: "#fada8a",
+                borderColor: "#fada8a",
+                width: "150px",
+                position: "relative",
+                overflow: "hidden",
+              }}
+              className="action-button"
+              onClick={handleYesButtonClick}
+            >
+              <span className="button-text">plunder</span>
+              <span className="hover-effect" />
+            </Button>
           )}
         </>
 
@@ -104,9 +102,7 @@ const handleTabClick = (form) => {
                 title={
                   <span
                     style={{
-                      color: "#000000",
-                      backgroundColor: "#fada8a",
-                      padding: "5px 15px",
+                      backgroundColor: "transparent",
                       marginTop: "50px",
                     }}
                   >
@@ -123,8 +119,7 @@ const handleTabClick = (form) => {
                 title={
                   <span
                     style={{
-                      color: "#000000",
-                      backgroundColor: "#fada8a",
+                      backgroundColor: "transparent",
                       padding: "5px 15px",
                       marginTop: "100px",
                     }}
