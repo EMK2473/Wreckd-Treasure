@@ -197,17 +197,21 @@ Here's a list of technologies used:
 
 17. [Heroku](https://heroku.com) - used to deploy, manage, and scale the application.
 
+<!-- react-confetti -->
+<!-- antd -->
+
+
 ### ![license](./sunken-booty/branding/5.png)
 
 ##### [mit license](./LICENSE)
 
 ### ![links](./sunken-booty/branding/6.png)
 
-##### [_github repo_](https://github.com/EMK2473/pirate-project)
+##### [*github repo*](https://github.com/EMK2473/pirate-project)
 
-##### [_deployed app_]()
+##### [*deployed app*](https://git-wreckd-treasure-25fc610b2d62.herokuapp.com/)
 
-##### [_app presentation_]()
+##### [*app presentation*]()
 
 ### ![connect](./sunken-booty/branding/7.png)
 
