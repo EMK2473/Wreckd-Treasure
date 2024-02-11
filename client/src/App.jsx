@@ -1,8 +1,6 @@
-import { Routes, Route } from 'react-router-dom';
-import SearchShipWrecks from './pages/SearchShipWrecks';
-// import SavedShipWrecks from './pages/SavedShipWrecks';
-import Navbar from './components/Navbar';
-// import MapPage from './pages/MapPage'; 
+import { Routes, Route } from "react-router-dom";
+import SearchShipWrecks from "./pages/SearchShipWrecks";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (

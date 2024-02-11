@@ -100,7 +100,6 @@ const LoginForm = () => {
           </Form.Group>
           <div style={{ textAlign: "center" }}>
             {" "}
-            {/* Center the button horizontally */}
             <Button
               disabled={!(userFormData.email && userFormData.password)}
               type="submit"
