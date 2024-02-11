@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 
-// rework with tours
+
 export const GET_ME = gql`
 query Query {
   me {
@@ -29,3 +29,9 @@ query Query {
   }
 }
 `;
+
+export const GET_BOOKED_TOURS = gql`
+query Query($userId: ID!) {
+  getBookedTours(userId: $userId)
+}
+`

@@ -19,6 +19,14 @@ const resolvers = {
       // Implement logic to fetch all tours
       // Return all tours
     },
+    getBookedTours: async (parent, { userId }) => {
+      try{
+        const user = await User.findById(userId);
+        return  user.bookedTours.map(tour => tour.tourName);
+      } catch (error){
+        throw new Error('Could not fetch booked tours' + error.message)
+      }
+    },
   },
 
   // mutation - hook that handles server-side mutations to create/update/delete data or perform server-side-effects
@@ -69,7 +77,6 @@ const resolvers = {
           throw new Error('Could not book tour: ' + error.message);
       }
   },
-  
     // login
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
