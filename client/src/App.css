@@ -30,6 +30,10 @@ h6 {
   background-position: center;
 }
 
+.ant-collapse-arrow {
+  color: #F4CB5C; 
+}
+
 /* background change 2 */
 .new-background-class-two {
   background-image: url("/shipwreck-bg.gif");
@@ -51,12 +55,25 @@ h6 {
 #login-signup-tabs-tab-login {
   background-color: transparent;
   color: white;
+div.ant-collapse-content-box {
+  background-color: #839DA9;
+  border-radius: 10px;
+  border-color: #3E1E19;
+}
+
+.ant-collapse-header {
+  border-color: #3f2517 !important; /* Change the border color */
+}
+/* login tab background */
+#login-signup-tabs-tab-login {
+  background-color: #88b4c5;
 }
 
 /* signup tab background */
 #login-signup-tabs-tab-signup {
   background-color: transparent;
   color: white;
+  background-color: #6b846c;
 }
 
 .action-button {

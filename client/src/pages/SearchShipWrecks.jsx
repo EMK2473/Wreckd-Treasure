@@ -4,9 +4,7 @@ const { Sider } = Layout;
 const { Panel } = Collapse;
 import tours from "./ShipWreckData";
 import Confetti from "js-confetti";
-// import { useMutation, useQuery } from "@apollo/client";
-// import { GET_ME } from "../utils/queries";
-// import Auth from "../utils/auth";
+
 
 const SearchTours = () => {
   // state variables and set functions
@@ -56,7 +54,7 @@ const SearchTours = () => {
     // initializes google map
     var map = new google.maps.Map(document.getElementById("map"), {
       center: selectedArray[0].coordinates,
-      zoom: 2,
+      zoom: 1,
     });
 
     // iterate over selectedArray to display markers and polylines
@@ -254,11 +252,11 @@ const SearchTours = () => {
       </div>
       <div
         style={{
-          border: "2px solid #ccc",
+          border: "2px solid #F4CB5C",
           borderRadius: "10px",
           padding: "10px",
-          width: "800px",
-          height: "550px",
+          width: "600px",
+          height: "350px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -266,7 +264,7 @@ const SearchTours = () => {
       >
         <div
           id="map"
-          style={{ height: "500px", width: "750px", borderRadius: "10px" }}
+          style={{ height: "300px", width: "550px", borderRadius: "10px" }}
         ></div>
       </div>
 
@@ -276,6 +274,7 @@ const SearchTours = () => {
           top: "100px",
           right: "10px",
           borderRadius: "5px",
+          marginRight: "5px" 
         }}
       >
         {siderVisible ? (
@@ -296,28 +295,35 @@ const SearchTours = () => {
                   style={{
                     color: "white",
                     marginBottom: "10px",
-                    border: "1px solid white",
+                    border: "1px solid #F4CB5C",
                     borderRadius: "5px",
                     padding: "10px",
                     marginTop: "50px",
+                    backgroundColor: "#365058"
                   }}
-                >
-                  Rate: <span style={{ color: "#F4CB5C" }}>$1.01 USD</span> for
-                  every
-                  <span style={{ color: "#F4CB5C" }}> 10 miles.</span>
+                  >
+                  Rate:{" "}
+                  <span style={{ color: "#F4CB5C", fontFamily: "Arial, sans-serif" }}>
+                      $1.01
+                  </span>{" "}
+                  for every{" "}
+                  <span style={{ color: "#F4CB5C", fontFamily: "Arial, sans-serif" }}>
+                      10 miles.
+                  </span>
                 </p>
                 <p
                   style={{
                     color: "white",
                     marginBottom: "10px",
-                    border: "1px solid white",
+                    border: "1px solid #F4CB5C",
                     borderRadius: "5px",
                     padding: "10px",
                     marginTop: "15px",
+                    backgroundColor: "#365058"
                   }}
                 >
                   Total Distance:{" "}
-                  <span style={{ color: "#F4CB5C" }}>
+                  <span style={{ color: "#F4CB5C", fontFamily: "Arial, sans-serif" }}>
                     {numberWithCommas(metersToMiles(totalDistance))} miles
                   </span>
                 </p>
@@ -325,14 +331,15 @@ const SearchTours = () => {
                   style={{
                     color: "white",
                     marginBottom: "10px",
-                    border: "1px solid white",
+                    border: "1px solid #F4CB5C",
                     borderRadius: "5px",
                     padding: "10px",
                     marginTop: "15px",
+                    backgroundColor: "#365058"
                   }}
                 >
                   Total Price:{" "}
-                  <span style={{ color: "#F4CB5C" }}>
+                  <span style={{ color: "#F4CB5C", fontFamily: "Arial, sans-serif" }}>
                     $
                     {typeof totalPrice === "number"
                       ? numberWithCommas(totalPrice.toFixed(2))
@@ -341,24 +348,25 @@ const SearchTours = () => {
                   </span>
                 </p>
                 {tours[selectedTour]?.map((shipwreck, index) => (
-                  <Card key={index} style={{ marginBottom: "10px" }}>
-                    <div>
-                      <h3>{shipwreck.name}</h3>
+                  <Card key={index} style={{ marginBottom: "10px", backgroundColor: "#31454F", borderColor: "#ABCAD4", borderWidth: "2px" }}>
+                    <div >
+                      <h3 style={{color: "#F4CB5C"}}>{shipwreck.name}</h3>
                       <img
                         src={shipwreck.image}
                         alt={shipwreck.name}
-                        style={{ maxWidth: "100%", height: "auto" }}
+                        style={{ maxWidth: "100%", height: "auto", border: "2px solid #ABCAD4", borderRadius: "10px" }}
                       />
                     </div>
-                    <Collapse>
-                      <Panel header="Details" key="1">
-                        <p>Rarity: {shipwreck.rarity}</p>
-                        <p>Reason for Sinking: {shipwreck.reasonForSinking}</p>
-                        <p>Year Sunk: {shipwreck.yearSunk}</p>
-                        <p>Country: {shipwreck.country}</p>
-                        <p>Body of Water: {shipwreck.bodyOfWater}</p>
-                        <p>Casualties: {shipwreck.casualties}</p>
-                        <p>Treasure: {shipwreck.treasure.join(", ")}</p>
+                    <Collapse style={{ borderRadius: "10px", backgroundColor: "#56727D"}}>
+                    <Panel style={{ borderRadius: "10px" }} header={<span style={{ color: "#F4CB5C" }}>Details</span>} key="1">
+                      <div >
+                      <p>Reason for Sinking: <span style={{ color: "#F4CB5C" }}>{shipwreck.reasonForSinking}</span></p>
+                        <p>Year Sunk: <span style={{ color: "#F4CB5C" }}>{shipwreck.yearSunk}</span></p>
+                        <p>Country: <span style={{ color: "#F4CB5C" }}>{shipwreck.country}</span></p>
+                        <p>Body of Water: <span style={{ color: "#F4CB5C" }}>{shipwreck.bodyOfWater}</span></p>
+                        <p>Casualties: <span style={{ color: "#F4CB5C" }}>{shipwreck.casualties}</span></p>
+                        <p>{shipwreck.treasure.join(", ")}</p>
+                        </div>
                       </Panel>
                     </Collapse>
                   </Card>

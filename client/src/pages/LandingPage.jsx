@@ -48,6 +48,15 @@ const LandingPage = () => {
       document.body.classList.remove("login-background-class"); // Remove login background class
       document.body.classList.add("signup-background-class"); // Add signup background class
     }
+      document.body.classList.remove("signup-background-class"); 
+      document.body.classList.add("login-background-class"); 
+    } else if (form === "signup") {
+      setShowLoginForm(false);
+      setShowSignupForm(true);
+      document.body.classList.remove("login-background-class");
+      document.body.classList.add("signup-background-class"); 
+      document.body.classList.add("login-background-class");
+    } 
   };
 
   // function to handle login and sign up form states
@@ -66,7 +75,7 @@ const LandingPage = () => {
   }
 
   return (
-    <Container fluid className="landing-page-container">
+<Container fluid className="landing-page-container custom-background-class">
       <div className="App-header">
         <>
           {!enterButtonClicked && (
@@ -135,6 +144,9 @@ const LandingPage = () => {
                     style={{
                       // backgroundColor: "transparent",
                       marginTop: "50px",
+                      backgroundColor: "transparent",
+                      padding: "5px 15px",
+                      marginTop: "100px",
                       borderRadius: "10px",
                     }}
                   >
