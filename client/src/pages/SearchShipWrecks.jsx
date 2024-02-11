@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Card, Button, Collapse } from "antd";
+import { Layout, Card, Button, Collapse, Modal } from "antd";
 const { Sider } = Layout;
 const { Panel } = Collapse;
 import tours from "./ShipWreckData";
-import Confetti from "js-confetti";
-
+import { BOOK_TOUR } from "../utils/mutations";
+import { useMutation } from "@apollo/client";
+import Auth from "../utils/auth";
+import { saveBookedTour } from "../utils/localStorage";
 
 const SearchTours = () => {
   // state variables and set functions
@@ -14,6 +16,8 @@ const SearchTours = () => {
   const [selectedShipwreck, setSelectedShipwreck] = useState(null);
   const [siderVisible, setSiderVisible] = useState(false);
   const [totalsVisible, setTotalsVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [bookTourMutation] = useMutation(BOOK_TOUR);
 
   useEffect(() => {
     // apply new background class
@@ -29,9 +33,36 @@ const SearchTours = () => {
     initMap(selectedTour);
   }, [selectedTour]);
 
+  const showModal = () => {
+    setModalVisible(true);
+  };
   const changeTour = (event) => {
     setSelectedTour(event.target.value);
   };
+
+  const handleSaveTour = async () => {
+    try {
+      // Call the bookTourMutation with necessary variables
+      const { data } = await bookTourMutation({
+        variables: {
+          tourName: selectedTour,
+          shipwrecks: tours[selectedTour],
+        },
+      });
+  
+      // Save the booked tour to local storage
+      saveBookedTour(selectedTour, tours[selectedTour]);
+  
+      // Show the success modal
+      showModal();
+  
+      // Optionally, you can handle UI updates here
+    } catch (error) {
+      console.error("Error booking tour:", error);
+      // Optionally, you can handle error scenarios here
+    }
+  };
+  
 
   // intialize map and display shipwrecks
   function initMap(selectedTour) {
@@ -245,7 +276,10 @@ const SearchTours = () => {
             <option value="transportTour">Transport Tour</option>
             <option value="highestdeathTour">Highest Death Toll Tour</option>
           </select>
-          <button className="px-4 py-2 bg-blue-600 text-black rounded hover:bg-blue-700 focus:outline-none focus:bg-blue-700">
+          <button
+            className="px-4 py-2 bg-blue-600 text-black rounded hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
+            onClick={handleSaveTour}
+          >
             Save this tour
           </button>
         </div>
@@ -266,6 +300,14 @@ const SearchTours = () => {
           id="map"
           style={{ height: "300px", width: "550px", borderRadius: "10px" }}
         ></div>
+        <Modal
+      title="Tour Booked Successfully"
+      visible={modalVisible}
+      onOk={() => setModalVisible(false)}
+      onCancel={() => setModalVisible(false)}
+    >
+      <p>Your tour has been booked successfully!</p>
+    </Modal>
       </div>
 
       <div
@@ -274,7 +316,7 @@ const SearchTours = () => {
           top: "100px",
           right: "10px",
           borderRadius: "5px",
-          marginRight: "5px" 
+          marginRight: "5px",
         }}
       >
         {siderVisible ? (
@@ -299,16 +341,26 @@ const SearchTours = () => {
                     borderRadius: "5px",
                     padding: "10px",
                     marginTop: "50px",
-                    backgroundColor: "#365058"
+                    backgroundColor: "#365058",
                   }}
-                  >
+                >
                   Rate:{" "}
-                  <span style={{ color: "#F4CB5C", fontFamily: "Arial, sans-serif" }}>
-                      $1.01
+                  <span
+                    style={{
+                      color: "#F4CB5C",
+                      fontFamily: "Arial, sans-serif",
+                    }}
+                  >
+                    $1.01
                   </span>{" "}
                   for every{" "}
-                  <span style={{ color: "#F4CB5C", fontFamily: "Arial, sans-serif" }}>
-                      10 miles.
+                  <span
+                    style={{
+                      color: "#F4CB5C",
+                      fontFamily: "Arial, sans-serif",
+                    }}
+                  >
+                    10 miles.
                   </span>
                 </p>
                 <p
@@ -319,11 +371,16 @@ const SearchTours = () => {
                     borderRadius: "5px",
                     padding: "10px",
                     marginTop: "15px",
-                    backgroundColor: "#365058"
+                    backgroundColor: "#365058",
                   }}
                 >
                   Total Distance:{" "}
-                  <span style={{ color: "#F4CB5C", fontFamily: "Arial, sans-serif" }}>
+                  <span
+                    style={{
+                      color: "#F4CB5C",
+                      fontFamily: "Arial, sans-serif",
+                    }}
+                  >
                     {numberWithCommas(metersToMiles(totalDistance))} miles
                   </span>
                 </p>
@@ -335,11 +392,16 @@ const SearchTours = () => {
                     borderRadius: "5px",
                     padding: "10px",
                     marginTop: "15px",
-                    backgroundColor: "#365058"
+                    backgroundColor: "#365058",
                   }}
                 >
                   Total Price:{" "}
-                  <span style={{ color: "#F4CB5C", fontFamily: "Arial, sans-serif" }}>
+                  <span
+                    style={{
+                      color: "#F4CB5C",
+                      fontFamily: "Arial, sans-serif",
+                    }}
+                  >
                     $
                     {typeof totalPrice === "number"
                       ? numberWithCommas(totalPrice.toFixed(2))
@@ -348,24 +410,73 @@ const SearchTours = () => {
                   </span>
                 </p>
                 {tours[selectedTour]?.map((shipwreck, index) => (
-                  <Card key={index} style={{ marginBottom: "10px", backgroundColor: "#31454F", borderColor: "#ABCAD4", borderWidth: "2px" }}>
-                    <div >
-                      <h3 style={{color: "#F4CB5C"}}>{shipwreck.name}</h3>
+                  <Card
+                    key={index}
+                    style={{
+                      marginBottom: "10px",
+                      backgroundColor: "#31454F",
+                      borderColor: "#ABCAD4",
+                      borderWidth: "2px",
+                    }}
+                  >
+                    <div>
+                      <h3 style={{ color: "#F4CB5C" }}>{shipwreck.name}</h3>
                       <img
                         src={shipwreck.image}
                         alt={shipwreck.name}
-                        style={{ maxWidth: "100%", height: "auto", border: "2px solid #ABCAD4", borderRadius: "10px" }}
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto",
+                          border: "2px solid #ABCAD4",
+                          borderRadius: "10px",
+                        }}
                       />
                     </div>
-                    <Collapse style={{ borderRadius: "10px", backgroundColor: "#56727D"}}>
-                    <Panel style={{ borderRadius: "10px" }} header={<span style={{ color: "#F4CB5C" }}>Details</span>} key="1">
-                      <div >
-                      <p>Reason for Sinking: <span style={{ color: "#F4CB5C" }}>{shipwreck.reasonForSinking}</span></p>
-                        <p>Year Sunk: <span style={{ color: "#F4CB5C" }}>{shipwreck.yearSunk}</span></p>
-                        <p>Country: <span style={{ color: "#F4CB5C" }}>{shipwreck.country}</span></p>
-                        <p>Body of Water: <span style={{ color: "#F4CB5C" }}>{shipwreck.bodyOfWater}</span></p>
-                        <p>Casualties: <span style={{ color: "#F4CB5C" }}>{shipwreck.casualties}</span></p>
-                        <p>{shipwreck.treasure.join(", ")}</p>
+                    <Collapse
+                      style={{
+                        borderRadius: "10px",
+                        backgroundColor: "#56727D",
+                      }}
+                    >
+                      <Panel
+                        style={{ borderRadius: "10px" }}
+                        header={
+                          <span style={{ color: "#F4CB5C" }}>Details</span>
+                        }
+                        key="1"
+                      >
+                        <div>
+                          <p>
+                            Reason for Sinking:{" "}
+                            <span style={{ color: "#F4CB5C" }}>
+                              {shipwreck.reasonForSinking}
+                            </span>
+                          </p>
+                          <p>
+                            Year Sunk:{" "}
+                            <span style={{ color: "#F4CB5C" }}>
+                              {shipwreck.yearSunk}
+                            </span>
+                          </p>
+                          <p>
+                            Country:{" "}
+                            <span style={{ color: "#F4CB5C" }}>
+                              {shipwreck.country}
+                            </span>
+                          </p>
+                          <p>
+                            Body of Water:{" "}
+                            <span style={{ color: "#F4CB5C" }}>
+                              {shipwreck.bodyOfWater}
+                            </span>
+                          </p>
+                          <p>
+                            Casualties:{" "}
+                            <span style={{ color: "#F4CB5C" }}>
+                              {shipwreck.casualties}
+                            </span>
+                          </p>
+                          <p>{shipwreck.treasure.join(", ")}</p>
                         </div>
                       </Panel>
                     </Collapse>

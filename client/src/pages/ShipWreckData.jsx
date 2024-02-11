@@ -136,7 +136,6 @@ const tours = {
       shipWreckId: "10",
       treasure: ["☠", "🏴‍☠️", "🏖", "💰", "💎", "💍"],
     },
-  
     {
       name: "RMS Lustitania",
       rarity: "Epic",
@@ -150,7 +149,6 @@ const tours = {
       shipWreckId: "11",
       treasure: ["☠", "👪", "👠", "🚫", "⌛"],
     },
-  
     {
       name: "HMS Terror",
       rarity: "Common",
@@ -164,7 +162,6 @@ const tours = {
       shipWreckId: "12",
       treasure: ["☠", "🍖", "🧊", "👻", "⚠"],
     },
-  
     {
       name: "HMS Erebus",
       rarity: "Common",
@@ -178,7 +175,6 @@ const tours = {
       shipWreckId: "13",
       treasure: ["☠", "🍖", "🧊", "👻", "⚠"],
     },
-  
     {
       name: "USS Monitor",
       rarity: "Common",
@@ -192,7 +188,6 @@ const tours = {
       shipWreckId: "14",
       treasure: ["☠", "🌩", "🌀", "🔫", "📷"],
     },
-  
     {
       name: "Battleship Yamato",
       rarity: "Epic",
@@ -206,7 +201,6 @@ const tours = {
       shipWreckId: "16",
       treasure: ["☠", "🔫", "💣", "⚔", "🎖", "🎎"],
     },
-  
     {
       name: "SS Edmund Fitzgerald",
       rarity: "UnCommon",
@@ -220,7 +214,6 @@ const tours = {
       shipWreckId: "18",
       treasure: ["☠", "🌩", "🌀", "🌊", "🔔"],
     },
-  
     {
       name: "RFS Moskva",
       rarity: "Rare",
@@ -234,7 +227,6 @@ const tours = {
       shipWreckId: "19",
       treasure: ["☠", "🔫", "🎖", "☢", "💣"],
     },
-  
     {
       name: "Felicity Ace",
       rarity: "Legendary",
@@ -248,7 +240,6 @@ const tours = {
       shipWreckId: "20",
       treasure: ["🏎	", "☠", "🔥", "🚗", "🚜"],
     },
-  
     {
       name: "MV Wilhelm Gustloff",
       rarity: "Uncommon",
@@ -274,8 +265,7 @@ const tours = {
       coordinates: { lat: 41.73297, lng: -49.94703 },
       shipWreckId: "22",
       treasure: ["☠", "🧊", "👞", "🚣‍♀️", "💎", "🚪", "🎮"],
-    },
-    
+    }, 
   ],
   passengerTour: [
     {
@@ -451,7 +441,6 @@ const tours = {
       shipWreckId: "12",
       treasure: ["☠", "🍖", "🧊", "👻", "⚠"],
     },
-  
     {
       name: "HMS Erebus",
       rarity: "Common",
