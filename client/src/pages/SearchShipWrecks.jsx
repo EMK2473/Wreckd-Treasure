@@ -3,6 +3,7 @@ import { Layout, Card, Button, Collapse } from "antd";
 const { Sider } = Layout;
 const { Panel } = Collapse;
 import tours from "./ShipWreckData";
+import Confetti from "js-confetti";
 // import { useMutation, useQuery } from "@apollo/client";
 // import { GET_ME } from "../utils/queries";
 // import Auth from "../utils/auth";
@@ -16,7 +17,6 @@ const SearchTours = () => {
   const [siderVisible, setSiderVisible] = useState(false);
   const [totalsVisible, setTotalsVisible] = useState(false);
 
-
   useEffect(() => {
     // apply new background class
     document.body.classList.add("new-background-class-two");
@@ -24,7 +24,6 @@ const SearchTours = () => {
       document.body.classList.remove("new-background-class");
       document.body.classList.remove("login-background-class");
       document.body.classList.remove("signup-background-class");
-
     };
   }, []);
 
@@ -71,7 +70,7 @@ const SearchTours = () => {
           title: shipwreck.name,
           icon: {
             url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
-            scaledSize: new google.maps.Size(50, 50),
+            scaledSize: new google.maps.Size(40, 40),
           },
         });
       } else {
@@ -86,14 +85,12 @@ const SearchTours = () => {
       // adds shipwreck info window to marker
       var infoWindow = new google.maps.InfoWindow({
         content: `<div class="info-window-content"><b>${shipwreck.name}</b><br>
-                Rarity: ${shipwreck.rarity}<br>
                 Reason for Sinking: ${shipwreck.reasonForSinking}<br>
                 Year Sunk: ${shipwreck.yearSunk}<br>
                 Country: ${shipwreck.country}<br>
                 Body of Water: ${shipwreck.bodyOfWater}<br>
                 Casualties: ${shipwreck.casualties}<br>
-                Shipwreck ID: ${shipwreck.shipWreckId}<br>
-                Treasure: ${shipwreck.treasure.join(", ")}</div>
+                ${shipwreck.treasure.join(", ")}</div>
                 <img src="${shipwreck.image}" alt="${
           shipwreck.name
         } Image" width="200"></div>`,
@@ -234,31 +231,26 @@ const SearchTours = () => {
           Shipwreck Explorer
         </h1>
         <div className="mb-5 border rounded-lg p-1 flex flex-col md:flex-row justify-between items-center">
-  <label htmlFor="tourSelection" className="mb-3 md:mb-0 mr-3">
-    Choose a tour:
-  </label>
-  <select
-    id="tourSelection"
-    value={selectedTour}
-    onChange={changeTour}
-    className="px-4 py-2 bg-gray-700 text-black border border-gray-600 rounded mb-3 md:mb-0 md:mr-3"
-  >
-    <option value="grandTour">Shipwrecks Tour</option>
-    <option value="passengerTour">Passenger Tour</option>
-    <option value="warTour">War Tour</option>
-    <option value="sailboatTour">Sailboat Tour</option>
-    <option value="transportTour">Transport Tour</option>
-    <option value="highestdeathTour">Highest Death Toll Tour</option>
-  </select>
-  <button className="px-4 py-2 bg-blue-600 text-black rounded hover:bg-blue-700 focus:outline-none focus:bg-blue-700">
-    Save this tour
-  </button>
-</div>
-
-
-
-
-
+          <label htmlFor="tourSelection" className="mb-3 md:mb-0 mr-3">
+            Choose a tour:
+          </label>
+          <select
+            id="tourSelection"
+            value={selectedTour}
+            onChange={changeTour}
+            className="px-4 py-2 bg-gray-700 text-black border border-gray-600 rounded mb-3 md:mb-0 md:mr-3"
+          >
+            <option value="grandTour">Shipwrecks Tour</option>
+            <option value="passengerTour">Passenger Tour</option>
+            <option value="warTour">War Tour</option>
+            <option value="sailboatTour">Sailboat Tour</option>
+            <option value="transportTour">Transport Tour</option>
+            <option value="highestdeathTour">Highest Death Toll Tour</option>
+          </select>
+          <button className="px-4 py-2 bg-blue-600 text-black rounded hover:bg-blue-700 focus:outline-none focus:bg-blue-700">
+            Save this tour
+          </button>
+        </div>
       </div>
       <div
         style={{
