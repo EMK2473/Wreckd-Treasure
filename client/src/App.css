@@ -25,23 +25,21 @@ h6 {
 
 /* background change 1 */
 .new-background-class {
-  background-image: url("/login.png");
-  background-size: contain;
+  background-image: url("/creature-bg.gif");
+  background-size: cover;
 }
 
 .new-background-class-two {
   background-image: url("/map-bg.gif");
-
 }
 
 .login-background-class {
-  background-image: url("/login.png");
+  background-image: url("/creature-bg.gif");
 }
 
 .signup-background-class {
   background-image: url("/signup.png");
 }
-
 
 .action-button {
   position: relative;
@@ -104,7 +102,6 @@ h6 {
   background-position: center;
   background-repeat: no-repeat;
 }
-
 
 .action-button {
   font-size: 16px;
