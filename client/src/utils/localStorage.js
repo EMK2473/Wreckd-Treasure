@@ -1,36 +1,30 @@
-// TODO: Rework for tours
-export const getSavedShipWreckIds = () => {
-  const savedShipWreckIds = localStorage.getItem('saved_shipWrecks')
-    ? JSON.parse(localStorage.getItem('saved_shipWrecks'))
+export const getBookedTourIds = () => {
+  const bookedTourIds = localStorage.getItem('booked_tours')
+    ? JSON.parse(localStorage.getItem('booked_tours'))
     : [];
 
-  return savedShipWreckIds;
-}; // checks if there is any data saved under the key 'saved_shipWrecks' in local storage.
-// If data is found, it parses and returns the array of saved shipWreck IDs; otherwise, it returns an empty array.
+  return bookedTourIds;
+};
 
-export const saveShipWreckIds = (shipWreckIdArr) => {
-  if (shipWreckIdArr.length) {
-    localStorage.setItem('saved_shipWrecks', JSON.stringify(shipWreckIdArr));
+export const saveBookedTourIds = (tourIdArr) => {
+  if (tourIdArr.length) {
+    localStorage.setItem('booked_tours', JSON.stringify(tourIdArr));
   } else {
-    localStorage.removeItem('saved_shipWrecks');
+    localStorage.removeItem('booked_tours');
   }
-}; // checks if the array has any elements. If it does. it saves the array to local storage under "saved_shipWrecks" after converting to JSON
-// If the array is empty, it removes the 'saved_shipWrecks' key from local storage.
+};
 
-export const removeShipWreckId = (shipWreckId) => {
-  const savedShipWreckIds = localStorage.getItem('saved_shipWrecks')
-    ? JSON.parse(localStorage.getItem('saved_shipWrecks'))
+export const removeBookedTourId = (tourId) => {
+  const bookedTourIds = localStorage.getItem('booked_tours')
+    ? JSON.parse(localStorage.getItem('booked_tours'))
     : null;
 
-  if (!savedShipWreckIds) {
+  if (!bookedTourIds) {
     return false;
   }
 
-  const updatedSavedShipWreckIds = savedShipWreckIds?.filter((savedShipWreckId) => savedShipWreckId !== shipWreckId);
-  localStorage.setItem('saved_shipWrecks', JSON.stringify(updatedSavedShipWreckIds));
+  const updatedBookedTourIds = bookedTourIds.filter((savedTourId) => savedTourId !== tourId);
+  localStorage.setItem('booked_tours', JSON.stringify(updatedBookedTourIds));
 
   return true;
-}; // retrieves the current saved shipWreck IDS from local storage
-// if no saved shipWreck ids, then returns false
-// filters out the specified shipWreckID from the array
-// saves the updated array in local storage
+};
