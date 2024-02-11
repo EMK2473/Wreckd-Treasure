@@ -30,6 +30,10 @@ h6 {
   background-position: center;
 }
 
+.ant-collapse-arrow {
+  color: #F4CB5C; 
+}
+
 /* background change 2 */
 .new-background-class-two {
   background-image: url("/shipwreck-bg.gif");
@@ -48,8 +52,7 @@ h6 {
 }
 
 div.ant-collapse-content-box {
-  background-color: #3f2517;
-  background: linear-gradient(to bottom, #d6a565, #F1E1C5, #3E1E19);
+  background-color: #839DA9;
   border-radius: 10px;
   border-color: #3E1E19;
 }

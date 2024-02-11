@@ -299,11 +299,17 @@ const SearchTours = () => {
                     borderRadius: "5px",
                     padding: "10px",
                     marginTop: "50px",
+                    backgroundColor: "#365058"
                   }}
-                >
-                  Rate: <span style={{ color: "#F4CB5C" }}>$1.01 USD</span> for
-                  every
-                  <span style={{ color: "#F4CB5C" }}> 10 miles.</span>
+                  >
+                  Rate:{" "}
+                  <span style={{ color: "#F4CB5C", fontFamily: "Arial, sans-serif" }}>
+                      $1.01
+                  </span>{" "}
+                  for every{" "}
+                  <span style={{ color: "#F4CB5C", fontFamily: "Arial, sans-serif" }}>
+                      10 miles.
+                  </span>
                 </p>
                 <p
                   style={{
@@ -313,10 +319,11 @@ const SearchTours = () => {
                     borderRadius: "5px",
                     padding: "10px",
                     marginTop: "15px",
+                    backgroundColor: "#365058"
                   }}
                 >
                   Total Distance:{" "}
-                  <span style={{ color: "#F4CB5C" }}>
+                  <span style={{ color: "#F4CB5C", fontFamily: "Arial, sans-serif" }}>
                     {numberWithCommas(metersToMiles(totalDistance))} miles
                   </span>
                 </p>
@@ -328,10 +335,11 @@ const SearchTours = () => {
                     borderRadius: "5px",
                     padding: "10px",
                     marginTop: "15px",
+                    backgroundColor: "#365058"
                   }}
                 >
                   Total Price:{" "}
-                  <span style={{ color: "#F4CB5C" }}>
+                  <span style={{ color: "#F4CB5C", fontFamily: "Arial, sans-serif" }}>
                     $
                     {typeof totalPrice === "number"
                       ? numberWithCommas(totalPrice.toFixed(2))
@@ -340,23 +348,23 @@ const SearchTours = () => {
                   </span>
                 </p>
                 {tours[selectedTour]?.map((shipwreck, index) => (
-                  <Card key={index} style={{ marginBottom: "10px", background: "linear-gradient(to bottom, #D6A565, #73513F, #73513F )", borderColor: "#F4CB5C", borderWidth: "2px" }}>
+                  <Card key={index} style={{ marginBottom: "10px", backgroundColor: "#31454F", borderColor: "#ABCAD4", borderWidth: "2px" }}>
                     <div >
-                      <h3>{shipwreck.name}</h3>
+                      <h3 style={{color: "#F4CB5C"}}>{shipwreck.name}</h3>
                       <img
                         src={shipwreck.image}
                         alt={shipwreck.name}
-                        style={{ maxWidth: "100%", height: "auto", border: "2px solid #F4CB5C", borderRadius: "10px" }}
+                        style={{ maxWidth: "100%", height: "auto", border: "2px solid #ABCAD4", borderRadius: "10px" }}
                       />
                     </div>
-                    <Collapse style={{ borderRadius: "10px", background: "linear-gradient(to bottom, #D6A565, #73513F, #73513F )"}}>
-                      <Panel style={{ borderRadius: "10px", background: "linear-gradient(to bottom, #D6A565, #73513F, #73513F )"}} header="Details" key="1">
+                    <Collapse style={{ borderRadius: "10px", backgroundColor: "#56727D"}}>
+                    <Panel style={{ borderRadius: "10px" }} header={<span style={{ color: "#F4CB5C" }}>Details</span>} key="1">
                       <div >
-                        <p>Reason for Sinking: {shipwreck.reasonForSinking}</p>
-                        <p>Year Sunk: {shipwreck.yearSunk}</p>
-                        <p>Country: {shipwreck.country}</p>
-                        <p>Body of Water: {shipwreck.bodyOfWater}</p>
-                        <p>Casualties: {shipwreck.casualties}</p>
+                      <p>Reason for Sinking: <span style={{ color: "#F4CB5C" }}>{shipwreck.reasonForSinking}</span></p>
+                        <p>Year Sunk: <span style={{ color: "#F4CB5C" }}>{shipwreck.yearSunk}</span></p>
+                        <p>Country: <span style={{ color: "#F4CB5C" }}>{shipwreck.country}</span></p>
+                        <p>Body of Water: <span style={{ color: "#F4CB5C" }}>{shipwreck.bodyOfWater}</span></p>
+                        <p>Casualties: <span style={{ color: "#F4CB5C" }}>{shipwreck.casualties}</span></p>
                         <p>{shipwreck.treasure.join(", ")}</p>
                         </div>
                       </Panel>
