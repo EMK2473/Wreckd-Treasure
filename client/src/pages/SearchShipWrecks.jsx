@@ -42,24 +42,24 @@ const SearchTours = () => {
 
   const handleSaveTour = async () => {
     try {
-      // Call the bookTourMutation with necessary variables
+      const userId = Auth.loggedIn() ? Auth.getProfile().data._id : null;
+      if(!userId){
+        console.error('User ID NOT FOUND!!');
+        return;
+      }
       const { data } = await bookTourMutation({
         variables: {
           tourName: selectedTour,
           shipwrecks: tours[selectedTour],
         },
       });
+
+      saveBookedTour(userId, selectedTour, tours[selectedTour]);
   
-      // Save the booked tour to local storage
-      saveBookedTour(selectedTour, tours[selectedTour]);
-  
-      // Show the success modal
       showModal();
-  
-      // Optionally, you can handle UI updates here
+
     } catch (error) {
       console.error("Error booking tour:", error);
-      // Optionally, you can handle error scenarios here
     }
   };
   
