@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Container, Tabs, Tab, Button } from "react-bootstrap";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
 import Auth from "../utils/auth";
 import "../App.css";
 import App from "../App";
+import Confetti from "js-confetti";
 
 const LandingPage = () => {
   // state variables and set functions
@@ -12,16 +13,29 @@ const LandingPage = () => {
   const [showSignupForm, setShowSignupForm] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(Auth.loggedIn());
   const [enterButtonClicked, setEnterButtonClicked] = useState(false);
+  const plunderButtonRef = useRef(null);
+
+  // function to trigger confetti
+  const handleConfetti = () => {
+    const confetti = new Confetti();
+    for (let i = 0; i < 5; i++) {
+      // Add 300 confetti pieces
+      confetti.addConfetti({
+        emojis: ["💎", "🪙", "🏴‍☠️", "💰"],
+      });
+    }
+  };
 
   // function handling enter button state
   const handleYesButtonClick = () => {
     setEnterButtonClicked(true);
     setShowLoginForm(true);
     document.body.classList.add("new-background-class");
+    handleConfetti();
   };
 
   // function to handle login/signup tab states
-  // function to handle login/signup tab states
+  // handles changing background states, too
   const handleTabClick = (form) => {
     if (form === "login") {
       setShowLoginForm(true);
@@ -33,6 +47,13 @@ const LandingPage = () => {
       setShowSignupForm(true);
       document.body.classList.remove("login-background-class"); // Remove login background class
       document.body.classList.add("signup-background-class"); // Add signup background class
+      document.body.classList.remove("signup-background-class");
+      document.body.classList.add("login-background-class");
+    } else if (form === "signup") {
+      setShowLoginForm(false);
+      setShowSignupForm(true);
+      document.body.classList.remove("login-background-class");
+      document.body.classList.add("signup-background-class");
     }
   };
 
@@ -94,8 +115,7 @@ const LandingPage = () => {
               activeKey={showLoginForm ? "login" : "signup"}
               onSelect={handleTabClick}
               id="login-signup-tabs"
-              className="mb-3 d-flex justify-content-center"
-              style={{ position: "absolute", top: "250px", width: "100%" }}
+              className="mb-3 d-flex justify-content-center tabs-container"
             >
               <Tab
                 eventKey="login"
@@ -104,6 +124,7 @@ const LandingPage = () => {
                     style={{
                       backgroundColor: "transparent",
                       marginTop: "50px",
+                      borderRadius: "10px"
                     }}
                   >
                     Login
@@ -122,6 +143,7 @@ const LandingPage = () => {
                       backgroundColor: "transparent",
                       padding: "5px 15px",
                       marginTop: "100px",
+                      borderRadius: "10px"
                     }}
                   >
                     Sign Up
