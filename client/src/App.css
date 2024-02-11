@@ -25,25 +25,25 @@ h6 {
 
 /* background change 1 */
 .new-background-class {
-  background-image: url("/login.png");
-  background-size: contain;
+  background-image: url("/creature-bg.gif");
+  background-size: cover;
 }
 
 /* background change 2 */
 .new-background-class-two {
-  background-image: url("/login-bg.png");
-
+  background-image: url("/map-bg.gif");
 }
 
 /* login background change */
 .login-background-class {
-  background-image: url("/login.png");
+  background-image: url("/creature-bg.gif");
 }
 
 /* signup background change */
 .signup-background-class {
   background-image: url("/signup.png");
 }
+
 
 /* login tab background */
 #login-signup-tabs-tab-login{
@@ -54,6 +54,7 @@ h6 {
 #login-signup-tabs-tab-signup{
   background-color: #6B846C;
 }
+
 .action-button {
   position: relative;
 }
@@ -115,7 +116,6 @@ h6 {
   background-position: center;
   background-repeat: no-repeat;
 }
-
 
 .action-button {
   font-size: 16px;
