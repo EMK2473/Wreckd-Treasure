@@ -70,7 +70,7 @@ const SignupForm = () => {
             Something went wrong with your signup!
           </Alert>
 
-          <Form.Group className="mb-3" style={{ color: "#F4CB5C" }}>
+          <Form.Group className="mb-3" style={{ color: "white" }}>
             <Form.Label htmlFor="username" style={{ marginTop: "0px" }}>
               Username
             </Form.Label>
@@ -87,7 +87,7 @@ const SignupForm = () => {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className="mb-3" style={{ color: "#F4CB5C" }}>
+          <Form.Group className="mb-3" style={{ color: "white" }}>
             <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Control
               type="email"
@@ -102,7 +102,8 @@ const SignupForm = () => {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className="mb-3" style={{ color: "#F4CB5C" }}>
+          <Form.Group className="mb-3" style={{ color: "white" }}>
+            {/* #F4CB5C */}
             <Form.Label htmlFor="password">Password</Form.Label>
             <Form.Control
               type="password"
