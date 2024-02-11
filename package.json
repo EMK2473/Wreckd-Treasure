@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "antd": "^5.14.0",
-    "react-confetti": "^6.1.0"
+    "react-confetti": "^6.1.0",
+    "js-confetti": "0.12.0"
   }
 }
