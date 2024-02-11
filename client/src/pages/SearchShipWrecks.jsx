@@ -113,16 +113,15 @@ const SearchTours = () => {
 
       // adds shipwreck info window to marker
       var infoWindow = new google.maps.InfoWindow({
-        content: `<div class="info-window-content"><b>${shipwreck.name}</b><br>
-                Reason for Sinking: ${shipwreck.reasonForSinking}<br>
-                Year Sunk: ${shipwreck.yearSunk}<br>
-                Country: ${shipwreck.country}<br>
-                Body of Water: ${shipwreck.bodyOfWater}<br>
-                Casualties: ${shipwreck.casualties}<br>
-                ${shipwreck.treasure.join(", ")}</div>
-                <img src="${shipwreck.image}" alt="${
-          shipwreck.name
-        } Image" width="200"></div>`,
+        content: `<div class="info-window-content"><b style="text-decoration: underline;">${shipwreck.name}</b><br>
+                  Reason for Sinking: ${shipwreck.reasonForSinking}<br>
+                  Year Sunk: ${shipwreck.yearSunk}<br>
+                  Country: ${shipwreck.country}<br>
+                  Body of Water: ${shipwreck.bodyOfWater}<br>
+                  Casualties: ${shipwreck.casualties}<br>
+                  ${shipwreck.treasure.join(", ")}</div>
+                  <img src="${shipwreck.image}" alt="${shipwreck.name}
+                  Image" width="160" style="padding: 5px;"></div>`,
       });
 
       marker.addListener("click", function () {
@@ -260,14 +259,19 @@ const SearchTours = () => {
           Shipwreck Explorer
         </h1>
         <div className="mb-5 border rounded-lg p-1 flex flex-col md:flex-row justify-between items-center">
-          <label htmlFor="tourSelection" className="mb-3 md:mb-0 mr-3">
+          <label htmlFor="tourSelection" className="mb-3 md:mb-0 mr-3" style={{fontSize: "18px", paddingRight: "7px"}}>
             Choose a tour:
           </label>
           <select
             id="tourSelection"
             value={selectedTour}
             onChange={changeTour}
-            className="px-4 py-2 bg-gray-700 text-black border border-gray-600 rounded mb-3 md:mb-0 md:mr-3"
+            className="px-4 py-2 bg-gray-700 border border-gray-600 rounded mb-3 md:mb-0 md:mr-3"
+            style={{
+              backgroundColor: "#287382",
+              color: "#f4cb5c",
+              cursor: "pointer",
+            }}
           >
             <option value="grandTour">Shipwrecks Tour</option>
             <option value="passengerTour">Passenger Tour</option>
@@ -277,8 +281,12 @@ const SearchTours = () => {
             <option value="highestdeathTour">Highest Death Toll Tour</option>
           </select>
           <button
-            className="px-4 py-2 bg-blue-600 text-black rounded hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
+            className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
             onClick={handleSaveTour}
+            style={{
+              backgroundColor: "#287382",
+              color: "#f4cb5c",
+            }}
           >
             Save this tour
           </button>
@@ -289,8 +297,8 @@ const SearchTours = () => {
           border: "2px solid #F4CB5C",
           borderRadius: "10px",
           padding: "10px",
-          width: "600px",
-          height: "350px",
+          width: "900px",
+          height: "420px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -298,7 +306,7 @@ const SearchTours = () => {
       >
         <div
           id="map"
-          style={{ height: "300px", width: "550px", borderRadius: "10px" }}
+          style={{ height: "400px", width: "900px", borderRadius: "10px" }}
         ></div>
         <Modal
       title="Tour Booked Successfully"
@@ -489,13 +497,15 @@ const SearchTours = () => {
                 onClick={() => setSiderVisible(false)}
                 style={{
                   cursor: "pointer",
-                  backgroundColor: "white",
-                  color: "black",
+                  backgroundColor: "#287382",
+                  color: "#f4cb5c",
                   padding: "10px",
                   borderRadius: "5px 5px 5px 5px",
-                  border: "none",
+                  borderColor: "#baf0f0",
                   width: "160px",
                   textAlign: "center",
+                  marginRight: "20px",
+                  fontSize: "18px",
                 }}
               >
                 Close Tour Details
@@ -507,12 +517,16 @@ const SearchTours = () => {
             onClick={() => setSiderVisible(!siderVisible)}
             style={{
               cursor: "pointer",
-              backgroundColor: "white",
-              color: "black",
+              backgroundColor: "#baf0f0",
+              color: "#062c33",
               padding: "10px",
               borderRadius: "5px 5px 5px 5px",
+              border: "solid",
+              borderColor: "#287382",
               width: "160px",
               textAlign: "center",
+              marginRight: "20px",
+              fontSize: "18px",
             }}
           >
             Show Tour Details
