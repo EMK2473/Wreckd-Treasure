@@ -21,7 +21,7 @@ const BookedToursList = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const { bookedTours, username } = data.me; 
+  const { bookedTours, username } = data.me;
 
   // Calculate total cost of all booked tours
   const totalCost = bookedTours.reduce((acc, curr) => {
@@ -42,7 +42,7 @@ const BookedToursList = () => {
   // grid/column variable for cart
   const columns = [
     {
-      title: "Tour Name",
+      title: "Item",
       dataIndex: "tourName",
       key: "tourName",
     },
@@ -82,7 +82,7 @@ const BookedToursList = () => {
     setCheckoutConfirmed(true);
     setTimeout(() => {
       setCheckoutConfirmed(false);
-    }, 5000);
+    }, 4000);
   };
 
   // map through booked tours to display cart data
@@ -91,11 +91,10 @@ const BookedToursList = () => {
     tourName: tour.tourName,
     tourCost: (
       <span style={{ color: "#F4CB5C" }}>
-        ${numberWithCommas(
+        $
+        {numberWithCommas(
           parseFloat(
-            calculatePrice(
-              calculateTotalDistance(tour.shipwrecks).toFixed(2)
-            )
+            calculatePrice(calculateTotalDistance(tour.shipwrecks).toFixed(2))
           ).toFixed(2)
         )}
       </span>
@@ -143,24 +142,34 @@ const BookedToursList = () => {
                     pagination={false}
                   />
                   <div style={{ marginTop: "20px" }}>
-                    <p style={{ color: "#FFFFFF", fontSize: "18px" }}>
+                    <p
+                      id="tours-cost"
+                      style={{ color: "#FFFFFF", fontSize: "18px" }}
+                    >
                       Tours Cost:{" "}
                       <span style={{ color: "#F4CB5C" }}>
                         ${numberWithCommas(totalCost.toFixed(2))}
                       </span>
                     </p>
-                    <p style={{ color: "#FFFFFF", fontSize: "18px" }}>
+                    <p
+                      id="tax-virginia"
+                      style={{ color: "#FFFFFF", fontSize: "18px" }}
+                    >
                       Tax (Virginia):{" "}
                       <span style={{ color: "#F4CB5C" }}>
                         ${numberWithCommas(tax.toFixed(2))}
                       </span>
                     </p>
-                    <p style={{ color: "#FFFFFF", fontSize: "18px" }}>
+                    <p
+                      id="total"
+                      style={{ color: "#FFFFFF", fontSize: "18px" }}
+                    >
                       Total:{" "}
                       <span style={{ color: "#F4CB5C" }}>
                         ${numberWithCommas(totalAmount.toFixed(2))}
                       </span>
                     </p>
+
                     <Button type="primary" onClick={handleCheckout}>
                       Checkout
                     </Button>

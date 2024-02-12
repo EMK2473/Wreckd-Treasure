@@ -20,7 +20,7 @@ import {
 
 const SearchTours = () => {
   // state variables and set functions
-  const [selectedTour, setSelectedTour] = useState("passengerTour");
+  const [selectedTour, setSelectedTour] = useState("grandTour");
   const [totalDistance, setTotalDistance] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedShipwreck, setSelectedShipwreck] = useState(null);
@@ -209,11 +209,11 @@ selectedArray.forEach(function (shipwreck, index) {
         className="absolute top-0 left-0 right-0 bg-gray-800 text-white py-10 px-5 text-center"
         style={{ marginTop: "100px" }}
       >
-        <h1 className="text-3xl mb-5 border border-white border-solid rounded-lg">
+        <h1 className="text-3xl mb-5 rounded-lg">
           Shipwreck Explorer
         </h1>
-        <div className="mb-5 border rounded-lg p-1 flex flex-col md:flex-row justify-between items-center">
-          <label htmlFor="tourSelection" className="mb-3 md:mb-0 mr-3" style={{fontSize: "18px", paddingRight: "7px"}}>
+        <div className="mb-5 rounded-lg p-1 flex flex-col md:flex-row justify-between items-center">
+          <label htmlFor="tourSelection" className="border mb-3 md:mb-0 mr-3" style={{fontSize: "18px", paddingRight: "7px"}}>
             Choose a tour:
           </label>
           <select
@@ -227,7 +227,7 @@ selectedArray.forEach(function (shipwreck, index) {
               cursor: "pointer",
             }}
           >
-            <option value="grandTour">Shipwrecks Tour</option>
+            <option value="grandTour">Grand Tour</option>
             <option value="passengerTour">Passenger Tour</option>
             <option value="warTour">War Tour</option>
             <option value="sailboatTour">Sailboat Tour</option>
