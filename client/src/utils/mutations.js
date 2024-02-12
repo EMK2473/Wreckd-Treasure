@@ -115,3 +115,31 @@ export const REMOVE_SHIPWRECK = gql`
   }
 `;
 
+
+export const REMOVE_TOUR = gql`
+mutation RemoveTour($tourName: String!) {
+  removeTour(tourName: $tourName) {
+    _id
+    username
+    bookedTours {
+      tourName
+      shipwrecks {
+        name
+        shipWreckId
+        image
+        coordinates {
+          lat
+          lng
+        }
+        reasonForSinking
+        yearSunk
+        casualties
+        country
+        bodyOfWater
+        description
+        rarity
+        treasure
+      }
+    }
+  }
+}`
