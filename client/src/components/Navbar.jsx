@@ -26,14 +26,14 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
             <Nav className="ms-auto text-end">
-              <Nav.Link
+              {/* <Nav.Link
                 as={Link}
                 to="/"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
                 Checkout
-              </Nav.Link>
+              </Nav.Link> */}
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link

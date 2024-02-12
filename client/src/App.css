@@ -23,6 +23,13 @@ h6 {
   font-family: "Pirata One", sans-serif;
 }
 
+
+#tours-cost,
+#tax-virginia,
+#total {
+  font-family: "Pirata One", sans-serif;
+}
+
 /* background change 1 */
 .new-background-class {
   background-image: url("/creature-bg.gif");

@@ -1,4 +1,5 @@
 // function to generate a random hex color
+// 16,777,216 possible outcomes
 export const generateRandomHexColor = () => {
     const letters = "0123456789ABCDEF";
     let color = "#";
