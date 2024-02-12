@@ -8,6 +8,15 @@ import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../utils/auth";
 import { getBookedTours, saveBookedTour } from "../utils/localStorage";
 import { GET_ME } from "../utils/queries";
+import BookedToursList from '../components/BookedToursList';
+import {
+  generateRandomHexColor,
+  calculateDistance,
+  calculateTotalDistance,
+  calculatePrice,
+  numberWithCommas,
+  metersToMiles,
+} from '../utils/helpers';
 
 const SearchTours = () => {
   // state variables and set functions
@@ -21,8 +30,6 @@ const SearchTours = () => {
   const [alertModalVisible, setAlertModalVisible] = useState(false)
   const [bookTourMutation] = useMutation(BOOK_TOUR);
   const { loading, error, data } = useQuery(GET_ME);
-
-
 
   useEffect(() => {
     // apply new background class
@@ -117,82 +124,72 @@ const SearchTours = () => {
     });
 
     // iterate over selectedArray to display markers and polylines
-    selectedArray.forEach(function (shipwreck, index) {
-      var marker;
-      if (index === 0) {
-        // sets first marker in index to green
-        marker = new google.maps.Marker({
-          position: shipwreck.coordinates,
-          map: map,
-          title: shipwreck.name,
-          icon: {
-            url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
-            scaledSize: new google.maps.Size(40, 40),
-          },
-        });
-      } else {
-        // creates red marker for each other shipwreck
-        marker = new google.maps.Marker({
-          position: shipwreck.coordinates,
-          map: map,
-          title: shipwreck.name,
-        });
-      }
-
-      // adds shipwreck info window to marker
-      var infoWindow = new google.maps.InfoWindow({
-        content: `<div class="info-window-content"><b style="text-decoration: underline;">${shipwreck.name}</b><br>
-                  Reason for Sinking: ${shipwreck.reasonForSinking}<br>
-                  Year Sunk: ${shipwreck.yearSunk}<br>
-                  Country: ${shipwreck.country}<br>
-                  Body of Water: ${shipwreck.bodyOfWater}<br>
-                  Casualties: ${shipwreck.casualties}<br>
-                  ${shipwreck.treasure.join(", ")}</div>
-                  <img src="${shipwreck.image}" alt="${shipwreck.name}
-                  Image" width="160" style="padding: 5px;"></div>`,
-      });
-
-      marker.addListener("click", function () {
-        infoWindow.open(map, marker);
-      });
-
-      // creates marker icon
-      var markerIcon = {
-        scaledSize: new google.maps.Size(50, 50),
-      };
-
-      // loads image asynchronously
-      var image = new Image();
-      image.onload = function () {
-        marker.setIcon(markerIcon);
-      };
-      image.src = shipwreck.image;
-
-      if (index > 0) {
-        // calc polyline coordinates
-        var polylineCoordinates = [
-          new google.maps.LatLng(
-            shipwreck.coordinates.lat,
-            shipwreck.coordinates.lng
-          ),
-          new google.maps.LatLng(
-            selectedArray[index - 1].coordinates.lat,
-            selectedArray[index - 1].coordinates.lng
-          ),
-        ];
-
-        // draw polylines with random colors
-        var polyline = new google.maps.Polyline({
-          path: polylineCoordinates,
-          geodesic: true,
-          strokeColor: generateRandomHexColor(),
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-
-        polyline.setMap(map);
-      }
+    // iterate over selectedArray to display markers and polylines
+selectedArray.forEach(function (shipwreck, index) {
+  var marker;
+  if (index === 0) {
+    // sets first marker in index to green
+    marker = new google.maps.Marker({
+      position: shipwreck.coordinates,
+      map: map,
+      title: shipwreck.name,
+      icon: {
+        url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+        scaledSize: new google.maps.Size(40, 40),
+      },
     });
+  } else {
+    // creates red marker for each other shipwreck
+    marker = new google.maps.Marker({
+      position: shipwreck.coordinates,
+      map: map,
+      title: shipwreck.name,
+    });
+  }
+
+  // adds shipwreck info window to marker
+  var infoWindow = new google.maps.InfoWindow({
+    content: `<div class="info-window-content"><b style="text-decoration: underline;">${shipwreck.name}</b><br>
+              Reason for Sinking: ${shipwreck.reasonForSinking}<br>
+              Year Sunk: ${shipwreck.yearSunk}<br>
+              Country: ${shipwreck.country}<br>
+              Body of Water: ${shipwreck.bodyOfWater}<br>
+              Casualties: ${shipwreck.casualties}<br>
+              ${shipwreck.treasure.join(", ")}</div>
+              <img src="${shipwreck.image}" alt="${shipwreck.name}"
+              Image" width="160" style="padding: 5px;"></div>`,
+  });
+
+  marker.addListener("click", function () {
+    infoWindow.open(map, marker);
+  });
+
+  if (index > 0) {
+    // calc polyline coordinates
+    var polylineCoordinates = [
+      new google.maps.LatLng(
+        shipwreck.coordinates.lat,
+        shipwreck.coordinates.lng
+      ),
+      new google.maps.LatLng(
+        selectedArray[index - 1].coordinates.lat,
+        selectedArray[index - 1].coordinates.lng
+      ),
+    ];
+
+    // draw polylines with random colors
+    var polyline = new google.maps.Polyline({
+      path: polylineCoordinates,
+      geodesic: true,
+      strokeColor: generateRandomHexColor(),
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+    });
+
+    polyline.setMap(map);
+  }
+});
+
 
     // calc total distance and total price if more than one shipwreck in array
     if (selectedArray.length > 1) {
@@ -205,77 +202,7 @@ const SearchTours = () => {
     }
   }
 
-  // function to generate a random hex color
-  const generateRandomHexColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
 
-  // haversine formula: d = 2 * R * arcsin(sqrt(sin^2((φ2 - φ1) / 2) + cos(φ1) * cos(φ2) * sin^2((λ2 - λ1) / 2)))
-  // function to calc distance between 2 coordinates
-  function calculateDistance(lat1, lon1, lat2, lon2) {
-    var R = 6371e3; // earth's radius in meters
-    var φ1 = (lat1 * Math.PI) / 180; // latitude of first point in radians
-    var φ2 = (lat2 * Math.PI) / 180; // latitude of second point in radians
-    var Δφ = ((lat2 - lat1) * Math.PI) / 180; // difference in latitude in radians
-    var Δλ = ((lon2 - lon1) * Math.PI) / 180; // difference in longitude in radians
-
-    // calcs squared difference in lat and lng
-    var a =
-      Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-      Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-
-    // calc acrtangent formula
-    // calcs angular distance between two points using haversine formula
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    // calc angular distance in radians
-    // returns distance between in meters
-    var distance = R * c;
-
-    return distance;
-  }
-
-  // function to calculate total distance of selected tour
-  function calculateTotalDistance(selectedArray) {
-    var totalDistance = 0;
-    selectedArray.forEach(function (shipwreck, index) {
-      if (index > 0) {
-        var prevShipwreck = selectedArray[index - 1];
-        var distance = calculateDistance(
-          shipwreck.coordinates.lat,
-          shipwreck.coordinates.lng,
-          prevShipwreck.coordinates.lat,
-          prevShipwreck.coordinates.lng
-        );
-        totalDistance += distance;
-      }
-    });
-    return totalDistance;
-  }
-
-  // function to calculate price based on total distance
-  // price per kilometer in USD
-  function calculatePrice(totalDistance) {
-    const basePrice = 0;
-    const pricePerKilometer = 1 / 1000;
-
-    return (basePrice + totalDistance * pricePerKilometer).toFixed(2);
-  }
-
-  // function to format number values with commas to every hundredth
-  function numberWithCommas(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-
-  // function to convert meters into miles
-  function metersToMiles(meters) {
-    return (meters * 0.000621371).toFixed(2);
-  }
   return (
     <div className="mt-50" style={{ position: "relative" }}>
       <div
@@ -315,7 +242,7 @@ const SearchTours = () => {
               color: "#f4cb5c",
             }}
           >
-            Save this tour
+            Book this tour!
           </button>
         </div>
       </div>
@@ -336,23 +263,27 @@ const SearchTours = () => {
           style={{ height: "400px", width: "900px", borderRadius: "10px" }}
         ></div>
         <Modal
-      title="Tour Booked Successfully"
-      visible={modalVisible}
+      title={<span style={{ color: 'green', fontWeight: 'bold' }}>Tour Booked Successfully</span>}
+      open={modalVisible}
       onOk={() => setModalVisible(false)}
       onCancel={() => setModalVisible(false)}
     >
-      <p>Your tour has been booked successfully!</p>
+      <p>Your tour has been booked!</p>
     </Modal>
     <Modal
-        title="Tour Already Booked"
-        visible={alertModalVisible}
-        onOk={hideAlertModal}
-        onCancel={hideAlertModal}
-      >
-        <p>This tour is already booked!</p>
+  title={<span style={{ color: 'red', fontWeight: 'bold' }}>Tour Already Booked</span>}
+  open={alertModalVisible}
+  onOk={hideAlertModal}
+  onCancel={hideAlertModal}
+>
+        <p>This tour has already been booked!</p>
       </Modal>
       </div>
-
+      <div
+    style={{ width: "250px" }}
+  >
+    <BookedToursList />
+  </div>
       <div
         style={{
           position: "fixed",
@@ -383,7 +314,7 @@ const SearchTours = () => {
                     border: "1px solid #F4CB5C",
                     borderRadius: "5px",
                     padding: "10px",
-                    marginTop: "50px",
+                    marginTop: "60px",
                     backgroundColor: "#365058",
                   }}
                 >

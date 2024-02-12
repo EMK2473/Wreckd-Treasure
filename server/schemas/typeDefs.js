@@ -87,6 +87,7 @@ const typeDefs = `
         bookTour(tourName: String, shipwrecks: [InputTour]): User
         saveShipWreck(newShipWreck: InputShipWreck!): User
         removeShipWreck(shipWreckId: String): User
+        removeTour(tourName: String!): User
     }
 `;
 

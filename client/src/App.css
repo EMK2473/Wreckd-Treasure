@@ -31,9 +31,13 @@ h6 {
 }
 
 .ant-collapse-arrow {
-  color: #F4CB5C; 
+  color: #f4cb5c;
 }
 
+div.ant-collapse-body {
+  background-color: #4a555f !important;
+  border-color: #F4CB5C !important;
+}
 /* background change 2 */
 .new-background-class-two {
   background-image: url("/shipwreck-bg.gif");
@@ -58,9 +62,9 @@ h6 {
 }
 
 div.ant-collapse-content-box {
-  background-color: #839DA9;
+  background-color: #839da9;
   border-radius: 10px;
-  border-color: #3E1E19;
+  border-color: #3e1e19;
 }
 
 .ant-collapse-header {

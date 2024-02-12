@@ -77,6 +77,35 @@ const resolvers = {
           throw new Error('Could not book tour: ' + error.message);
       }
   },
+  removeTour: async (parent, { tourName }, context) => {
+    // Check if the user is authenticated
+    if (!context.user) {
+      throw new AuthenticationError('User not authenticated');
+    }
+
+    try {
+      // Find the user by ID
+      const user = await User.findById(context.user._id);
+
+      // Find the index of the tour to remove
+      const indexToRemove = user.bookedTours.findIndex(tour => tour.tourName === tourName);
+
+      // If tour is not found, throw an error
+      if (indexToRemove === -1) {
+        throw new Error('Tour not found for removal');
+      }
+
+      // Remove the tour from the bookedTours array
+      user.bookedTours.splice(indexToRemove, 1);
+
+      // Save the user with the updated bookedTours array
+      await user.save();
+
+      return user;
+    } catch (error) {
+      throw new Error(`Could not remove tour: ${error.message}`);
+    }
+  },
     // login
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
