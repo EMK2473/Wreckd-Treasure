@@ -263,20 +263,20 @@ selectedArray.forEach(function (shipwreck, index) {
           style={{ height: "400px", width: "900px", borderRadius: "10px" }}
         ></div>
         <Modal
-      title="Tour Booked Successfully"
+      title={<span style={{ color: 'green', fontWeight: 'bold' }}>Tour Booked Successfully</span>}
       open={modalVisible}
       onOk={() => setModalVisible(false)}
       onCancel={() => setModalVisible(false)}
     >
-      <p>Your tour has been booked successfully!</p>
+      <p>Your tour has been booked!</p>
     </Modal>
     <Modal
-        title="Tour Already Booked"
-        open={alertModalVisible}
-        onOk={hideAlertModal}
-        onCancel={hideAlertModal}
-      >
-        <p>This tour is already booked!</p>
+  title={<span style={{ color: 'red', fontWeight: 'bold' }}>Tour Already Booked</span>}
+  open={alertModalVisible}
+  onOk={hideAlertModal}
+  onCancel={hideAlertModal}
+>
+        <p>This tour has already been booked!</p>
       </Modal>
       </div>
       <div

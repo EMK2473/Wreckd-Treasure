@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_ME} from "../utils/queries";
+import { GET_ME } from "../utils/queries";
 import { REMOVE_TOUR } from "../utils/mutations";
 import { Collapse, Card, Table, Button } from "antd";
 const { Panel } = Collapse;
@@ -60,35 +60,41 @@ const BookedToursList = () => {
         top: "80px",
         left: "10px",
         minWidth: "200px",
-        zIndex: "9999",
+        zIndex: "3",
       }}
     >
-      <Collapse in={open}>
-        <Card
-          id="collapse-panel"
-          style={{ background: "none", border: "none", boxShadow: "none" }}
-        >
-          <Collapse>
-          <Panel
-  header={<span style={{ color: "#F4CB5C" }}>Booked Tours</span>}
-  key="1"
-  style={{
-    borderRadius: "10px",
-    backgroundColor: "#56727D",
-    border: "none",
-  }}
->
-              <div className="custom-collapse-body">
-                <Table
-                  columns={columns}
-                  dataSource={dataSource}
-                  pagination={false}
-                />
-              </div>
-            </Panel>
-          </Collapse>
-        </Card>
-      </Collapse>
+      <Button onClick={() => setOpen(!open)}>
+        {open ? "Hide Booked Tours" : "Show Booked Tours"}
+      </Button>
+      {open && (
+        <Collapse in={open}>
+          <Card
+            id="collapse-panel"
+            style={{ background: "none", border: "none", boxShadow: "none" }}
+          >
+            <Collapse>
+              <Panel
+                header={<span style={{ color: "#F4CB5C" }}>Booked Tours</span>}
+                key="1"
+                style={{
+                  borderRadius: "10px",
+                  backgroundColor: "#56727D",
+                  border: "none",
+                  width: "300px",
+                }}
+              >
+                <div className="custom-collapse-body">
+                  <Table
+                    columns={columns}
+                    dataSource={dataSource}
+                    pagination={false}
+                  />
+                </div>
+              </Panel>
+            </Collapse>
+          </Card>
+        </Collapse>
+      )}
     </div>
   );
 };
