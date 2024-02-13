@@ -118,7 +118,7 @@ const BookedToursList = () => {
         <Collapse in={open}>
           <Card
             id="collapse-panel"
-            style={{ background: "none", border: "none", boxShadow: "none" }}
+            style={{ background: "none", boxShadow: "none" }}
           >
             <Collapse>
               <Panel
@@ -131,7 +131,6 @@ const BookedToursList = () => {
                 style={{
                   borderRadius: "10px",
                   backgroundColor: "#56727D",
-                  border: "none",
                   width: "400px",
                 }}
               >

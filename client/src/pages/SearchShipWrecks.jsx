@@ -102,7 +102,6 @@ const SearchTours = () => {
   // intialize map and display shipwrecks
   function initMap(selectedTour) {
     const selectedArray = tours[selectedTour] || [];
-    console.log("Selected Array:", selectedArray);
 
     // if more than one shipwreck, calc total distance and price
     if (selectedArray.length > 1) {
@@ -213,7 +212,7 @@ selectedArray.forEach(function (shipwreck, index) {
           Shipwreck Explorer
         </h1>
         <div className="mb-5 rounded-lg p-1 flex flex-col md:flex-row justify-between items-center">
-          <label htmlFor="tourSelection" className="border mb-3 md:mb-0 mr-3" style={{fontSize: "18px", paddingRight: "7px"}}>
+          <label htmlFor="tourSelection" className="mb-3 md:mb-0 mr-3" style={{fontSize: "18px", paddingRight: "7px"}}>
             Choose a tour:
           </label>
           <select

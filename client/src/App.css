@@ -44,6 +44,7 @@ h6 {
 div.ant-collapse-body {
   background-color: #4a555f !important;
   border-color: #F4CB5C !important;
+  border-radius: 10px !important;
 }
 /* background change 2 */
 .new-background-class-two {
