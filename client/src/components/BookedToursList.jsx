@@ -105,13 +105,25 @@ const BookedToursList = () => {
     <div
       style={{
         position: "fixed",
-        top: "80px",
+        top: "100px",
         left: "10px",
         minWidth: "200px",
         zIndex: "3",
       }}
     >
-      <Button onClick={() => setOpen(!open)}>
+      <Button style={{cursor: "pointer",
+              backgroundColor: "#baf0f0",
+              color: "#062c33",
+              borderRadius: "5px 5px 5px 5px",
+              border: "solid",
+              borderColor: "#287382",
+              width: "160px",
+              textAlign: "center",
+              marginRight: "20px",
+              fontSize: "18px",
+              paddingBottom: "37px",
+              paddingTop: "10px",
+              fontFamily: "Pirata One, sans-serif"}} onClick={() => setOpen(!open)}>
         {open ? `Hide 🛒 Cart` : `Show 🛒 Cart`}
       </Button>
       {open && (
