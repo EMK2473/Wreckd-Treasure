@@ -102,7 +102,6 @@ const SearchTours = () => {
   // intialize map and display shipwrecks
   function initMap(selectedTour) {
     const selectedArray = tours[selectedTour] || [];
-    console.log("Selected Array:", selectedArray);
 
     // if more than one shipwreck, calc total distance and price
     if (selectedArray.length > 1) {
