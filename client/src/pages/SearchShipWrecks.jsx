@@ -204,7 +204,7 @@ selectedArray.forEach(function (shipwreck, index) {
 
 
   return (
-    <div className="mt-50" style={{ position: "relative" }}>
+    <div className="mt-50" style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div
         className="absolute top-0 left-0 right-0 bg-gray-800 text-white py-10 px-5 text-center"
         style={{ marginTop: "100px" }}
@@ -213,7 +213,7 @@ selectedArray.forEach(function (shipwreck, index) {
           Shipwreck Explorer
         </h1>
         <div className="mb-5 rounded-lg p-1 flex flex-col md:flex-row justify-between items-center">
-          <label htmlFor="tourSelection" className="border mb-3 md:mb-0 mr-3" style={{fontSize: "18px", paddingRight: "7px"}}>
+          <label htmlFor="tourSelection" className="mb-3 md:mb-0 mr-3" style={{fontSize: "20px", paddingRight: "7px"}}>
             Choose a tour:
           </label>
           <select
