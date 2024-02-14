@@ -320,7 +320,7 @@ const SearchTours = () => {
             style={{
               position: "fixed",
               top: "250px",
-              right: "100px",
+              right: "10px",
               borderRadius: "5px",
               marginRight: "5px",
             }}
