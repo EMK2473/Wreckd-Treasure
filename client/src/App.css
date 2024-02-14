@@ -166,7 +166,6 @@ div.ant-collapse-content-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* You can adjust or remove the max-width property as needed */
   max-width: none;
 }
 

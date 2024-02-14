@@ -17,6 +17,22 @@ const BookedToursList = () => {
   const [removeTourMutation] = useMutation(REMOVE_TOUR, {
     refetchQueries: [{ query: GET_ME }],
   });
+const [buttonColor, setButtonColor] = useState("#baf0f0"); 
+const [borderColor, setBorderColor] = useState("#287382"); 
+const [fontColor, setFontColor] = useState("#062c33"); 
+
+const handleButtonClick = () => {
+  // Toggle button colors on click
+  const newButtonColor = buttonColor === "#baf0f0" ? "#287382" : "#baf0f0";
+  const newBorderColor = borderColor === "#287382" ? "#baf0f0" : "#287382";
+  const newFontColor = fontColor === "#062c33" ? "#F4CB5C" : "#062c33";
+  setButtonColor(newButtonColor);
+  setBorderColor(newBorderColor);
+  setFontColor(newFontColor);
+  
+  // Toggle the state of 'open'
+  setOpen(!open);
+};
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -113,26 +129,25 @@ const BookedToursList = () => {
         zIndex: "3",
       }}
     >
-      <Button
-        style={{
-          cursor: "pointer",
-          backgroundColor: "#baf0f0",
-          color: "#062c33",
-          borderRadius: "5px 5px 5px 5px",
-          border: "solid",
-          borderColor: "#287382",
-          width: "140px",
-          textAlign: "center",
-          marginRight: "20px",
-          fontSize: "18px",
-          paddingBottom: "37px",
-          paddingTop: "10px",
-          fontFamily: "Pirata One, sans-serif",
-        }}
-        onClick={() => setOpen(!open)}
-      >
-        {open ? `Hide 🛒 Cart` : `Show 🛒 Cart`}
-      </Button>
+<Button
+  style={{
+    cursor: "pointer",
+    backgroundColor: buttonColor, 
+    color: fontColor, 
+    borderRadius: "5px 5px 5px 5px",
+    border: `solid 2px ${borderColor}`, 
+    width: "120px",
+    textAlign: "center",
+    marginRight: "20px",
+    fontSize: "12px",
+    paddingBottom: "30px",
+    paddingTop: "10px",
+    fontFamily: "Pirata One, sans-serif",
+  }}
+  onClick={handleButtonClick}
+>
+  {open ? `Hide 🛒 Cart` : `Show 🛒 Cart`}
+</Button>
       {open && (
         <Collapse in={open}>
           <Card
