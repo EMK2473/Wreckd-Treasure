@@ -45,11 +45,13 @@ const BookedToursList = () => {
       title: "Item",
       dataIndex: "tourName",
       key: "tourName",
+      ellipsis: true, 
     },
     {
       title: "Cost",
       dataIndex: "tourCost",
       key: "tourCost",
+      ellipsis: true, 
     },
     {
       title: "Actions",
@@ -105,52 +107,68 @@ const BookedToursList = () => {
     <div
       style={{
         position: "fixed",
-        top: "100px",
+        top: "200px",
         left: "10px",
         minWidth: "200px",
         zIndex: "3",
       }}
     >
-      <Button style={{cursor: "pointer",
-              backgroundColor: "#baf0f0",
-              color: "#062c33",
-              borderRadius: "5px 5px 5px 5px",
-              border: "solid",
-              borderColor: "#287382",
-              width: "160px",
-              textAlign: "center",
-              marginRight: "20px",
-              fontSize: "18px",
-              paddingBottom: "37px",
-              paddingTop: "10px",
-              fontFamily: "Pirata One, sans-serif"}} onClick={() => setOpen(!open)}>
+      <Button
+        style={{
+          cursor: "pointer",
+          backgroundColor: "#baf0f0",
+          color: "#062c33",
+          borderRadius: "5px 5px 5px 5px",
+          border: "solid",
+          borderColor: "#287382",
+          width: "140px",
+          textAlign: "center",
+          marginRight: "20px",
+          fontSize: "18px",
+          paddingBottom: "37px",
+          paddingTop: "10px",
+          fontFamily: "Pirata One, sans-serif",
+        }}
+        onClick={() => setOpen(!open)}
+      >
         {open ? `Hide 🛒 Cart` : `Show 🛒 Cart`}
       </Button>
       {open && (
         <Collapse in={open}>
           <Card
             id="collapse-panel"
-            style={{ background: "none", boxShadow: "none" }}
+            style={{
+              background: "none",
+              boxShadow: "none",
+              overflow: "auto", 
+            }}
           >
             <Collapse>
-              <Panel
-                header={
-                  <span style={{ color: "#F4CB5C", textAlign: "center" }}>
-                    {`${username}'s 🛒 Cart`}
-                  </span>
-                }
-                key="1"
-                style={{
-                  borderRadius: "10px",
-                  backgroundColor: "#56727D",
-                  width: "400px",
-                }}
-              >
+            <Panel
+  header={
+    <span style={{ color: "#F4CB5C", textAlign: "center" }}>
+      {`${username}'s 🛒 Cart`}
+    </span>
+  }
+  key="1"
+  style={{
+    borderRadius: "10px",
+    backgroundColor: "#56727D",
+    maxWidth: "400px", 
+    width: "100%",
+    overflow: "auto", 
+    margin: "0 auto", 
+    maxHeight: "70vh", 
+  }}
+>
+
                 <div className="custom-collapse-body">
                   <Table
                     columns={columns}
                     dataSource={dataSource}
                     pagination={false}
+                    showHeader={false}
+                    scroll={{ y: 200 }} 
                   />
                   <div style={{ marginTop: "20px" }}>
                     <p

@@ -1,3 +1,4 @@
+/* App.css */
 body {
   display: flex;
   flex-direction: column;
@@ -162,9 +163,14 @@ div.ant-collapse-content-box {
   text-align: center;
   padding: 20px;
   border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* You can adjust or remove the max-width property as needed */
+  max-width: none;
 }
 
-/* currently holding wreck'd treasure */
+
 /* skull & cross bones logo */
 .App-logo {
   display: flex;
@@ -204,6 +210,21 @@ iframe {
   max-width: 100%;
 }
 
+/* Adjusting the width of the Item column */
+.ant-table-cell.tourName {
+  width: 90px !important; /* Adjust the width as needed */
+}
+
+/* Adjusting the width of the Cost column */
+.ant-table-cell.tourCost {
+  width: 80px !important; /* Adjust the width as needed */
+}
+
+/* Adjusting the width of the Actions column */
+.ant-table-cell.actions {
+  width: 80px !important; /* Adjust the width as needed */
+}
+
 @media screen and (min-width: 768px) {
   /* Base screens */
 }
@@ -215,6 +236,9 @@ iframe {
 }
 @media screen and (max-width: 767px) {
   /* Smartphones */
+  #map {
+    height: 300px; /* Adjust the height for smaller screens */
+  }
 }
 @media screen and (min-width: 1200px) {
   /* Large desktop screens */
