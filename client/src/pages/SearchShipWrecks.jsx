@@ -31,28 +31,35 @@ const SearchTours = () => {
   const [bookTourMutation] = useMutation(BOOK_TOUR);
   const { loading, error, data } = useQuery(GET_ME);
   const [width, setWidth] = useState("100%");
+  const [height, setHeight] = useState(window.innerHeight);
 
   useEffect(() => {
     const handleResize = () => {
       // Set custom thresholds based on screen size
-      if (window.innerWidth <= 768) {
-        setWidth(window.innerWidth * 0.6);
-      } else if (window.innerWidth > 768 && window.innerWidth <= 1024) {
-        setWidth(window.innerWidth * 0.7);
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      if (windowWidth <= 768) {
+        setWidth(windowWidth * 0.6);
+        setHeight(windowHeight * 0.4);
+      } else if (windowWidth > 768 && windowWidth <= 1024) {
+        setWidth(windowWidth * 0.7);
+        setHeight(windowHeight * 0.5);
       } else {
-        setWidth(window.innerWidth * 0.8);
+        setWidth(windowWidth * 0.8);
+        setHeight(windowHeight * 0.7);
       }
     };
   
     // Call handleResize when the window is resized
     window.addEventListener('resize', handleResize);
   
-    // Initial call to set initial width
+    // Initial call to set initial width and height
     handleResize();
   
     // Cleanup listener on component unmount
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+  
 
   useEffect(() => {
     // apply new background class
@@ -226,7 +233,7 @@ const SearchTours = () => {
   
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <div style={{ width: width, maxWidth: "1000px"}}>
+<div style={{ width: width, maxWidth: "1000px", height: height }}>
         <div
           className="mt-50"
           style={{ position: "relative", padding: "0 10px", width: "100%" }}
@@ -253,6 +260,7 @@ const SearchTours = () => {
                 style={{
                   backgroundColor: "#287382",
                   color: "#f4cb5c",
+                  fontSize: "14px",
                 }}
               >
                 Book this tour!
@@ -275,7 +283,8 @@ const SearchTours = () => {
           <div
             id="map"
             style={{
-              height: "600px",
+              height: height,
+              maxHeight: "550px",
               width: "100%",
               maxWidth: "100%",
               borderRadius: "10px",
@@ -500,10 +509,10 @@ const SearchTours = () => {
                       padding: "10px",
                       borderRadius: "5px 5px 5px 5px",
                       borderColor: "#baf0f0",
-                      width: "140px",
+                      width: "120px",
                       textAlign: "center",
                       marginRight: "20px",
-                      fontSize: "18px",
+                      fontSize: "12px",
                     }}
                   >
                     Close Tour Details
@@ -521,10 +530,10 @@ const SearchTours = () => {
                   borderRadius: "5px 5px 5px 5px",
                   border: "solid",
                   borderColor: "#287382",
-                  width: "140px",
+                  width: "120px",
                   textAlign: "center",
                   marginRight: "20px",
-                  fontSize: "18px",
+                  fontSize: "12px",
                 }}
               >
                 Show Tour Details
