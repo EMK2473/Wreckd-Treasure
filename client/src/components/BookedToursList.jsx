@@ -107,8 +107,8 @@ const BookedToursList = () => {
     <div
       style={{
         position: "fixed",
-        top: "200px",
-        left: "10px",
+        top: "250px",
+        left: "15px",
         minWidth: "200px",
         zIndex: "3",
       }}
