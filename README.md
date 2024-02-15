@@ -123,9 +123,7 @@ npm run dev
 
 ##### \*screenshot demonstrates `WRECK'D TREASURE's` back end, testing all routes with **ApolloGQL**, and the functional application deployed on **Heroku\***
 
-<!-- <p align="center">
-<img src="./sunken-booty/demo/ss.png"/>
-</p> -->
+https://sheltered-island-02345-cf3621cb29c3.herokuapp.com/
 
 ### ![demo](./sunken-booty/branding/13.png)
 
@@ -209,9 +207,9 @@ Here's a list of technologies used:
 
 ##### [*github repo*](https://github.com/EMK2473/pirate-project)
 
-##### [*deployed app*](https://git-wreckd-treasure-25fc610b2d62.herokuapp.com/)
+##### [*deployed app*](https://sheltered-island-02345-cf3621cb29c3.herokuapp.com/)
 
-##### [*app presentation*]()
+##### [*app presentation*](https://www.canva.com/design/DAF8UV7ftLc/Q4O-dCsjD_Wx63bHvdYxjA/view?utm_content=DAF8UV7ftLc&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
 ### ![connect](./sunken-booty/branding/7.png)
 
